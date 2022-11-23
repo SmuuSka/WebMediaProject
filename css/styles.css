@@ -1,0 +1,95 @@
+/* Add a black background color to the top navigation */
+.topnav {
+    position: relative;
+    background-color: #8ee3ef;
+    overflow: hidden;
+    width: 95%;
+    margin: auto;
+
+}
+.bottomnav{
+    position: relative;
+    background-color: #8ee3ef;
+    overflow: hidden;
+    color: #254e70;
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    width: 95%;
+    margin: auto;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #eeeeee;
+}
+html {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.container {
+    width: 95%;
+    margin: auto;
+    position: relative;
+
+}
+main{
+    background-color: #fff;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+h1{
+    font-size: 300%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #254e70;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #4999ea;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #377e8e;
+    color: white;
+}
+
+/* Centered section inside the top navigation */
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+}
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav-right {
+        float: none;
+        display: block;
+    }
+
+    .topnav-centered a {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
