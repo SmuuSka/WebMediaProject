@@ -1,0 +1,104 @@
+Index: html/culture.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\"\r\n        content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n  <link href=\"../css/styles.css\" rel=\"stylesheet\" type=\"text/css\">\r\n  <script src=\"../js/culture.js\"></script>\r\n  <title>Culture</title>\r\n</head>\r\n<body>\r\n<header><br><br><br></header>\r\n<!-- Top navigation -->\r\n<div class=\"topnav\">\r\n\r\n  <!-- Centered link -->\r\n  <div class=\"topnav-centered\">\r\n    <a href=\"../index.html\">HOME</a>\r\n  </div>\r\n\r\n  <!-- Left-aligned links (default) -->\r\n  <a href=\"movies.html\">MOVIES</a>\r\n  <a href=\"culture.html\" class=\"active\">CULTURE</a>\r\n\r\n  <!-- Right-aligned links -->\r\n  <div class=\"topnav-right\">\r\n    <a href=\"sports.html\">SPORTS</a>\r\n    <a href=\"restaurants.html\">RESTAURANTS</a>\r\n  </div>\r\n</div>\r\n<main class=\"container\">\r\n  <br>\r\n  <h1>CULTURE</h1>\r\n  <br><br>\r\n</main>\r\n<footer class=\"bottomnav\">Kaspar and the boys broudly presents.</footer>\r\n</body>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/html/culture.html b/html/culture.html
+--- a/html/culture.html	(revision 671874a4661f78a0741b8dae5d4d1c3d89112aa9)
++++ b/html/culture.html	(date 1669284317339)
+@@ -31,9 +31,15 @@
+ </div>
+ <main class="container">
+   <br>
+-  <h1>CULTURE</h1>
+-  <br><br>
++
++  <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
++  <button id="hakunappi">Hae</button><br>
++  <ul id = "Mainlistele">
++  </ul>  <br>
++  <br>
+ </main>
++
++<script src= "../api/myhelsinkiapi.js"></script>
+ <footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
+ </body>
+ </body>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"daddfbc4-8e84-471e-83c0-28104e1646a9\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/css/styles.css\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/html/culture.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/html/movies.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/html/restaurants.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/html/sports.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/index.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/js/culture.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/js/index.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/js/movies.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/js/restaurants.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/js/sports.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"CSS File\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2HwYrZrcF1cR7Zy4AlJyqfkAR8N\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"list.type.of.created.stylesheet\": \"CSS\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"daddfbc4-8e84-471e-83c0-28104e1646a9\" name=\"Changes\" comment=\"\" />\r\n      <created>1669197812424</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1669197812424</updated>\r\n      <workItem from=\"1669197815993\" duration=\"5546000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 671874a4661f78a0741b8dae5d4d1c3d89112aa9)
++++ b/.idea/workspace.xml	(date 1669284317729)
+@@ -5,18 +5,8 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/html/culture.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/html/movies.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/html/restaurants.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/js/culture.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/js/movies.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/js/restaurants.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/html/culture.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/culture.html" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,6 +23,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="master" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+@@ -49,6 +44,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "WebServerToolWindowFactoryState": "false",
++    "last_opened_file_path": "C:/Users/Kaspar Tullus/WebstormProjects/WebMediaProject/API",
+     "list.type.of.created.stylesheet": "CSS",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+@@ -57,6 +53,16 @@
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
++  <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Kaspar Tullus\WebstormProjects\WebMediaProject\API" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\Kaspar Tullus\WebstormProjects\WebMediaProject\api" />
++      <recent name="C:\Users\Kaspar Tullus\WebstormProjects\WebMediaProject\js" />
++      <recent name="C:\Users\Kaspar Tullus\WebstormProjects\WebMediaProject" />
++    </key>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -66,6 +72,8 @@
+       <option name="presentableId" value="Default" />
+       <updated>1669197812424</updated>
+       <workItem from="1669197815993" duration="5546000" />
++      <workItem from="1669282218361" duration="214000" />
++      <workItem from="1669282500211" duration="1806000" />
+     </task>
+     <servers />
+   </component>
