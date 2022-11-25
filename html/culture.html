@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="../css/styles.css" rel="stylesheet" type="text/css">
   <script src="../js/culture.js"></script>
@@ -29,17 +27,29 @@
     <a href="restaurants.html">RESTAURANTS</a>
   </div>
 </nav>
-<main class="container">
-  <br>
+<main class="container" id ="cultureMain">
 
-  <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
-  <button id="hakunappi">Hae</button><br>
-  <ul id = "Mainlistele">
-  </ul>  <br>
+  <div id = "cultureSearchalue">
+    <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
+    <button id="hakunappi">Hae</button><br>
+  </div>
+
+  <article id = "cultureInfo">
+    <h2 id="cultureMainName" >Info</h2>
+    <p id = "culturedesc">sss</p>
+    <p id="aukioloajat">sss</p>
+  </article>
+
+  <div id = "teatterilista">
+    <ul id = "Mainlistele" >
+    </ul>
+  </div>
+
+  <br>
   <br>
 </main>
 
-<script src= "../api/myhelsinkiapi.js"></script>
+<script src= "../api/myhelsinkiCultureAPI.js"></script>
 <footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
 </body>
 </html>
