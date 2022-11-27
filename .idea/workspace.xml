@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Myhelsinki API">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Samun testApi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/myhelsinkiapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/myhelsinkiapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/testiapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/testiapi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,8 +84,15 @@
       <workItem from="1669297145708" duration="7000" />
       <workItem from="1669539892458" duration="5620000" />
       <workItem from="1669545615621" duration="110000" />
-      <workItem from="1669548788283" duration="4509000" />
+      <workItem from="1669548788283" duration="7285000" />
     </task>
+    <task id="LOCAL−00001" summary="Samun testApi">
+      <created>1669553479070</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1669553479070</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +111,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Myhelsinki API" />
-    <option name="LAST_COMMIT_MESSAGE" value="Myhelsinki API" />
+    <MESSAGE value="Samun testApi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Samun testApi" />
   </component>
 </project>
