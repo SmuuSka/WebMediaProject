@@ -4,7 +4,7 @@ const mainElem = document.querySelector("main");
 const headerElem = document.getElementById('topHeader');
 const hakunappi = document.getElementById('hakunappi');
 const hakuteksti = document.getElementById('hakuteksti');
-const apiUrlSearchTab = "sports";
+const apiUrlSearchTab = "v1/events/?tags_filter=sports,";
 
 let hakusana;
 function muokkaaTeksti(){
