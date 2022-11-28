@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../css/styles.css" rel="stylesheet" type="text/css">
-    <script src="../js/sports.js"></script>
+    <script type="module" src="../js/sports.js"></script>
     <title>Sports</title>
 </head>
 <body>
@@ -30,9 +30,21 @@
     </div>
 </nav>
 <main class="container">
-    <br>
-    <h1>SPORTS</h1>
-    <br><br>
+    <header class="topHeader" id="topHeader">
+        <br>
+        <h1>SPORTS</h1>
+        <br><br>
+
+        <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän urheiluaktiviteetti">
+        <button id="hakunappi">Hae</button><br>
+        <ul id = "Mainlistele">
+        </ul>  <br>
+        <br>
+    </header>
+    <article>
+        <button id="testinappi">Näytä data</button><br>
+    </article>
+
 </main>
 <footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
 </body>
