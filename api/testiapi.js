@@ -1,24 +1,25 @@
 'use strict';
 
 //Kiinteä haku Url tapahtumien hakuun
-const apiurl = 'https://open-api.myhelsinki.fi/v1/events/?tags_filter=';
+const apiurl = 'https://open-api.myhelsinki.fi/';
 //Kiinteä proxy Url
 const proxy = 'https://api.allorigins.win/get?url=';
-let apiKysely;
-let proxyApikysely;
+
 
 export default class Haku {
     constructor() {
     }
+    //hakusana on käyttäjän syöttämä
+    //hakusivu on sivuston välilehdestä riippuvainen
     teeKysely(hakusana, hakusivu) {
         console.log("Moro vaan täältä teeKysely-funktiosta");
 
     // muodostetaan ja tulostetaan konsoliin lopullinen hakukysely
-    apiKysely = apiurl + hakusivu + hakusana;
+    let apiKysely = apiurl + hakusivu + hakusana;
     console.log('normaali hakukysely: ' + apiKysely);
 
     // lisätään vielä proxyn osoite (CORS ongelmien ratkaisija)
-    proxyApikysely = proxy + encodeURIComponent(apiKysely);
+        let proxyApikysely = proxy + encodeURIComponent(apiKysely);
     console.log("cors-kysely: " + proxyApikysely);
 
     teeHaku(proxyApikysely);        // parametrina proxyn osoite + hakulause
@@ -46,7 +47,7 @@ function naytaVastaus(proxynData) {
     for (let i = 0; i < jsonData.length; i++) {
 
         let stringname = jsonData[i].name.fi;
-        let hakusanaksi = hakuteksti.value.toUpperCase();
+        let hakusanaksi = hakuteksti.value;
         let strincarz = stringname.charAt(0);
         let hakuzero = hakusanaksi.charAt(0);
         console.log(stringname);

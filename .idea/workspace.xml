@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Samun testApi">
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Myhelsinki API">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_11_2022_15_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_11_2022_15_35__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/testiapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/testiapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,13 +33,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="master" />
-      </list>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -85,6 +81,7 @@
       <workItem from="1669539892458" duration="5620000" />
       <workItem from="1669545615621" duration="110000" />
       <workItem from="1669548788283" duration="7285000" />
+      <workItem from="1669618082327" duration="2878000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
