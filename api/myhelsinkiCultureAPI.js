@@ -22,7 +22,7 @@ let apiKysely;
 let proxyApikysely;
 
 // Etsitään HTML-sivulta tarvittavat komponentit id:n avulla.
-const hakuteksti = document.getElementById('hakuteksti');
+const hakutekst = document.getElementById('hakuteksti');
 const hakunappi = document.getElementById("hakunappi");
 
 
@@ -69,13 +69,13 @@ function naytaVastaus(proxynData) {
     for (let i = 0; i < jsonData.length; i++) {
 
         let stringname = jsonData[i].name.fi;
-        let hakusanakaks = hakuteksti.value.toUpperCase();
+        let hakusanakaks = hakutekst.value.toUpperCase();
         let strincarz = stringname.charAt(0);
         let hakuzero = hakusanakaks.charAt(0);
         //console.log(stringified);
 
         // jos etsitty tasaisella nimellä
-        if (stringname.toLowerCase() === hakuteksti.value.toLowerCase()){
+        if (stringname.toLowerCase() === hakutekst.value.toLowerCase()){
             let ul = document.getElementById('Mainlistele')
             let list = document.createElement('li')
             list.innerText = jsonData[i].name.fi;

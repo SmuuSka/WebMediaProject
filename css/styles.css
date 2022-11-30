@@ -1,4 +1,7 @@
 /* Add a black background color to the top navigation */
+*{
+    border-style: solid;
+}
 .topnav {
     position: relative;
     background-color: #8ee3ef;
@@ -19,6 +22,7 @@
     margin: auto;
 }
 body{
+
     margin: 0;
     padding: 0;
     background-color: #eeeeee;
@@ -117,3 +121,43 @@ h1{
         transform: none;
     }
 }
+
+/* Culture.html Styles */
+#cultureSearchalue{
+    display: flex;
+    margin-right: 40%;
+    float: left;
+}
+/*Search bar ja Nappi millä tehdään haku*/
+#hakunappi,#Searchalue{
+    margin-left: 2.5%;
+}
+/*Search bar*/
+#hakuteksti{
+    height: 35px;
+    width: 200px;
+    float: left;
+}
+ /*Pääinfo aka (aukioloajat ja intro descriptions*/
+#cultureInfo{
+    position: absolute;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+/*Main element Kultuuri*/
+#cultureMain{
+    display: block;
+}
+
+/*UL lista elementti #teatterilistan sisällä*/
+#Mainlistele{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 250px;
+}
+/*Kaikki kultuuri LI elementit jotka JS tulostaa.*/
+#liculture{
+    display:inline-block;
+}
+
+/*---------------------*/
