@@ -45,6 +45,30 @@ main{
 h1{
     font-size: 300%;
 }
+.searchBox{
+    display: flex;
+    margin-left: 50px;
+    margin-right: auto;
+    max-width: 100%;
+
+}
+.resultbox{
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: auto;
+    background-color: antiquewhite;
+    height: 400px;
+    width: 400px;
+    overflow-y: scroll;
+}
+
+.map{
+    display: inline-block;
+    display: flex;
+    margin: auto;
+    padding-bottom: 20px;
+    position: relative;
+}
 
 /* Style the links inside the navigation bar */
 .topnav a {
