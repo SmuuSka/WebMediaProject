@@ -7,7 +7,11 @@ const searchButton = document.getElementById('hakunappi');
 const divElem = document.getElementById('result');
 const searchInputField = document.getElementById('hakuteksti');
 
+
 const apiUrlSearchTab = "v1/events/?tags_filter=sports,";
+
+const map = document.getElementById('map');
+
 
 let currentSearch;
 let keyword;
@@ -22,26 +26,29 @@ window.addEventListener("load", () => {
 function findSportDataDefault() {
     //Luetaan käyttäjänsyöte
     keyword = "";
+
     //Luodaan hakuolio
     currentSearch = new SearchData();
+
     //Tehdään haku
-    currentSearch.doQuery(apiUrlSearchTab, keyword);
+    currentSearch.doQuery(apiUrlSearchTab, "");
 
-
-
-    setTimeout(function () {
-        sortData(currentSearch.resultJson);
-        for (let i = 0; i < 10; i++) {
-                //defaultEventSet(i);
-            }
-    }, 100)
-};
+    setTimeout(function ()
+    {//sortData(currentSearch.resultJson);
+        for (let i = 0; i < 10; i++)
+        {
+                defaultEventSet(i);
+        }
+        }, 100)
+}
 
 function defaultEventSet(index){
     //Indeksimuuttujat
     let date = currentSearch.resultJson[index].event_dates.starting_day.toString();
     let eventName = currentSearch.resultJson[index].name.fi;
 
+    let lat = currentSearch.resultJson[index].location.lat;
+    console.log("Tässä pitäisi näkyä " + lat.toString());
     //Elementit
     let eventItem = document.createElement('article');
     let article = document.createElement('article');
