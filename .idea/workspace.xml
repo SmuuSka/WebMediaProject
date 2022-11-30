@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="location specific url change">
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/myhelsinkiapi.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/testiapi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/restaurants.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/restaurants.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/restaurants.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/restaurants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
