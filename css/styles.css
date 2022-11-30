@@ -22,6 +22,7 @@
     margin: auto;
 }
 body{
+
     margin: 0;
     padding: 0;
     background-color: #eeeeee;
@@ -119,13 +120,6 @@ h1{
     margin-left: 10%;
     margin-right: 10%;
 }
-/*Kultuuri paikkojen Main laatikko listalle (div)*/
-#teatterilista{
-    display: inline-block;
-    margin-left: 50%;
-    height: 60%;
-    overflow: hidden;
-}
 /*Main element Kultuuri*/
 #cultureMain{
     display: block;
@@ -141,4 +135,5 @@ h1{
 #liculture{
     display:inline-block;
 }
+
 /*---------------------*/

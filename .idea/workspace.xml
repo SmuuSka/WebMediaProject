@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="location specific url change">
-      <change afterPath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_11_2022_15_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_11_2022_15_35__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/myhelsinkiapi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/testiapi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/culture.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/culture.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/movies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/restaurants.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/restaurants.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/culture.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/culture.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +38,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="master" />
-      </list>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -50,23 +47,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/samua/WebstormProjects/WebMediaF_Projekti/api&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/mruun/Desktop/Project",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\api" />
@@ -91,6 +88,7 @@
       <workItem from="1669548788283" duration="7285000" />
       <workItem from="1669618082327" duration="15510000" />
       <workItem from="1669641887638" duration="1759000" />
+      <workItem from="1669722629878" duration="14312000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
