@@ -11,6 +11,7 @@ export default class SearchData {
     doQuery(tab, keyword) {
         //Kiinteään linkkiin lisätään välilehtikohtainen hakulinkki ja käyttäjän hakusana
         let apiQuery = this.apiUrl + tab + keyword;
+        console.log(apiQuery);
         let proxyUrlQuery = this.proxyUrl + encodeURIComponent(apiQuery);
 
         console.log("Haku url: " + proxyUrlQuery);
