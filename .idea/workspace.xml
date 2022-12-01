@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Datetime">
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Added filter to apiurl">
+      <change afterPath="$PROJECT_DIR$/css/sportsStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +98,7 @@
       <workItem from="1669707778464" duration="4349000" />
       <workItem from="1669713284221" duration="18086000" />
       <workItem from="1669781306937" duration="45000" />
-      <workItem from="1669784544398" duration="19506000" />
+      <workItem from="1669784544398" duration="13819000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
@@ -113,13 +113,7 @@
       <option name="project" value="LOCAL" />
       <updated>1669621362529</updated>
     </task>
-    <task id="LOCAL−00003" summary="Datetime">
-      <created>1669800660957</created>
-      <option name="number" value="LOCAL−00003" />
-      <option name="presentableId" value="LOCAL−00003" />
-      <updated>1669800660957</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +124,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="samu" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -140,7 +146,6 @@
     <MESSAGE value="Myhelsinki API" />
     <MESSAGE value="Samun testApi" />
     <MESSAGE value="location specific url change" />
-    <MESSAGE value="Datetime" />
-    <option name="LAST_COMMIT_MESSAGE" value="Datetime" />
+    <option name="LAST_COMMIT_MESSAGE" value="location specific url change" />
   </component>
 </project>
