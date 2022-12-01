@@ -1,0 +1,398 @@
+Index: js/sports.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import SearchData from '../api/myHelsinkiApiNew.js';\r\n\r\nconst mainElem = document.querySelector(\"main\");\r\nconst headerElem = document.getElementById('topHeader');\r\nconst searchButton = document.getElementById('hakunappi');\r\nconst testinappi = document.getElementById('testinappi');\r\nconst searchInputField = document.getElementById('hakuteksti');\r\nconst apiUrlSearchTab = \"v1/events/?tags_filter=sports,\";\r\n\r\nlet currentSearch;\r\nlet keyword;\r\n\r\nfunction findSportData(){\r\n    //Luetaan käyttäjänsyöte\r\n    keyword = searchInputField.value;\r\n    //Luodaan hakuolio\r\n    currentSearch = new SearchData();\r\n    //Tehdään haku\r\n    currentSearch.doQuery(apiUrlSearchTab,keyword);\r\n}\r\n\r\nfunction naytaJotainDataa(){\r\n\r\n    for (let i = 0; i < currentSearch.resultJson.length; i++){\r\n        console.log(currentSearch.resultJson[i].name.fi);\r\n    }\r\n}\r\n\r\nsearchButton.addEventListener('click', findSportData);\r\ntestinappi.addEventListener('click', naytaJotainDataa);\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/js/sports.js b/js/sports.js
+--- a/js/sports.js	(revision d7c71f4aa8f4ae2ae80599be74614bf32e3dca3f)
++++ b/js/sports.js	(date 1669800499814)
+@@ -1,33 +1,145 @@
++'use strict';
+ import SearchData from '../api/myHelsinkiApiNew.js';
+ 
+ const mainElem = document.querySelector("main");
+ const headerElem = document.getElementById('topHeader');
+ const searchButton = document.getElementById('hakunappi');
+-const testinappi = document.getElementById('testinappi');
++const divElem = document.getElementById('result');
+ const searchInputField = document.getElementById('hakuteksti');
++
+ const apiUrlSearchTab = "v1/events/?tags_filter=sports,";
+ 
+ let currentSearch;
+ let keyword;
++let dateTime = {};
++
+ 
+-function findSportData(){
++window.addEventListener("load", () => {
++    console.log("This function is executed once the page is fully loaded");
++    findSportDataDefault();
++});
++
++function findSportDataDefault() {
+     //Luetaan käyttäjänsyöte
+-    keyword = searchInputField.value;
++    keyword = "";
+     //Luodaan hakuolio
+     currentSearch = new SearchData();
+     //Tehdään haku
+-    currentSearch.doQuery(apiUrlSearchTab,keyword);
+-}
++    currentSearch.doQuery(apiUrlSearchTab, keyword);
++
++
++
++    setTimeout(function () {
++        sortData(currentSearch.resultJson);
++        for (let i = 0; i < 10; i++) {
++                //defaultEventSet(i);
++            }
++    }, 100)
++};
+ 
+-function naytaJotainDataa(){
++function defaultEventSet(index){
++    //Indeksimuuttujat
++    let date = currentSearch.resultJson[index].event_dates.starting_day.toString();
++    let eventName = currentSearch.resultJson[index].name.fi;
+ 
+-    for (let i = 0; i < currentSearch.resultJson.length; i++){
+-        console.log(currentSearch.resultJson[i].name.fi);
+-    }
++    //Elementit
++    let eventItem = document.createElement('article');
++    let article = document.createElement('article');
++    let eventNameItem = document.createElement('h2');
++    let h2DataTime = document.createElement('h2');
++
++    //Luokat
++    eventItem.className = "eventItemContainer";
++    h2DataTime.className = "eventItem-date";
++    article.className = "eventItem-event";
++
++
++    date = date.split('T');
++    let datestring = date;
++    let datestring1 = datestring[0].split('-');
++    let dateFixed = swapElements(datestring1);
++    console.log(dateFixed);
++
++
++
++    eventNameItem.innerHTML = eventName;
++    h2DataTime.innerHTML = dateFixed.toString();
++
++    //Koostaminen
++    eventItem.appendChild(h2DataTime);
++    article.appendChild(eventNameItem);
++    eventItem.appendChild(article);
++    divElem.appendChild(eventItem);
++}
++
++function swapElements(array) {
++    let date = array[2].toString() + ".";
++    date += array[1].toString() + ".";
++    date += array[0].toString();
++    return date;
+ }
+ 
+-searchButton.addEventListener('click', findSportData);
+-testinappi.addEventListener('click', naytaJotainDataa);
++function sortData(data){
++    let jsonDate;
++    let idOfDate;
++
++    let eventDictionary = {};
++    for (let i = 0; i < data.length; i++){
++        try {
++            jsonDate = data[i].event_dates.starting_day;
++            jsonDate = jsonDate.split('T');
++        }catch (err){
++            console.log("Jokin virhe " + err.stack);
++            jsonDate = "Date missing!";
++        }finally{
++            try {
++                idOfDate = data[i].id;
++            }catch (err){
++                console.log("Jokin virhe " + err.stack);
++                idOfDate = "Missing id!";
++            }finally {
++
++                let datestring = jsonDate;
++                let dateObject = new Date(datestring);
++
++                eventDictionary[idOfDate] = dateObject.toDateString();
++
++            }
++        }
++    }
++    console.log(eventDictionary[data[0].id.toString()]);
++}
++
++
++
++
++
++    // function findSportData() {
++    //     //Luetaan käyttäjänsyöte
++    //     keyword = searchInputField.value;
++    //     //Luodaan hakuolio
++    //     currentSearch = new SearchData();
++    //     //Tehdään haku
++    //     currentSearch.doQuery(apiUrlSearchTab, keyword);
++    //
++    //     setTimeout(function () {
++    //         for (let i = 0; i < currentSearch.resultJson.length; i++) {
++    //             console.log(currentSearch.resultJson[i].name.fi);
++    //             let article =
++    //                 `
++    //             <article>
++    //                 <header class="article">
++    //                     <h2>${currentSearch.resultJson[i].name.fi}</h2>
++    //                 </header>
++    //             </article>
++    //             `
++    //             divElem.innerHTML += article;
++    //         }
++    //     }, 100)
++    // };
++
++//document.addEventListener("DOMContentLoaded", findSportData);
++//searchButton.addEventListener('click', findSportData);
+ 
+ 
+ 
+Index: html/sports.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\"\r\n          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <link href=\"../css/styles.css\" rel=\"stylesheet\" type=\"text/css\">\r\n    <script type=\"module\" src=\"../js/sports.js\"></script>\r\n    <title>Sports</title>\r\n</head>\r\n<body>\r\n<header><br><br><br></header>\r\n<!-- Top navigation -->\r\n<nav class=\"topnav\">\r\n\r\n    <!-- Centered link -->\r\n    <div class=\"topnav-centered\">\r\n        <a href=\"../index.html\">HOME</a>\r\n    </div>\r\n\r\n    <!-- Left-aligned links (default) -->\r\n    <a href=\"movies.html\">MOVIES</a>\r\n    <a href=\"culture.html\">CULTURE</a>\r\n\r\n    <!-- Right-aligned links -->\r\n    <div class=\"topnav-right\">\r\n        <a href=\"sports.html\" class=\"active\">SPORTS</a>\r\n        <a href=\"restaurants.html\">RESTAURANTS</a>\r\n    </div>\r\n</nav>\r\n<main class=\"container\">\r\n    <header class=\"topHeader\" id=\"topHeader\">\r\n        <br>\r\n        <h1>SPORTS</h1>\r\n        <br><br>\r\n\r\n        <input id=\"hakuteksti\" style=\"text-transform: capitalize;\" type=\"text\" name=\"haku\" placeholder=\"Syötä tähän urheiluaktiviteetti\">\r\n        <button id=\"hakunappi\">Hae</button><br>\r\n        <ul id = \"Mainlistele\">\r\n        </ul>  <br>\r\n        <br>\r\n    </header>\r\n    <article>\r\n        <button id=\"testinappi\">Näytä data</button><br>\r\n    </article>\r\n\r\n</main>\r\n<footer class=\"bottomnav\">Kaspar and the boys broudly presents.</footer>\r\n</body>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/html/sports.html b/html/sports.html
+--- a/html/sports.html	(revision d7c71f4aa8f4ae2ae80599be74614bf32e3dca3f)
++++ b/html/sports.html	(date 1669786492244)
+@@ -6,6 +6,7 @@
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link href="../css/styles.css" rel="stylesheet" type="text/css">
++    <link href="../css/sportsStyle.css" rel="stylesheet" type="text/css">
+     <script type="module" src="../js/sports.js"></script>
+     <title>Sports</title>
+ </head>
+@@ -29,22 +30,14 @@
+         <a href="restaurants.html">RESTAURANTS</a>
+     </div>
+ </nav>
+-<main class="container">
+-    <header class="topHeader" id="topHeader">
+-        <br>
+-        <h1>SPORTS</h1>
+-        <br><br>
+-
+-        <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän urheiluaktiviteetti">
+-        <button id="hakunappi">Hae</button><br>
+-        <ul id = "Mainlistele">
+-        </ul>  <br>
+-        <br>
+-    </header>
+-    <article>
+-        <button id="testinappi">Näytä data</button><br>
+-    </article>
+-
++<main class="sportMain">
++
++    <div class="resultDiv" id="result">
++        <header class="topHeader" id="topHeader">
++            <h1 class="sportH1">SPORTS</h1>
++            <input type="search" class="sportInput">
++        </header>
++    </div>
+ </main>
+ <footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
+ </body>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"daddfbc4-8e84-471e-83c0-28104e1646a9\" name=\"Changes\" comment=\"location specific url change\">\r\n      <change afterPath=\"$PROJECT_DIR$/api/myHelsinkiApiNew.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/api/myhelsinkiapi.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/api/testiapi.js\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/html/sports.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/html/sports.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/js/sports.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/js/sports.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"CSS File\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GithubProjectSettings\">\r\n    <option name=\"branchProtectionPatterns\">\r\n      <list>\r\n        <option value=\"master\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2HwYrZrcF1cR7Zy4AlJyqfkAR8N\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/samua/WebstormProjects/WebMediaF_Projekti/api&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\samua\\WebstormProjects\\WebMediaF_Projekti\\api\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\samua\\WebstormProjects\\WebMediaF_Projekti\\api\" />\r\n      <recent name=\"C:\\Users\\samua\\WebstormProjects\\WebMediaF_Projekti\\js\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"daddfbc4-8e84-471e-83c0-28104e1646a9\" name=\"Changes\" comment=\"\" />\r\n      <created>1669197812424</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1669197812424</updated>\r\n      <workItem from=\"1669197815993\" duration=\"7283000\" />\r\n      <workItem from=\"1669297145708\" duration=\"7000\" />\r\n      <workItem from=\"1669539892458\" duration=\"5620000\" />\r\n      <workItem from=\"1669545615621\" duration=\"110000\" />\r\n      <workItem from=\"1669548788283\" duration=\"7285000\" />\r\n      <workItem from=\"1669618082327\" duration=\"15510000\" />\r\n      <workItem from=\"1669641887638\" duration=\"1759000\" />\r\n    </task>\r\n    <task id=\"LOCAL−00001\" summary=\"Samun testApi\">\r\n      <created>1669553479070</created>\r\n      <option name=\"number\" value=\"LOCAL−00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\r\n      <updated>1669553479070</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"location specific url change\">\r\n      <created>1669621362529</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1669621362529</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Myhelsinki API\" />\r\n    <MESSAGE value=\"Samun testApi\" />\r\n    <MESSAGE value=\"location specific url change\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"location specific url change\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d7c71f4aa8f4ae2ae80599be74614bf32e3dca3f)
++++ b/.idea/workspace.xml	(date 1669800500213)
+@@ -4,12 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="location specific url change">
+-      <change afterPath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" afterDir="false" />
++    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Added filter to apiurl">
++      <change afterPath="$PROJECT_DIR$/css/sportsStyle.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/api/myhelsinkiapi.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/api/testiapi.js" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -20,8 +20,8 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="CSS File" />
+         <option value="HTML File" />
++        <option value="CSS File" />
+         <option value="JavaScript File" />
+       </list>
+     </option>
+@@ -41,6 +41,9 @@
+       </list>
+     </option>
+   </component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/index.html" root0="SKIP_INSPECTION" />
++  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -63,6 +66,7 @@
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+@@ -72,8 +76,10 @@
+       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\api" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+-      <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\api" />
++      <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\img" />
+       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\js" />
++      <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti" />
++      <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\api" />
+     </key>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+@@ -91,6 +97,10 @@
+       <workItem from="1669548788283" duration="7285000" />
+       <workItem from="1669618082327" duration="15510000" />
+       <workItem from="1669641887638" duration="1759000" />
++      <workItem from="1669707778464" duration="4349000" />
++      <workItem from="1669713284221" duration="18086000" />
++      <workItem from="1669781306937" duration="45000" />
++      <workItem from="1669784544398" duration="13819000" />
+     </task>
+     <task id="LOCAL−00001" summary="Samun testApi">
+       <created>1669553479070</created>
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\"\r\n          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n    <link href=\"css/styles.css\" rel=\"stylesheet\" type=\"text/css\">\r\n    <script src=\"js/index.js\"></script>\r\n    <title>MoodFactory</title>\r\n</head>\r\n<body>\r\n<header><br><br><br></header>\r\n<!-- Top navigation -->\r\n<nav class=\"topnav\">\r\n\r\n    <!-- Centered link -->\r\n    <div class=\"topnav-centered\">\r\n        <a href=\"index.html\" class=\"active\">HOME</a>\r\n    </div>\r\n\r\n    <!-- Left-aligned links (default) -->\r\n    <a href=\"html/movies.html\">MOVIES</a>\r\n    <a href=\"html/culture.html\">CULTURE</a>\r\n\r\n    <!-- Right-aligned links -->\r\n    <div class=\"topnav-right\">\r\n        <a href=\"html/sports.html\">SPORTS</a>\r\n        <a href=\"html/restaurants.html\">RESTAURANTS</a>\r\n    </div>\r\n</nav>\r\n<main class=\"container\">\r\n<br>\r\n    <h1>MOODFACTOR</h1>\r\n    <br><br>\r\n</main>\r\n<footer class=\"bottomnav\">Kaspar and the boys broudly presents.</footer>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/index.html b/index.html
+--- a/index.html	(revision d7c71f4aa8f4ae2ae80599be74614bf32e3dca3f)
++++ b/index.html	(date 1669722861531)
+@@ -6,7 +6,8 @@
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link href="css/styles.css" rel="stylesheet" type="text/css">
+-    <script src="js/index.js"></script>
++<!--    <script src="js/index.js"></script>-->
++
+     <title>MoodFactory</title>
+ </head>
+ <body>
+@@ -25,7 +26,7 @@
+ 
+     <!-- Right-aligned links -->
+     <div class="topnav-right">
+-        <a href="html/sports.html">SPORTS</a>
++        <a id="sportLink" href="html/sports.html">SPORTS</a>
+         <a href="html/restaurants.html">RESTAURANTS</a>
+     </div>
+ </nav>
+@@ -35,5 +36,6 @@
+     <br><br>
+ </main>
+ <footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
++<script type="module" src="js/index.js"></script>
+ </body>
+ </html>
+\ No newline at end of file
+Index: css/sportsStyle.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/css/sportsStyle.css b/css/sportsStyle.css
+new file mode 100644
+--- /dev/null	(date 1669787280257)
++++ b/css/sportsStyle.css	(date 1669787280257)
+@@ -0,0 +1,56 @@
++.sportMain{
++    min-height: 100vh;
++    width: 100%;
++    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("../img/helsinki.jpg");
++}
++.eventItemContainer{
++    display: flex;
++    flex-wrap: nowrap;
++    flex-direction: row;
++    border: 3px solid darkslateblue;
++    background-color: rgba(4,9,30,0.7);
++    padding: 5px;
++
++}
++
++.eventItem-date{
++}
++
++.eventItem-event{
++    flex-grow: 2;
++}
++.sportH1{
++    color: white;
++}
++
++h2{
++    text-align: center;
++    padding: 10px;
++    font-size: 30px;
++    color: paleturquoise;
++    -webkit-text-stroke-color: black;
++    -webkit-text-stroke-width: 2px;
++}
++.topHeader{
++    text-align: center;
++    padding: 30px;
++}
++.resultDiv.eventItemContainer{
++    padding: 30px;
++    background-color: rgba(64,224,208,0.1);
++    border: 3px solid darkseagreen;
++}
++
++.sportInput{
++    font-size: 30px;
++    text-align: center;
++    flex-basis: 0;
++    cursor: auto;
++    background-color: rgba(64,224,208,0.01);
++    color: white;
++    border: none;
++    border-bottom: 4px solid black;
++    width: auto;
++    margin: auto;
++    padding: 30px 0px 5px 0px;
++}
+\ No newline at end of file
