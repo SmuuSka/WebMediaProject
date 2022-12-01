@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="MapApi on tehty helppo käyttöiseksi.">
-      <change afterPath="$PROJECT_DIR$/css/cultureStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/culture.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/culture.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/culture.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/culture.js" afterDir="false" />
-    </list>
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="MapApi on tehty helppo käyttöiseksi." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,19 +121,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="samu" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -150,6 +132,7 @@
     <MESSAGE value="Samun testApi" />
     <MESSAGE value="location specific url change" />
     <MESSAGE value="MapApi on tehty helppo käyttöiseksi." />
-    <option name="LAST_COMMIT_MESSAGE" value="MapApi on tehty helppo käyttöiseksi." />
+    <MESSAGE value="culture kartta refreshaa kun painaa uuta tietoa." />
+    <option name="LAST_COMMIT_MESSAGE" value="culture kartta refreshaa kun painaa uuta tietoa." />
   </component>
 </project>
