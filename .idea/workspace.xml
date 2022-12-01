@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/myHelsinkiApiNew.js" afterDir="false" />
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="location specific url change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/myhelsinkiCultureAPI.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/myhelsinkiapi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/testiapi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/restaurants.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/restaurants.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/sports.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/sports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/restaurants.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/restaurants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sports.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/culture.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/culture.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/culture.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/culture.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +41,14 @@
       </list>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Desktop/Project/FinnkinoData.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2HwYrZrcF1cR7Zy4AlJyqfkAR8N" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -93,6 +97,8 @@
       <workItem from="1669548788283" duration="7285000" />
       <workItem from="1669618082327" duration="15510000" />
       <workItem from="1669641887638" duration="1759000" />
+      <workItem from="1669824137172" duration="3959000" />
+      <workItem from="1669828307322" duration="24274000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
