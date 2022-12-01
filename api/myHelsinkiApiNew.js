@@ -18,6 +18,7 @@ export default class SearchData {
         fetch(proxyUrlQuery).then(function (response) {
             return response.json();
         }).then(response => this.parseJsonData(response))
+        return;
     }
     parseJsonData(jsonData){
         let jSonData = JSON.parse(jsonData.contents);
@@ -26,6 +27,7 @@ export default class SearchData {
         //Hakuolio luodaan esim. haku = new SearchData();
         //Muista lisätä import SearchData from '../api/myHelsinkiApiNew.js'; moduuli omaan scriptiisi
         this.resultJson = realData;
+        return;
     }
 }
 

@@ -1,4 +1,5 @@
 /* Add a black background color to the top navigation */
+
 .topnav {
     position: relative;
     background-color: #8ee3ef;
@@ -21,6 +22,7 @@
     margin: auto;
 }
 body{
+
     margin: 0;
     padding: 0;
     background-color: #f6f6f6;
@@ -119,4 +121,104 @@ h1{
         left: 0;
         transform: none;
     }
+    .CultIMG{
+
+    }
 }
+
+/* Culture.html Styles */
+.DataHEADER{
+    background-color: #c33c54;
+}
+.CultIMG{
+    max-width: 24%;
+    min-width: 20%;
+    max-height: 20%;
+    min-height: 10%;
+    margin: -2%;
+    margin-right: 1%;
+    margin-left: -3%;
+    border-radius: 10px;
+    border-style: groove;
+    border-color: #c33c54;
+    border-style: groove;
+    border-right-width: 20px;
+}
+.DataPARAGRAPH{
+    background-color: #8ee3ef;
+    border-radius: 10px;
+    width: 1500px;
+    text-align: center;
+    float: right;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.CULTDATARTCLASS{
+    max-height: 160px;
+    overflow: hidden;
+    border-radius: 14px;
+    background-color: #37718e;
+    margin: 2%;
+    padding: 0% 1% 0%;
+    display: flex;
+}
+.CULTDATARTCLASStwo{
+
+    margin: 2%;
+    padding: 0% 5% 0%;
+    display: flex;
+}
+
+@keyframes append-animate {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+.new-CULTDATARTCLASS{
+    transform-origin: 50% 0;
+    animation: append-animate 0.3s ease-in;
+}
+#cultureSearchalue{
+    display: flex;
+    margin-right: 40%;
+    float: left;
+}
+/*Search bar ja Nappi millä tehdään haku*/
+#hakunappi,#Searchalue{
+    margin-left: 2.5%;
+}
+/*Search bar*/
+#hakuteksti{
+    height: 35px;
+    width: 200px;
+    float: left;
+}
+ /*Pääinfo aka (aukioloajat ja intro descriptions*/
+#cultureInfo{
+    position: absolute;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+/*Main element Kultuuri*/
+#cultureMain{
+    display: block;
+}
+
+/*UL lista elementti #teatterilistan sisällä*/
+#Mainlistele{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 250px;
+}
+/*Kaikki kultuuri LI elementit jotka JS tulostaa.*/
+#liculture{
+    display:inline-block;
+}
+
+/*---------------------*/

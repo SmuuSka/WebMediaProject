@@ -1,12 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <link href="../css/styles.css" rel="stylesheet" type="text/css">
-  <script src="../js/culture.js"></script>
+  <script  type="module" src="../js/culture.js"></script>
   <title>Culture</title>
 </head>
 <body>
@@ -29,17 +28,13 @@
     <a href="restaurants.html">RESTAURANTS</a>
   </div>
 </nav>
-<main class="container">
-  <br>
 
-  <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
-  <button id="hakunappi">Hae</button><br>
-  <ul id = "Mainlistele">
-  </ul>  <br>
+<main class="container" id ="cultureMain">
+    <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
+    <button id="hakunappi">Hae</button><br>
+  <br>
   <br>
 </main>
-
-<script src= "../api/myhelsinkiapi.js"></script>
-<footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
+<footer class="bottomnav">Kaspar and the boys proudly presents.</footer>
 </body>
 </html>
