@@ -1,12 +1,15 @@
 //Kaspar Tullus
 import SearchData from '../api/myHelsinkiApiNew.js';
-
+import MapData from "../js/MapApi.js";
 const mainElem = document.getElementById("cultureMain");
-const headerElem = document.getElementById('topHeader');
 const searchButton = document.getElementById('hakunappi');
 const searchInputField = document.getElementById('hakuteksti');
 const apiUrlSearchTab = "v1/events/?tags_search=";
-
+let currentMAP;
+let mapoptiondata =
+    {enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0};
 let currentSearch;
 let keyword;
 let tagi = 0;
@@ -27,6 +30,7 @@ function findCultureData(){
     keyword = searchInputField.value;
     //Luodaan hakuolio
     currentSearch = new SearchData();
+    currentMAP = new MapData();
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tags[tagi].name, keyword);
     LaunchCultureData();
@@ -36,16 +40,18 @@ function LaunchCultureData(){
     console.log("CULTUREDATA" + tagi)
     setTimeout(function() {
         for (let i = 0; i < currentSearch.resultJson.length; i++) {
-
             console.log(currentSearch.resultJson[i].name.fi);
             datalist.push({
                 name: currentSearch.resultJson[i].name.fi,
                 description: currentSearch.resultJson[i].description.intro,
                 id: currentSearch.resultJson[i].id,
-                bodydes: currentSearch.resultJson[i].description.body
+                bodydes: currentSearch.resultJson[i].description.body,
+                locationlat: currentSearch.resultJson[i].location.lat,
+                locationlon: currentSearch.resultJson[i].location.lon
             });
 
-            if (currentSearch.resultJson[i].name.fi === datalist[i].name &&
+
+            if (currentSearch.resultJson[i].name.fi === datalist[i].name ||
                 currentSearch.resultJson[i].description.intro == datalist[i].description ||
                 currentSearch.resultJson[i].id == datalist[i].id ||
                 currentSearch.resultJson[i].description.body == datalist[i].bodydes)
@@ -85,16 +91,36 @@ function LaunchCultureData(){
                 p.innerHTML = currentSearch.resultJson[i].description.body
                 let br = document.createElement("br");
 
+                let button = document.createElement("button");
+                button.innerText = "KARTTA";
+                button.id = "Karttanappi"+i;
+                button.onclick = function() { naytamap(i); };
+
+                let mapdiv = document.createElement("div");
+                mapdiv.className="map";
+                mapdiv.id ="map";
+                mapdiv.style = "width: 95%; height: 300px;";
+
                 mainElem.appendChild(br)
                 mainElem.appendChild(articletwo)
                 articletwo.appendChild(h3);
                 mainElem.appendChild(article);
                 article.appendChild(img);
                 article.appendChild(p);
+                article.appendChild(button);
+                if (datalist[i].locationlat != null && datalist[i].locationlon != null){
+                    console.log("ALL GUCCI")
+                }else{
+                    console.log("NOT GUCCI")
+                    let buttonid = document.getElementById("Karttanappi" + i);
+                    buttonid.remove();
+                }
             }
+
         }
 
-    }, 200);
+    },1000);
+
     tagi++
     if (tagi <= tags.length - 1){
         setTimeout(function () {
@@ -106,6 +132,12 @@ function LaunchCultureData(){
     }
 }
 
+function naytamap(datalindex){
+    let datalat = datalist[datalindex].locationlat;
+    let datalon = datalist[datalindex].locationlon;
+        console.log("GOTLOCATION")
+    currentMAP.showMap(datalat, datalon,mapoptiondata);
+}
 
 searchButton.addEventListener('click', findCultureData);
 

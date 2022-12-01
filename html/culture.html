@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
   <link href="../css/styles.css" rel="stylesheet" type="text/css">
   <script  type="module" src="../js/culture.js"></script>
   <title>Culture</title>
@@ -30,6 +32,7 @@
 </nav>
 
 <main class="container" id ="cultureMain">
+  <div class="map" id="map" style="width: 95%; height: 300px;"></div>
     <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
     <button id="hakunappi">Hae</button><br>
   <br>
