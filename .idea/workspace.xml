@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="culture.js,culture.html changes. Made my search work with diffrent culture filters.">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_16_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_16_10__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/culture.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/culture.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/MapApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/MapApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/culture.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/culture.js" afterDir="false" />
     </list>
@@ -152,6 +150,7 @@
     <MESSAGE value="Myhelsinki API" />
     <MESSAGE value="Samun testApi" />
     <MESSAGE value="location specific url change" />
-    <option name="LAST_COMMIT_MESSAGE" value="location specific url change" />
+    <MESSAGE value="MapApi on tehty helppo käyttöiseksi." />
+    <option name="LAST_COMMIT_MESSAGE" value="MapApi on tehty helppo käyttöiseksi." />
   </component>
 </project>
