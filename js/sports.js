@@ -47,8 +47,6 @@ function defaultEventSet(index){
     let date = currentSearch.resultJson[index].event_dates.starting_day.toString();
     let eventName = currentSearch.resultJson[index].name.fi;
 
-    let lat = currentSearch.resultJson[index].location.lat;
-    console.log("Tässä pitäisi näkyä " + lat.toString());
     //Elementit
     let eventItem = document.createElement('article');
     let article = document.createElement('article');
