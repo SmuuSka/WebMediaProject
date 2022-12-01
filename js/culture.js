@@ -133,10 +133,14 @@ function LaunchCultureData(){
 }
 
 function naytamap(datalindex){
-    let datalat = datalist[datalindex].locationlat;
-    let datalon = datalist[datalindex].locationlon;
-        console.log("GOTLOCATION")
-    currentMAP.showMap(datalat, datalon,mapoptiondata);
+    currentMAP.posLat = datalist[datalindex].locationlat;
+    currentMAP.posLong = datalist[datalindex].locationlon;
+    currentMAP.mapleaf = L.map('map').setView([currentMAP.posLat, currentMAP.posLong], 13);
+    currentMAP.options = mapoptiondata;
+    currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(datalist[datalindex].name);
+
+    console.log("GOTLOCATION")
+    currentMAP.showMap();
 }
 
 searchButton.addEventListener('click', findCultureData);
