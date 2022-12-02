@@ -35,7 +35,10 @@ function findCultureData(){
     currentMAP = new MapData();
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tags[tagi].name, keyword);
-    LaunchCultureData();
+    setTimeout(function (){
+        LaunchCultureData();
+    },400)
+
 
 }
 function LaunchCultureData(){
@@ -127,7 +130,7 @@ function LaunchCultureData(){
     if (tagi <= tags.length - 1){
         setTimeout(function () {
             findCultureData()
-        },1000);
+        },2000);
     }else{
 
         console.log("DONE")
