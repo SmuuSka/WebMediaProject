@@ -1,3 +1,4 @@
+//Samu,Kaspar,Turo
 'use strict';
 export default class SearchData {
     constructor() {
@@ -18,9 +19,16 @@ export default class SearchData {
         fetch(proxyUrlQuery).then(function (response) {
             return response.json();
         }).then(response => this.parseJsonData(response))
+            .then((result) => {
+                console.log('Success:', result);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         return;
     }
-    parseJsonData(jsonData){
+
+    parseJsonData(jsonData) {
         let jSonData = JSON.parse(jsonData.contents);
         let realData = jSonData.data;
         //Välilehdellä käytettävä Json data löytyy Oma hakuolio.resultJson

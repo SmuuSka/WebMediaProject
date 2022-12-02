@@ -35,7 +35,10 @@ function findCultureData(){
     currentMAP = new MapData();
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tags[tagi].name, keyword);
-    LaunchCultureData();
+    setTimeout(function (){
+        LaunchCultureData();
+    },400)
+
 
 }
 function LaunchCultureData(){
@@ -111,15 +114,14 @@ function LaunchCultureData(){
                 article.appendChild(p);
                 article.appendChild(button);
 
-                if (datalist[i].locationlat != null && datalist[i].locationlon != null){
-                    //Don't do anything.
-                }else{
-                    console.log("Ei ole nappia.")
-                    let buttonid = document.getElementById("Karttanappi" + i);
-                    buttonid.remove();
-                }
             }
-
+            if (datalist[i].locationlat != null && datalist[i].locationlon != null){
+                //Don't do anything.
+            }else{
+                console.log("Ei ole nappia.")
+                let buttonid = document.getElementById("Karttanappi" + i);
+                buttonid.remove();
+            }
         }
 
     },1000);
@@ -128,7 +130,7 @@ function LaunchCultureData(){
     if (tagi <= tags.length - 1){
         setTimeout(function () {
             findCultureData()
-        },1000);
+        },2000);
     }else{
 
         console.log("DONE")
