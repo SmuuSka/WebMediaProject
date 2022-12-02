@@ -1,3 +1,4 @@
+//Turo,Samu,Kaspar
 
 //Funktio kutsussa lähetä koordinaatit mukana.
 export default class MapData {
