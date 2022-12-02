@@ -34,7 +34,7 @@ function findSportDataDefault() {
     currentSearch.doQuery(apiUrlSearchTab, "");
 
     setTimeout(function ()
-    {//sortData(currentSearch.resultJson);
+    {sortData(currentSearch.resultJson);
         for (let i = 0; i < 10; i++)
         {
                 defaultEventSet(i);
@@ -44,7 +44,7 @@ function findSportDataDefault() {
 
 function defaultEventSet(index){
     //Indeksimuuttujat
-    let date = currentSearch.resultJson[index].event_dates.starting_day.toString();
+    let date = currentSearch.resultJson[index].event_dates.starting_day;
     let eventName = currentSearch.resultJson[index].name.fi;
 
     //Elementit
@@ -112,7 +112,7 @@ function sortData(data){
             }
         }
     }
-    console.log(eventDictionary[data[0].id.toString()]);
+    console.log("Event dict " + eventDictionary[data[0].id]);
 }
 
 
