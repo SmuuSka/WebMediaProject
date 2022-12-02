@@ -111,15 +111,14 @@ function LaunchCultureData(){
                 article.appendChild(p);
                 article.appendChild(button);
 
-                if (datalist[i].locationlat != null && datalist[i].locationlon != null){
-                    //Don't do anything.
-                }else{
-                    console.log("Ei ole nappia.")
-                    let buttonid = document.getElementById("Karttanappi" + i);
-                    buttonid.remove();
-                }
             }
-
+            if (datalist[i].locationlat != null && datalist[i].locationlon != null){
+                //Don't do anything.
+            }else{
+                console.log("Ei ole nappia.")
+                let buttonid = document.getElementById("Karttanappi" + i);
+                buttonid.remove();
+            }
         }
 
     },1000);

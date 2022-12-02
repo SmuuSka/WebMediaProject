@@ -1,3 +1,4 @@
+//Samu,Kaspar,Turo
 'use strict';
 export default class SearchData {
     constructor() {
