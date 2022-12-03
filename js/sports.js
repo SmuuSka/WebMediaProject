@@ -8,7 +8,7 @@ const divElem = document.getElementById('result');
 const searchInputField = document.getElementById('hakuteksti');
 
 
-const apiUrlSearchTab = "v1/events/?tags_filter=sports,";
+const apiUrlSearchTab = "v1/events/?tags_filter=sports";
 
 const map = document.getElementById('map');
 
@@ -16,6 +16,8 @@ const map = document.getElementById('map');
 let currentSearch;
 let keyword;
 let dateTime = {};
+let waitTime = 0;
+let events;
 
 
 window.addEventListener("load", () => {
@@ -32,15 +34,58 @@ function findSportDataDefault() {
 
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab, "");
-
-    setTimeout(function ()
-    {sortData(currentSearch.resultJson);
-        for (let i = 0; i < 10; i++)
-        {
-                defaultEventSet(i);
-        }
-        }, 100)
+    waitUntillDataArrvived();
+    // setTimeout(function ()
+    // {sortData(currentSearch.resultJson);
+    //     for (let i = 0; i < 10; i++)
+    //     {
+    //             defaultEventSet(i);
+    //     }
+    //     }, 5000)
 }
+
+function waitUntillDataArrvived(){
+    setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+          //  your code here
+        waitTime = waitTime + 1;                    //  increment the counter
+        if (currentSearch.dataArrived !== true) {
+            console.log('Waiting data ' + waitTime); //  if the counter < 10, call the loop function
+            waitUntillDataArrvived();            //   again which will trigger another
+        }
+        else {
+             events = sortData(currentSearch.resultJson);
+            for (let i = 0; i < 10; i++)
+            {
+                //defaultEventSet(i);
+                defaultSetNew(i);
+
+            }
+        }
+    }, 1000)
+}
+
+function defaultSetNew(index){
+    //Elementit
+    let eventItem = document.createElement('article');
+    let article = document.createElement('article');
+    let eventNameItem = document.createElement('h2');
+    let h2DataTime = document.createElement('h2');
+
+    //Luokat
+    eventItem.className = "eventItemContainer";
+    h2DataTime.className = "eventItem-date";
+    article.className = "eventItem-event";
+
+    eventNameItem.innerHTML = events[index].eventName;
+    h2DataTime.innerHTML = events[index].date.toDateString();
+
+    //Koostaminen
+    eventItem.appendChild(h2DataTime);
+    article.appendChild(eventNameItem);
+    eventItem.appendChild(article);
+    divElem.appendChild(eventItem);
+}
+
 
 function defaultEventSet(index){
     //Indeksimuuttujat
@@ -87,8 +132,9 @@ function swapElements(array) {
 function sortData(data){
     let jsonDate;
     let idOfDate;
+    let eventName;
 
-    let eventDictionary = {};
+    let eventDictionary = [];
     for (let i = 0; i < data.length; i++){
         try {
             jsonDate = data[i].event_dates.starting_day;
@@ -103,16 +149,60 @@ function sortData(data){
                 console.log("Jokin virhe " + err.stack);
                 idOfDate = "Missing id!";
             }finally {
-
-                let datestring = jsonDate;
-                let dateObject = new Date(datestring);
-
-                eventDictionary[idOfDate] = dateObject.toDateString();
-
+                try {
+                    eventName = data[i].name.fi;
+                }catch (err){
+                    console.log("Jokin virhe " + err.stack);
+                    eventName = "Missing name!";
+                }finally {
+                    let datestring = jsonDate;
+                    let date = new Date(datestring);
+                    eventDictionary.push({eventName:eventName, eventID:idOfDate, date:date})
+                    //eventDictionary[idOfDate] = date.toDateString();
+                }
             }
         }
     }
-    console.log("Event dict " + eventDictionary[data[0].id]);
+    //console.log("Event dict " + eventDictionary.date);
+    return  sortingDict(eventDictionary);
+}
+
+function sortingDict(dict){
+
+    let before = dict.slice(0, 5);
+    for (let i = 0; i < before.length; i++){
+        //console.log("before: key " + dict[i].eventID);
+        console.log("before: key " + before[i].eventID + " " + " before: value " + before[i].date);
+    }
+    //
+    // let array = [{eventID: currentSearch.resultJson[0].id, date: currentSearch.resultJson[0].event_dates.starting_day}];
+    // array.push({eventID: currentSearch.resultJson[1].id, date: currentSearch.resultJson[1].event_dates.starting_day});
+    // array.push({eventID: currentSearch.resultJson[2].id, date: currentSearch.resultJson[2].event_dates.starting_day});
+    // for (let i = 0; i < dict.length; i++){
+    //     //console.log("before: key " + dict[i].eventID);
+    //     console.log("before: value " + dict[i].date);
+    // }
+    // console.log("before: key " + dict[0].eventID);
+    // console.log("before: value " + dict[0].date);
+    // console.log("before: " + array[1].date)
+    // console.log("before: " + array[2].date)
+    //
+    dict.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(a.date) - new Date(b.date);
+    });
+
+    let after = dict.slice(0, 5);
+    for (let i = 0; i < after.length; i++){
+        //console.log("after: key " + dict[i].eventID);
+        console.log("after: key " + after[i].eventID + " " + " after: value " + after[i].date);
+    }
+    // console.log("after: " + array[0].date)
+    // console.log("after: " + array[1].date)
+    // console.log("after: " + array[2].date)
+    // //console.log("Testi arr: id " + array[0].eventID + "Date: " + array.date);
+    return dict;
 }
 
 
