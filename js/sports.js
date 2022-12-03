@@ -45,20 +45,22 @@ function findSportDataDefault() {
 }
 
 function waitUntillDataArrvived(){
-    setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+    setTimeout(function() {
           //  your code here
-        waitTime = waitTime + 1;                    //  increment the counter
+        waitTime = waitTime + 1;
         if (currentSearch.dataArrived !== true) {
-            console.log('Waiting data ' + waitTime); //  if the counter < 10, call the loop function
-            waitUntillDataArrvived();            //   again which will trigger another
+            console.log('Waiting data ' + waitTime);
+            waitUntillDataArrvived();
         }
         else {
              events = sortData(currentSearch.resultJson);
-            for (let i = 0; i < 10; i++)
+             let currentDay = new Date();
+             console.log("Current day: " + currentDay);
+            for (let i = 0; i < events.length; i++)
             {
-                //defaultEventSet(i);
-                defaultSetNew(i);
-
+                if(events[i].date >= currentDay){
+                    defaultSetNew(i);
+                }
             }
         }
     }, 1000)
@@ -133,7 +135,7 @@ function sortData(data){
     let jsonDate;
     let idOfDate;
     let eventName;
-
+    console.log("datan määrä: " + data.length);
     let eventDictionary = [];
     for (let i = 0; i < data.length; i++){
         try {
@@ -155,8 +157,8 @@ function sortData(data){
                     console.log("Jokin virhe " + err.stack);
                     eventName = "Missing name!";
                 }finally {
-                    let datestring = jsonDate;
-                    let date = new Date(datestring);
+                    //let datestring = jsonDate;
+                    let date = new Date(jsonDate);
                     eventDictionary.push({eventName:eventName, eventID:idOfDate, date:date})
                     //eventDictionary[idOfDate] = date.toDateString();
                 }
@@ -169,11 +171,11 @@ function sortData(data){
 
 function sortingDict(dict){
 
-    let before = dict.slice(0, 5);
-    for (let i = 0; i < before.length; i++){
-        //console.log("before: key " + dict[i].eventID);
-        console.log("before: key " + before[i].eventID + " " + " before: value " + before[i].date);
-    }
+    // let before = dict.slice(0, 5);
+    // for (let i = 0; i < before.length; i++){
+    //     //console.log("before: key " + dict[i].eventID);
+    //     console.log("before: key " + before[i].eventID + " " + " before: value " + before[i].date);
+    // }
     //
     // let array = [{eventID: currentSearch.resultJson[0].id, date: currentSearch.resultJson[0].event_dates.starting_day}];
     // array.push({eventID: currentSearch.resultJson[1].id, date: currentSearch.resultJson[1].event_dates.starting_day});
@@ -188,20 +190,18 @@ function sortingDict(dict){
     // console.log("before: " + array[2].date)
     //
     dict.sort(function(a,b){
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
         return new Date(a.date) - new Date(b.date);
     });
-
-    let after = dict.slice(0, 5);
-    for (let i = 0; i < after.length; i++){
-        //console.log("after: key " + dict[i].eventID);
-        console.log("after: key " + after[i].eventID + " " + " after: value " + after[i].date);
-    }
-    // console.log("after: " + array[0].date)
-    // console.log("after: " + array[1].date)
-    // console.log("after: " + array[2].date)
-    // //console.log("Testi arr: id " + array[0].eventID + "Date: " + array.date);
+    //
+    // let after = dict.slice(0, 5);
+    // for (let i = 0; i < after.length; i++){
+    //     //console.log("after: key " + dict[i].eventID);
+    //     console.log("after: key " + after[i].eventID + " " + " after: value " + after[i].date);
+    // }
+    // // console.log("after: " + array[0].date)
+    // // console.log("after: " + array[1].date)
+    // // console.log("after: " + array[2].date)
+    // // //console.log("Testi arr: id " + array[0].eventID + "Date: " + array.date);
     return dict;
 }
 
