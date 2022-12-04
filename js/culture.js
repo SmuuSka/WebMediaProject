@@ -5,11 +5,13 @@ const mainElem = document.getElementById("cultureMain");
 const searchButton = document.getElementById('hakunappi');
 const searchInputField = document.getElementById('hakuteksti');
 const apiUrlSearchTab = "v1/events/?tags_search=";
+let counter = 0;
 let currentMAP;
 let mapoptiondata =
     {enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0};
+
 let currentSearch;
 let keyword;
 let tagi = 0;
@@ -33,7 +35,10 @@ function findCultureData(){
     currentMAP = new MapData();
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tags[tagi].name, keyword);
-    LaunchCultureData();
+    setTimeout(function (){
+        LaunchCultureData();
+    },400)
+
 
 }
 function LaunchCultureData(){
@@ -108,15 +113,15 @@ function LaunchCultureData(){
                 article.appendChild(img);
                 article.appendChild(p);
                 article.appendChild(button);
-                if (datalist[i].locationlat != null && datalist[i].locationlon != null){
-                    console.log("ALL GUCCI")
-                }else{
-                    console.log("NOT GUCCI")
-                    let buttonid = document.getElementById("Karttanappi" + i);
-                    buttonid.remove();
-                }
-            }
 
+            }
+            if (datalist[i].locationlat != null && datalist[i].locationlon != null){
+                //Don't do anything.
+            }else{
+                console.log("Ei ole nappia.")
+                let buttonid = document.getElementById("Karttanappi" + i);
+                buttonid.remove();
+            }
         }
 
     },1000);
@@ -125,7 +130,7 @@ function LaunchCultureData(){
     if (tagi <= tags.length - 1){
         setTimeout(function () {
             findCultureData()
-        },1000);
+        },2000);
     }else{
 
         console.log("DONE")
@@ -133,12 +138,21 @@ function LaunchCultureData(){
 }
 
 function naytamap(datalindex){
+    if (counter == 1){
+        currentMAP.mapleaf.remove();
+        counter = 0;
+    }
     currentMAP.posLat = datalist[datalindex].locationlat;
     currentMAP.posLong = datalist[datalindex].locationlon;
     currentMAP.mapleaf = L.map('map').setView([currentMAP.posLat, currentMAP.posLong], 13);
     currentMAP.options = mapoptiondata;
-    currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(datalist[datalindex].name);
 
+    if (datalist[datalindex].locationlat == null && datalist[datalindex].locationlon == null){
+        console.log("NOMAPLOCATION ALSO NO BUTTON FOR IT");
+    }else{
+        currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(datalist[datalindex + 1].name);
+        counter = 1;
+    }
     console.log("GOTLOCATION")
     currentMAP.showMap();
 }
