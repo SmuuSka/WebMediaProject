@@ -28,6 +28,8 @@
 }
 
 .sportMain{
+    display: flex;
+    flex-direction: column;
     background: none;
 }
 

@@ -18,6 +18,7 @@ let keyword;
 let dateTime = {};
 let waitTime = 0;
 let events;
+let currentDay;
 
 
 window.addEventListener("load", () => {
@@ -27,12 +28,28 @@ window.addEventListener("load", () => {
 
 function findWithKeyword() {
     console.log("FIND: " + searchBox.value.toString());
-    for(let i = 0; i < events.length; i++){
-        console.log(events[i].eventTags);
+    let searchTag = searchBox.value.toString();
+    divElem.replaceChildren();
+    if(searchTag.length > 1){
+        for(let i = 0; i < events.length;i++){
+            for(let j = 0; j < events[i].eventTags.length; j++){
+                //console.log(events[i].eventTags[j].name);
+                let tag = events[i].eventTags[j].name;
+
+                if(searchTag.match(tag)){
+                    if(events[i].date >= currentDay){
+                        console.log("Löytyi: " + tag + " Event: " + events[i].eventName);
+                        eventSetBySearch(i);
+                    }
+                }
+            }
+        }
+
+    }else {
+        console.log("Tyhjä");
     }
-
-
 }
+
 searchBtn.addEventListener('click',findWithKeyword);
 
 
@@ -65,7 +82,7 @@ function waitUntillDataArrvived(){
         }
         else {
              events = sortData(currentSearch.resultJson);
-             let currentDay = new Date();
+             currentDay = new Date();
              console.log("Current day: " + currentDay);
             for (let i = 0; i < events.length; i++)
             {
@@ -78,6 +95,28 @@ function waitUntillDataArrvived(){
 }
 
 function defaultSetNew(index){
+    //Elementit
+    let eventItem = document.createElement('article');
+    let article = document.createElement('article');
+    let eventNameItem = document.createElement('h2');
+    let h2DataTime = document.createElement('h2');
+
+    //Luokat
+    eventItem.className = "eventItemContainer";
+    h2DataTime.className = "eventItem-date";
+    article.className = "eventItem-event";
+
+    eventNameItem.innerHTML = events[index].eventName;
+    h2DataTime.innerHTML = events[index].date.toDateString();
+
+    //Koostaminen
+    eventItem.appendChild(h2DataTime);
+    article.appendChild(eventNameItem);
+    eventItem.appendChild(article);
+    divElem.appendChild(eventItem);
+}
+
+function eventSetBySearch(index){
     //Elementit
     let eventItem = document.createElement('article');
     let article = document.createElement('article');
@@ -185,7 +224,7 @@ function sortData(data){
                             infoUrl = 'Infolink missing!';
                         }finally {
                             try {
-                                tags = new Object(data[i].tags);
+                                tags = data[i].tags;
                             }catch (err){
                                 console.log("Jokin virhe tägissä " + err.stack);
                                 tags = 'tags missing!';
