@@ -1,5 +1,5 @@
 import SearchData from "../api/myHelsinkiApiNew.js";
-import {showMap} from "./MapApi.js";
+import MapData from "../js/MapApi.js";
 
 //const apiUrlSearchTab = "v2/places/?name_filter=";
 //const apiUrlSearchTab = 'v1/events/?tags_filter=sports,';
@@ -24,6 +24,11 @@ let currentSearch = "";
 
 let lanReal = '';
 let lonReal = '';
+let currentMAP = '';
+let mapoptiondata =
+    {enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0};
 //let n = 0;
 
 
@@ -31,6 +36,7 @@ let lonReal = '';
 function findRestaurant(data){
 
     currentSearch = new SearchData();
+    currentMAP = new MapData();
 
     currentSearch.doQuery(apiUrlSearchTab, data);
     //console.log('current search' + currentSearch.resultJson[0].name.fi);
@@ -143,7 +149,7 @@ function findRestaurant(data){
 
         }
         testi();
-    }, 2000)
+    }, 100000)
 
 
 }
@@ -162,8 +168,8 @@ function realRestaurantSearch(name){
         //console.log(stringname);
         //let stringname = jsonData[i].name.fi;
         let hakusanakaks = name.toUpperCase();
-        let strincarz = stringname.charAt(0);
-        let hakuzero = hakusanakaks.charAt(0);
+        //let strincarz = stringname.charAt(0);
+        //let hakuzero = hakusanakaks.charAt(0);
 
         //console.log(stringified);
 
@@ -199,10 +205,19 @@ function realRestaurantSearch(name){
             //ul.appendChild(but);
             //ul.appendChild(langi);
             //ul.appendChild(longi);
-            lanReal = currentSearch.resultJson[j].location.lat;
-            lonReal = currentSearch.resultJson[j].location.lon;
-            showMap(lanReal, lonReal)
+            //lanReal = currentSearch.resultJson[j].location.lat;
+            //lonReal = currentSearch.resultJson[j].location.lon;
+            //showMap(lanReal, lonReal)
             console.log(lanReal, lonReal);
+
+            currentMAP.posLat = currentSearch.resultJson[j].location.lat;
+            currentMAP.posLong = currentSearch.resultJson[j].location.lon;
+            currentMAP.mapleaf = L.map('map').setView([currentMAP.posLat, currentMAP.posLong], 13);
+            currentMAP.options = mapoptiondata;
+            currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(currentSearch.resultJson[j].name);
+
+            console.log("GOTLOCATION")
+            currentMAP.showMap();
             break;
         }
     }
