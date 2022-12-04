@@ -123,6 +123,7 @@ function LaunchCultureData(){
                 buttonid.remove();
             }
         }
+        naytamap();
 
     },1000);
 
