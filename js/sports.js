@@ -26,6 +26,7 @@ window.addEventListener("load", () => {
     findSportDataDefault();
 });
 
+
 function findWithKeyword() {
     console.log("FIND: " + searchBox.value.toString());
     let searchTag = searchBox.value.toString();
@@ -74,7 +75,6 @@ function findSportDataDefault() {
 
 function waitUntillDataArrvived(){
     setTimeout(function() {
-          //  your code here
         waitTime = waitTime + 1;
         if (currentSearch.dataArrived !== true) {
             console.log('Waiting data ' + waitTime);
@@ -112,9 +112,17 @@ function defaultSetNew(index){
     //Koostaminen
     eventItem.appendChild(h2DataTime);
     article.appendChild(eventNameItem);
+    article.addEventListener('click', (event) => {
+        console.log("Event: " + event.target.innerHTML);
+    });
     eventItem.appendChild(article);
     divElem.appendChild(eventItem);
 }
+
+function openPopup(){
+    let popup
+}
+
 
 function eventSetBySearch(index){
     //Elementit
