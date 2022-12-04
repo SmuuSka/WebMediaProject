@@ -10,44 +10,53 @@
     <script type="module" src="../js/sports.js"></script>
     <title>Sports</title>
 </head>
+
 <body class="sportBody">
-<header><br><br><br></header>
-<!-- Top navigation -->
-<nav class="topnav">
-    <!-- Centered link -->
-    <div class="topnav-centered">
-        <a href="../index.html">HOME</a>
-    </div>
+<div class="layout-wrapper">
+    <div class="layout-sport">
+        <nav>
+            <ul class="navContainer">
+                <li class="item-0"><a href="../index.html">HOME</a></li>
+                <li class="item-1"><a href="movies.html">MOVIES</a></li>
+                <li class="item-2"><a href="culture.html">CULTURE</a></li>
+                <li class="item-3"><a href="sports.html" class="active">SPORTS</a></li>
+                <li class="item-4"><a href="restaurants.html">RESTAURANTS</a></li>
+            </ul>
+        </nav>
 
-    <!-- Left-aligned links (default) -->
-    <a href="movies.html">MOVIES</a>
-    <a href="culture.html">CULTURE</a>
-
-    <!-- Right-aligned links -->
-    <div class="topnav-right">
-        <a href="sports.html" class="active">SPORTS</a>
-        <a href="restaurants.html">RESTAURANTS</a>
-    </div>
-</nav>
-<main class="sportMain">
-
-    <div class="resultDiv">
         <header class="topHeader" id="topHeader">
-            <h1 class="sportH1">SPORTS</h1>
-            <input id="searchBox" type="search" class="sportSearchBox">
-            <input id="searchBtn" type="submit" value="Search">
+            <h1 class="sportH1">Sport Events</h1>
+            <section class="sportInput">
+                <input id="searchBox" type="search" class="sportSearchBox">
+                <input id="searchBtn" type="submit" value="Search" class="sportSearchBtn">
+            </section>
         </header>
-    </div>
-    <div class="resultDiv" id="result">
 
+        <div class="resultDiv" id="result">
+
+        </div>
     </div>
-</main>
-<footer class="bottomnav">Kaspar and the boys proudly presents.</footer>
+    <footer class="footer">
+        Kaspar and the boys proudly presents.
+    </footer>
+</div>
+
+
+<!-- Top navigation -->
+<!--<main class="sportMain">-->
+
+<!--    <div class="resultDiv">-->
+<!--    <h1 class="sportH1">SPORTS</h1>-->
+<!--       <header class="topHeader" id="topHeader">-->
+<!--            <input id="searchBox" type="search" class="sportSearchBox">-->
+<!--            <input id="searchBtn" type="submit" value="Search" class="sportSearchBtn">-->
+<!--       </header>-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <div class="resultDiv" id="result">-->
+
+<!--    </div>-->
+<!--    <footer>Kaspar and the boys proudly presents.</footer>-->
+<!--</main>-->
 </body>
-<script id="map">
-    function testi(){
-        console.log("Moi");
-    }
-</script>
-</body>
+
 </html>
