@@ -3,9 +3,9 @@ import SearchData from '../api/myHelsinkiApiNew.js';
 
 const mainElem = document.querySelector("main");
 const headerElem = document.getElementById('topHeader');
-const searchButton = document.getElementById('hakunappi');
+const searchBox = document.getElementById('searchBox');
+const searchBtn = document.getElementById('searchBtn');
 const divElem = document.getElementById('result');
-const searchInputField = document.getElementById('hakuteksti');
 
 
 const apiUrlSearchTab = "v1/events/?tags_filter=sports";
@@ -25,6 +25,12 @@ window.addEventListener("load", () => {
     findSportDataDefault();
 });
 
+function findWithKeyword() {
+    console.log("FIND: " + searchBox.value.toString());
+}
+searchBtn.addEventListener('click',findWithKeyword);
+
+
 function findSportDataDefault() {
     //Luetaan käyttäjänsyöte
     keyword = "";
@@ -33,7 +39,7 @@ function findSportDataDefault() {
     currentSearch = new SearchData();
 
     //Tehdään haku
-    currentSearch.doQuery(apiUrlSearchTab, "");
+    currentSearch.doQuery(apiUrlSearchTab, keyword);
     waitUntillDataArrvived();
     // setTimeout(function ()
     // {sortData(currentSearch.resultJson);
@@ -135,6 +141,8 @@ function sortData(data){
     let jsonDate;
     let idOfDate;
     let eventName;
+    let location;
+    let infoUrl;
     console.log("datan määrä: " + data.length);
     let eventDictionary = [];
     for (let i = 0; i < data.length; i++){
