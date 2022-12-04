@@ -27,6 +27,11 @@ window.addEventListener("load", () => {
 
 function findWithKeyword() {
     console.log("FIND: " + searchBox.value.toString());
+    for(let i = 0; i < events.length; i++){
+        console.log(events[i].eventTags);
+    }
+
+
 }
 searchBtn.addEventListener('click',findWithKeyword);
 
@@ -143,6 +148,7 @@ function sortData(data){
     let eventName;
     let location;
     let infoUrl;
+    let tags;
     console.log("datan määrä: " + data.length);
     let eventDictionary = [];
     for (let i = 0; i < data.length; i++){
@@ -150,24 +156,47 @@ function sortData(data){
             jsonDate = data[i].event_dates.starting_day;
             jsonDate = jsonDate.split('T');
         }catch (err){
-            console.log("Jokin virhe " + err.stack);
+            console.log("Jokin virhe päivämäärässä tapahtumassa " +  i + ". " + err.stack);
             jsonDate = "Date missing!";
         }finally{
             try {
                 idOfDate = data[i].id;
             }catch (err){
-                console.log("Jokin virhe " + err.stack);
+                console.log("Jokin virhe id:ssä " + err.stack);
                 idOfDate = "Missing id!";
             }finally {
                 try {
                     eventName = data[i].name.fi;
                 }catch (err){
-                    console.log("Jokin virhe " + err.stack);
+                    console.log("Jokin virhe nimessä " + err.stack);
                     eventName = "Missing name!";
                 }finally {
-                    //let datestring = jsonDate;
-                    let date = new Date(jsonDate);
-                    eventDictionary.push({eventName:eventName, eventID:idOfDate, date:date})
+                    try {
+                        location = data[i].location;
+                    }catch (err){
+                        console.log("Jokin virhe sijainnissa " + err.stack);
+                        location = 'Location data missing!';
+                    }
+                    finally {
+                        try {
+                            infoUrl = data[i].info_url;
+                        }catch (err){
+                            console.log("Jokin virhe infolinkissä " + err.stack);
+                            infoUrl = 'Infolink missing!';
+                        }finally {
+                            try {
+                                tags = new Object(data[i].tags);
+                            }catch (err){
+                                console.log("Jokin virhe tägissä " + err.stack);
+                                tags = 'tags missing!';
+                            }
+                            finally {
+                                let date = new Date(jsonDate);
+                                eventDictionary.push({eventName:eventName, eventID:idOfDate, date:date, eventLocation: location,eventInfoUrl:infoUrl, eventTags:tags});
+                            }
+                        }
+                    }
+
                     //eventDictionary[idOfDate] = date.toDateString();
                 }
             }
