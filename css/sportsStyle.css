@@ -66,7 +66,16 @@
 
 .eventItem-event{
     color: #f6f6f6;
+    background: none;
+    border: none;
+    font-size: 20px;
+
 }
+.eventItem-event:hover{
+    background-color: #4CAF50;
+    color: white;
+}
+
 .sportH1{
     color: white;
     text-align: center;
@@ -124,4 +133,64 @@ h2{
      flex: 0 0 auto;
      text-align: center;
      padding-top: 30px;
+}
+
+.eventContainer{
+    background: salmon;
+    max-width: 40px;
+    max-height: 40px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    padding: 10px 60px;
+    background: chocolate;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 30px;
+}
+
+.popup{
+    width: 700px;
+    height: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -350px;
+    background: slateblue;
+    text-align: center;
+    color: black;
+    visibility: hidden;
+}
+
+.popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+.popup button{
+    width: 60%;
+    margin-top: 50px;
+    padding: 10px 0;
+    transform: translate(0%,340px);
+    background: navy;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+}
+
+.open-popup{
+    visibility: visible;
+    z-index: auto;
 }
