@@ -21,6 +21,16 @@
     width: 100%;
     margin: auto;
 }
+.loader-icon{
+    max-width: 150px;
+    height: auto;
+    position: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 body{
 
     margin: 0;
@@ -38,7 +48,6 @@ html {
 }
 main{
     background-color: #f6f6f6;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -58,16 +67,17 @@ h1{
     display: inline-block;
     margin-left: 50px;
     margin-right: auto;
-    background-color: #aef3e7;
+    background-color: #daf5f0;
     height: 400px;
     width: 800px;
     overflow-y: scroll;
+    margin: 50px;
 }
 
 .map{
     display: inline-block;
     display: flex;
-    margin: auto;
+    margin: 20px;
     padding-bottom: 10px;
     position: relative;
 }
