@@ -12,8 +12,8 @@
     <script type="module" src="../js/MapApi.js"></script>
     <title>Restaurants</title>
 </head>
-<body>
-<header><br><br><br></header>
+<body class="sportHtml1">
+<header></header>
 <!-- Top navigation -->
 <nav class="topnav">
 
@@ -39,8 +39,8 @@
 
 </main>
 
-<input class="searchBox" id="hakutekstii" type="text" placeholder="Etsi ravintola">
-<button class="searchBox" id="hakunappii">Hae</button>
+<input class="sportSearchBox1" id="hakutekstii" type="text" placeholder="Etsi ravintola">
+<button class="sportSearchBtn1" id="hakunappii">Hae</button>
 <article id="loaderBlock">
 
 </article>
@@ -50,214 +50,5 @@
 
 <div class="map" id="map" style="width: 95%; height: 300px;"></div>
 <footer class="bottomnav">Kaspar and the boys broudly presents.</footer>
-
-<script>
-
-
-
-
-
-
-    /*
-        Haetaan dataa open-api.myhelsinki.fi palvelusta hakusanalla 'restaurants'.
-        Hakuosoite on silloin:
-        https://open-api.myhelsinki.fi/v2/places/?tags_search=restaurants
-
-        Haku palauttaa tästä rajapinnasta 3 pääavainta: meta, data, tags.
-        Avaimen 'data' alta löytyy nyt ravintoloiden tietoja.
-        Avaimen 'tags' alta lista hakusanoista.
-
-    */
-/*
-    // normaalin hakuosoitteen vakio-osa.
-    //const apiurl = 'https://open-api.myhelsinki.fi/v2/places/?tags_filter=restaurants';
-    const apiurl = 'https://open-api.myhelsinki.fi/v2/places/?name_filter=';
-    //const apiurl = 'https://open-api.myhelsinki.fi/v2/places/';
-
-    // välityspalvelimen (AllOrigins) osoite CORS-ongelman ratkaisemiseen
-    const proxy = 'https://api.allorigins.win/get?url=';
-
-    // hakukysely, jolla dataa haetaan ilman proxya (AllOrigins).
-    let apiKysely;
-    // hakukysely, johon on lisätty vielä proxyn vaatima lisäys
-    let proxyApikysely;
-*/
-    /*
-    // Etsitään HTML-sivulta tarvittavat komponentit id:n avulla.
-    const hakutekst = document.getElementById('hakuteksti');
-    const hakunappi = document.getElementById("hakunappi");
-    let karttanappi = '';
-
-
-    hakunappi.addEventListener('click', () => findRestaurant(hakutekst.value));
-    //hakunappi.addEventListener('click', () => showMap(60.1704, 24.9522))
-
-    let hakusana ='';
-    let lanReal = '';
-    let lonReal = '';
-    let n = 0;
-    let currentSearch;
-*/
-
-
-/*
-    function teeKysely(lahetettyhakusana) {
-
-        console.log(lahetettyhakusana);
-        hakusana = lahetettyhakusana;
-
-        // muodostetaan ja tulostetaan konsoliin lopullinen hakukysely
-
-        apiKysely = apiurl + hakusana;
-        console.log('normaali hakukysely: ' + apiKysely);
-
-        // lisätään vielä proxyn osoite (CORS ongelmien ratkaisija)
-        proxyApikysely = proxy + encodeURIComponent(apiKysely);
-        console.log("cors-kysely: " + proxyApikysely);
-
-
-        teeHaku(proxyApikysely);        // parametrina proxyn osoite + hakulause
-    }
-    function teeHaku(hakuKysely)  {
-
-        // suoritetaan hakukysely, fetch hoitaa mahdolliset tietoliikenneongelmat.
-        fetch(hakuKysely).then(function(response) {
-            return response.json();
-        }).then(function(json) {
-            naytaVastaus(json);				// siirrytään varsinaisen datan käsittelyyn.
-        }).catch(function(error){           // Jos tapahtuu virhe,
-            console.log(error);             // kirjoitetaan virhe konsoliin.
-        });
-    }
-    console.log(lanReal + lonReal);
-*/
-
-
-/*
-    // Näytetään (rakenetaan lista)
-    function naytaVastaus(proxynData) {
-
-        console.log('sisällä vastauksen näytössä')
-        let kaikkiJsonData = JSON.parse(proxynData.contents);
-
-        console.log(kaikkiJsonData.data);
-        let jsonData = kaikkiJsonData.data;
-
-        let ul = document.getElementById('Mainlistele')
-        ul.innerHTML = '';
-
-        // tässä valmistellaan listaa :)
-        for (let i = 0; i < jsonData.length; i++) {
-
-
-
-            let stringname = jsonData[i].name.fi;
-            let hakusanakaks = hakutekst.value.toUpperCase();
-            let strincarz = stringname.charAt(0);
-            let hakuzero = hakusanakaks.charAt(0);
-
-
-            //console.log(stringified);
-
-            // jos etsitty tasaisella nimellä
-            if (stringname.toLowerCase() === hakusana.toLowerCase()){
-
-                let ul = document.getElementById('Mainlistele')
-                let list = document.createElement('li')
-                let address = document.createElement('li');
-                let email = document.createElement('li');
-                let desc = document.createElement('li');
-                list.innerText = jsonData[i].name.fi;
-                address.innerText = jsonData[i].location.address.street_address + ' , ';
-                address.innerText += jsonData[i].location.address.postal_code + ' , ';
-                address.innerText += jsonData[i].location.address.locality;
-                email.innerText = jsonData[i].info_url;
-                desc.innerText = jsonData[i].description.intro;
-                console.log("ravintolan nimi(solo): " + jsonData[i].name.fi);
-                let langi = document.createElement('li');
-                let longi = document.createElement('li');
-                langi.innerText = jsonData[i].location.lat;
-                longi.innerText = jsonData[i].location.lon;
-                langi.id = 'lan' + n;
-                longi.id = 'lon' + n;
-                //let but =document.createElement('button');
-                //but.innerText = 'Avaa kartta';
-                //but.id = 'mapBut';
-                ul.appendChild(list);
-                ul.appendChild(address);
-                ul.appendChild(email);
-                ul.appendChild(desc);
-                //ul.appendChild(but);
-                //ul.appendChild(langi);
-                //ul.appendChild(longi);
-                lanReal = jsonData[i].location.lat;
-                lonReal = jsonData[i].location.lon;
-                showMap(lanReal, lonReal)
-                break;
-            }
-
-            // jos etsitty kirjaimilla
-            else if (strincarz === hakuzero && hakusana.length === 1) {
-
-                let ul = document.getElementById('Mainlistele')
-                let list = document.createElement('li')
-                list.innerText = jsonData[i].name.fi;
-                console.log("ravintolan nimi(ekakirjain): " + jsonData[i].name.fi);
-                let langi = document.createElement('li');
-                let longi = document.createElement('li');
-                langi.innerText = jsonData[i].location.lat;
-                longi.innerText = jsonData[i].location.lon;
-                langi.id = 'lan';
-                longi.id = 'lon';
-                let but =document.createElement('button');
-                but.innerText = 'Avaa kartta';
-                but.id = 'mapBut';
-
-                ul.appendChild(list);
-                ul.appendChild(but);
-                ul.appendChild(langi);
-                ul.appendChild(longi);
-
-                // jos ei ole syötetty mitään, tulostaa kaiken.
-            }else if (hakusanakaks === '' && jsonData[i].tags[0].name === 'restaurants'){
-                let ul = document.getElementById('Mainlistele')
-                let list = document.createElement('li')
-                let listosoite = document.createElement('li');
-                let br = document.createElement("br");
-
-                listosoite.innerText += jsonData[i].location.lat;
-                listosoite.innerText += jsonData[i].location.lon;
-                list.innerText = jsonData[i].name.fi;
-                console.log("Tulostetaan Kaikki raflat ");
-                let but =document.createElement('button');
-                but.innerText = 'Avaa kartta';
-                but.id = jsonData[i].name.fi;
-
-
-                ul.appendChild(list);
-                //ul.appendChild(listosoite);
-                //ul.appendChild(but);
-                ul.appendChild(br);
-            }
-
-        }
-
-        karttanappi = document.getElementById('mapBut');
-
-        //karttanappi.addEventListener('click', () => showMap(lanReal, lonReal));
-        //console.log(karttanappi.id);
-        //karttanappi.addEventListener('click', () => naytaKartta('PASKA'));
-        console.log(lanReal);
-        console.log(lonReal);
-
-        function naytaKartta(objectId){
-            console.log('NYT PITÄISI VIELÄ SAADA KARTTA NÄKYVIIN')
-            hakutekst.value = objectId;
-            hakunappi.addEventListener('click', teeKysely(hakutekst.value));
-        }
-    }
-
-*/
-</script>
 </body>
 </html>
