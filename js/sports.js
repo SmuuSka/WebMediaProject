@@ -1,5 +1,6 @@
 'use strict';
 import SearchData from '../api/myHelsinkiApiNew.js';
+import MapData from "../js/MapApi.js";
 
 const mainElem = document.querySelector("main");
 const headerElem = document.getElementById('topHeader');
@@ -15,6 +16,13 @@ let popupDescription = document.getElementById('popupDesc');
 
 //newDict
 let newDict = [];
+
+//Map
+let currentMap;
+let mapOptionData =
+    {enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0};
 
 const apiUrlSearchTab = "v1/events/?tags_filter=sports";
 
@@ -72,6 +80,7 @@ function findSportDataDefault() {
     //Luodaan hakuolio
     currentSearch = new SearchData();
 
+
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab, keyword);
     waitUntillDataArrvived();
@@ -83,6 +92,8 @@ function findSportDataDefault() {
     //     }
     //     }, 5000)
 }
+
+
 
 function waitUntillDataArrvived(){
     setTimeout(function() {
@@ -143,13 +154,17 @@ function openPopup(id){
             console.log("Löyty " + newDict[i].eventID + " === " + id);
             popupHeader.innerHTML = newDict[i].eventData.eventName;
             popupDescription.innerHTML = newDict[i].eventData.eventDescription.intro;
+            //Kartta
+            currentMap = new MapData();
+            naytamap(newDict[i].eventData.eventLocation);
         } else {
-            console.log("Ei löydy " + newDict[i].eventData.eventName);
+            //console.log("Ei löydy " + newDict[i].eventData.eventName);
         }
     }
 }
 function closePopup(){
     popup.classList.remove('open-popup');
+    currentMap.mapleaf.remove('map');
 }
 
 
@@ -265,6 +280,23 @@ function sortingDict(dict){
     });
 
     return dict;
+}
+
+let counter = 0;
+
+function naytamap(currentEvent){
+
+    currentMap.posLat = currentEvent.lat;
+    currentMap.posLong = currentEvent.lon;
+    console.log("Lat " + currentEvent.lat + " Lon " + currentEvent.lon);
+
+    currentMap.mapleaf = L.map('map').setView([currentMap.posLat, currentMap.posLong], 13);
+    currentMap.options = mapOptionData;
+
+    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("TÄÄLLÄ");
+
+    console.log("GOTLOCATION")
+    currentMap.showMap();
 }
 
 
