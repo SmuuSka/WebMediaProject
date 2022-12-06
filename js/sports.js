@@ -58,7 +58,7 @@ function findWithKeyword() {
         }
 
     }else {
-        console.log("Tyhjä");
+        console.log("Tyhjä arpa");
     }
 }
 
