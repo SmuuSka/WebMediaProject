@@ -7,6 +7,7 @@ const searchButton = document.getElementById('hakunappi');
 const searchInputField = document.getElementById('hakuteksti');
 const apiUrlSearchTab = "v1/events/?tags_search=";
 let datalocation;
+let datalatcation;
 let counter = 0;
 let currentMAP;
 let mapoptiondata =
@@ -27,6 +28,8 @@ const tags = [{
 }, {
     name: "Elokuvat,"
 }];
+
+findCultureData();
 
 function findCultureData() {
     if (tagi == tags.length) {
@@ -49,27 +52,77 @@ function findCultureData() {
 }
 
 function LaunchCultureData() {
-    let name;
+    let named;
+    let desc;
+    let idd;
+    let bodyd;
+    let lat;
+    let lon;
+
     console.log("CULTUREDATA" + tagi)
     setTimeout(function () {
         for (let i = 0; i < currentSearch.resultJson.length; i++) {
             console.log(currentSearch.resultJson[i].name.fi);
-            datalist.push({
-                name: name,
-                description: currentSearch.resultJson[i].description.intro,
-                id: currentSearch.resultJson[i].id,
-                bodydes: currentSearch.resultJson[i].description.body,
-                locationlat: currentSearch.resultJson[i].location.lat,
-                locationlon: currentSearch.resultJson[i].location.lon
-            });
+            try {
+                named = currentSearch.resultJson[i].name
+            } catch (err) {
+                console.log("ERRORNAME");
+                named = '';
+            } finally {
+                try {
+                    desc = currentSearch.resultJson[i].description.intro
+                } catch (err) {
+                    console.log("ERRORDESC");
+                    desc = ''
+                } finally {
+                    try {
+                        idd = currentSearch.resultJson[i].id
+                    } catch (err) {
+                        console.log("ERRORID");
+                        idd = ''
+                    } finally {
+                        try {
+                            bodyd = currentSearch.resultJson[i].description.body
+                        } catch (err) {
+                            console.log("ERRORBODY");
+                            bodyd = '';
+                        } finally {
+                            try {
+                                lat = currentSearch.resultJson[i].location.lat
+                            } catch (err) {
+                                console.log("ERRORNLAT");
+                                lat = '1'
+                            } finally {
+                                try {
+                                    lon = currentSearch.resultJson[i].location.lon
+                                } catch (err) {
+                                    console.log("ERRORLON");
+                                    lon = '1'
+                                } finally {
+                                    datalist.push({
+                                        name: named,
+                                        bodydes: bodyd,
+                                        id: idd,
+                                        description: desc,
+                                        locationlon: lon,
+                                        locationlat: lat
+                                    });
 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            console.log(datalist)
 
             if (currentSearch.resultJson[i].name.fi === datalist[i].name ||
-                currentSearch.resultJson[i].description.intro == datalist[i].description ||
-                currentSearch.resultJson[i].id == datalist[i].id ||
-                currentSearch.resultJson[i].description.body == datalist[i].bodydes) {
+                currentSearch.resultJson[i].description.intro === datalist[i].description ||
+                currentSearch.resultJson[i].id === datalist[i].id ||
+                currentSearch.resultJson[i].description.body === datalist[i].bodydes) {
                 console.log("duplicate")
-            } else if (currentSearch.resultJson[i].description.images[0] == null && currentSearch.resultJson[i].description.intro == null || currentSearch.resultJson[i].description.body == null) {
+            } else if (currentSearch.resultJson[i].description.images[0] === null && currentSearch.resultJson[i].description.intro === null || currentSearch.resultJson[i].description.body === null) {
                 console.log("no info,not adding")
             } else {
 
@@ -84,10 +137,13 @@ function LaunchCultureData() {
                 let img = document.createElement("img");
                 img.className = "CultIMG";
 
-
-                if (currentSearch.resultJson[i].description.images[0] == null) {
-                    img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
-                } else if (currentSearch.resultJson[i].description.images[0] != null) {
+                let IMGSRC;
+                try {
+                    IMGSRC = currentSearch.resultJson[i].description.images[0].url;
+                } catch (err) {
+                    console.log("NOPICTURE")
+                    IMGSRC = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
+                } finally {
                     img.src = currentSearch.resultJson[i].description.images[0].url;
                 }
 
@@ -104,11 +160,10 @@ function LaunchCultureData() {
                 let br = document.createElement("br");
 
                 let button = document.createElement("button");
-                button.innerText = "KARTTA";
                 button.id = "Karttanappi" + i;
-                button.onclick = function () {
-                    naytamap(i);
-                };
+
+                let buttonid = document.getElementById("Karttanappi" + i)
+
 
                 let mapdiv = document.createElement("div");
                 mapdiv.className = "map";
@@ -121,25 +176,33 @@ function LaunchCultureData() {
                 mainElem.appendChild(article);
                 article.appendChild(img);
                 article.appendChild(p);
-                article.appendChild(button);
+                if (i === 0){
+                    try {
+                        buttonid.remove();
+                    } catch (err) {
+                        console.log("ERROR REMOVINGBUTTON")
+                    }
+                }else {
+                    button.innerText = "KARTTA";
+                    button.onclick = function () {
+                        naytamap(i);
+                    };
+                    article.appendChild(button);
+                }
+                try {
+                    datalocation = datalist[i].locationlat
+                    datalatcation = datalist[i].locationlon
+                } catch (err) {
+                    console.log("ERRORLOCATION");
+                    datalocation = 'Error';
+                    try {
+                        buttonid.remove();
+                    } catch (err) {
+                        console.log("ERROR REMOVINGBUTTON")
+                    }
+                }
 
             }
-            try {
-                datalocation = datalist[i].locationlat
-            } catch (err) {
-                console.log("ERRORLOCATION");
-                datalocation = 'Error';
-            } finally {
-                if (datalist[i].locationlat != null && datalist[i].locationlon != null) {
-                    //Don't do anything.
-                    console.log("läpimeni")
-                } else {
-                    console.log("Ei ole nappia.")
-                    let buttonid = document.getElementById("Karttanappi" + i);
-                    buttonid.remove();
-                }
-            }
-            naytamap();
 
 
         }
@@ -157,30 +220,67 @@ function LaunchCultureData() {
     }
 }
 
+//NÄYTETÄÄN KARTTA (DATALINDEX) = napissa oleva index arvo mikä tehtiin forloopissa ylhäällä.
 function naytamap(datalindex) {
-    let MAPMARKER;
-    let MAPLEAF;
-    let POSLO;
-    let POSLA;
+
+    if (counter === 1){
+        try{
+            currentMAP.mapleaf.remove()
+        }catch (err){
+            console.log("ERRORREMVOVE")
+        }
+
+    }
     let NAME;
     console.log(datalindex);
-    if (counter == 1){
-        currentMAP.mapleaf.remove();
-        counter = 0;
-    }
-    currentMAP.posLat = datalist[datalindex].locationlat;
-    currentMAP.posLong = datalist[datalindex].locationlon;
-    currentMAP.mapleaf = L.map('map').setView([currentMAP.posLat, currentMAP.posLong], 13);
-    currentMAP.options = mapoptiondata;
+    try {
+        currentMAP.posLat = datalist[datalindex].locationlat;
+    } catch (err) {
+        console.log("ErrorLAT");
+        currentMAP.posLat = '';
+    } finally {
+        try {
+            currentMAP.posLong = datalist[datalindex].locationlon;
+        } catch (err) {
+            console.log("ErrorLON");
+            currentMAP.posLong = '';
+        } finally {
+            try {
+                currentMAP.mapleaf = L.map('map').setView([currentMAP.posLat, currentMAP.posLong], 13);
+            } catch (err) {
+                console.log("ErrorMAP");
+                currentMAP.mapleaf = '';
+            } finally {
+                try {
+                    currentMAP.options = mapoptiondata;
+                } catch (err) {
+                    console.log("ErrorOPTIONS");
+                    currentMAP.options = '';
+                } finally {
+                    try {
+                        NAME = datalist[datalindex + 1].name.fi
+                    } catch (err) {
+                        console.log("ERRORNAME")
+                        NAME = "error";
+                    } finally {
+                        console.log(NAME)
+                        try {
+                            currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(NAME);
+                        }catch (err){
+                            console.log("ERROR MARKER")
+                        }finally {
+                            counter = 1;
+                            console.log("GOTLOCATION")
+                            currentMAP.showMap();
+                        }
 
-    if (datalist[datalindex].locationlat == null && datalist[datalindex].locationlon == null){
-        console.log("NOMAPLOCATION ALSO NO BUTTON FOR IT");
-    }else{
-        currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(datalist[datalindex + 1].name);
-        counter = 1;
-    }
-    console.log("GOTLOCATION")
-    currentMAP.showMap();
+                        }
+                    }
+
+                }
+            }
+        }
+
 
 }
 
