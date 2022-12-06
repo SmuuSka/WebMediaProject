@@ -6,6 +6,14 @@ const mainElem = document.getElementById("cultureMain");
 const searchButton = document.getElementById('hakunappi');
 const searchInputField = document.getElementById('hakuteksti');
 const apiUrlSearchTab = "v1/events/?tags_search=";
+
+//popup
+const popup = document.getElementById('popup');
+const closePopupBtn = document.getElementById('closePopup');
+let popupHeader = document.getElementById('popupHeader');
+let popupDescription = document.getElementById('popupDesc');
+
+
 let datalocation;
 let datalatcation;
 let counter = 0;
@@ -18,6 +26,8 @@ let mapoptiondata =
     };
 
 let currentSearch;
+let waitTime = 0;
+let currentDay;
 let keyword;
 let tagi = 0;
 const datalist = [{}];
@@ -28,9 +38,7 @@ const tags = [{
 }, {
     name: "Elokuvat,"
 }];
-
-findCultureData();
-
+findCultureData()
 function findCultureData() {
     if (tagi == tags.length) {
         console.log("DONE")
@@ -46,7 +54,7 @@ function findCultureData() {
     currentSearch.doQuery(apiUrlSearchTab + tags[tagi].name, keyword);
     setTimeout(function () {
         LaunchCultureData();
-    }, 400)
+    }, 1000)
 
 
 }
@@ -58,13 +66,14 @@ function LaunchCultureData() {
     let bodyd;
     let lat;
     let lon;
+    let imaged;
 
     console.log("CULTUREDATA" + tagi)
     setTimeout(function () {
         for (let i = 0; i < currentSearch.resultJson.length; i++) {
             console.log(currentSearch.resultJson[i].name.fi);
             try {
-                named = currentSearch.resultJson[i].name
+                named = currentSearch.resultJson[i].name.fi
             } catch (err) {
                 console.log("ERRORNAME");
                 named = '';
@@ -99,14 +108,21 @@ function LaunchCultureData() {
                                     console.log("ERRORLON");
                                     lon = '1'
                                 } finally {
-                                    datalist.push({
-                                        name: named,
-                                        bodydes: bodyd,
-                                        id: idd,
-                                        description: desc,
-                                        locationlon: lon,
-                                        locationlat: lat
-                                    });
+                                    try {
+                                        imaged = currentSearch.resultJson[i].description.images[0].url
+                                    } catch (err) {
+                                        console.log("IMAGEERROR")
+                                    } finally {
+                                        datalist.push({
+                                            name: named,
+                                            bodydes: bodyd,
+                                            id: idd,
+                                            description: desc,
+                                            locationlon: lon,
+                                            locationlat: lat,
+                                            image: imaged
+                                        });
+                                    }
 
                                 }
                             }
@@ -115,14 +131,26 @@ function LaunchCultureData() {
                 }
             }
 
-            console.log(datalist)
+        }
+        tagi++
+        if (tagi <= tags.length - 1) {
+            setTimeout(function () {
+                findCultureData()
+            }, 2000);
+        } else {
+            console.log("DONE")
+            SHOWDATA()
+        }
 
-            if (currentSearch.resultJson[i].name.fi === datalist[i].name ||
-                currentSearch.resultJson[i].description.intro === datalist[i].description ||
-                currentSearch.resultJson[i].id === datalist[i].id ||
-                currentSearch.resultJson[i].description.body === datalist[i].bodydes) {
-                console.log("duplicate")
-            } else if (currentSearch.resultJson[i].description.images[0] === null && currentSearch.resultJson[i].description.intro === null || currentSearch.resultJson[i].description.body === null) {
+        console.log(datalist)
+    }, 200);
+
+}
+    function SHOWDATA() {
+
+        for (let i = 1; i < datalist.length; i++) {
+
+            if (datalist[i].image === null && datalist[i].description === null || datalist[i].bodydes === null) {
                 console.log("no info,not adding")
             } else {
 
@@ -139,16 +167,16 @@ function LaunchCultureData() {
 
                 let IMGSRC;
                 try {
-                    IMGSRC = currentSearch.resultJson[i].description.images[0].url;
+                    IMGSRC = datalist[i].image;
                 } catch (err) {
                     console.log("NOPICTURE")
                     IMGSRC = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
                 } finally {
-                    img.src = currentSearch.resultJson[i].description.images[0].url;
+                    img.src = datalist[i].image;
                 }
 
                 let h3 = document.createElement("h3");
-                h3.innerText = currentSearch.resultJson[i].name.fi;
+                h3.innerText = datalist[i].name;
                 h3.className = "DataHEADER";
                 h3.style = " margin: 1%;" +
                     "padding: 0;" +
@@ -156,13 +184,11 @@ function LaunchCultureData() {
 
                 let p = document.createElement("p");
                 p.className = "DataPARAGRAPH";
-                p.innerHTML = currentSearch.resultJson[i].description.body
+                p.innerHTML = datalist[i].bodydes
                 let br = document.createElement("br");
 
                 let button = document.createElement("button");
                 button.id = "Karttanappi" + i;
-
-                let buttonid = document.getElementById("Karttanappi" + i)
 
 
                 let mapdiv = document.createElement("div");
@@ -176,20 +202,9 @@ function LaunchCultureData() {
                 mainElem.appendChild(article);
                 article.appendChild(img);
                 article.appendChild(p);
-                if (i === 0){
-                    try {
-                        buttonid.remove();
-                    } catch (err) {
-                        console.log("ERROR REMOVINGBUTTON")
-                    }
-                }else {
-                    button.innerText = "KARTTA";
-                    button.onclick = function () {
-                        naytamap(i);
-                    };
-                    article.appendChild(button);
-                }
+                let buttonid = document.getElementById("Karttanappi" + i)
                 try {
+
                     datalocation = datalist[i].locationlat
                     datalatcation = datalist[i].locationlon
                 } catch (err) {
@@ -200,6 +215,12 @@ function LaunchCultureData() {
                     } catch (err) {
                         console.log("ERROR REMOVINGBUTTON")
                     }
+                } finally {
+                        button.innerText = "KARTTA";
+                    button.onclick = function () {
+                        naytamap(i);
+                    };
+                    article.appendChild(button);
                 }
 
             }
@@ -207,22 +228,14 @@ function LaunchCultureData() {
 
         }
 
-    }, 1000);
-
-    tagi++
-    if (tagi <= tags.length - 1) {
-        setTimeout(function () {
-            findCultureData()
-        }, 2000);
-    } else {
-
-        console.log("DONE")
     }
-}
 
 //NÄYTETÄÄN KARTTA (DATALINDEX) = napissa oleva index arvo mikä tehtiin forloopissa ylhäällä.
 function naytamap(datalindex) {
-
+    popup.classList.add('open-popup');
+    console.log("Löyty " + datalist[datalindex].id + " === " + datalindex);
+    popupHeader.innerHTML = datalist[datalindex].name;
+    popupDescription.innerHTML = datalist[datalindex].description;
     if (counter === 1){
         try{
             currentMAP.mapleaf.remove()
@@ -258,7 +271,7 @@ function naytamap(datalindex) {
                     currentMAP.options = '';
                 } finally {
                     try {
-                        NAME = datalist[datalindex + 1].name.fi
+                        NAME = datalist[datalindex].name
                     } catch (err) {
                         console.log("ERRORNAME")
                         NAME = "error";
@@ -284,6 +297,14 @@ function naytamap(datalindex) {
 
 }
 
+function closePopup(){
+    popup.classList.remove('open-popup');
+    currentMap.mapleaf.remove('map');
+}
+
+
+
+closePopupBtn.addEventListener('click', closePopup);
 searchButton.addEventListener('click', findCultureData);
 
 

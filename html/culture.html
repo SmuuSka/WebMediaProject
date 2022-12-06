@@ -34,11 +34,16 @@
 </nav>
 
 <main class="container" id ="cultureMain">
-  <div class="map" id="map" style="width: 95%; height: 300px;"></div>
     <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
     <button id="hakunappi">Hae</button><br>
   <br>
   <br>
+  <article class="popup" id="popup">
+    <h2 id="popupHeader">Tapahtuma</h2>
+    <p id="popupDesc"></p>
+    <div class="map" id="map" style="width: 600px; height: 300px;"></div>
+    <button type="button" id="closePopup">Sulje</button>
+  </article>
 </main>
 <footer class="bottomnav">Kaspar and the boys proudly presents.</footer>
 </body>
