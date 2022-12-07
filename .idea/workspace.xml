@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="uncommit roskat">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/restaurants.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/restaurants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/MapApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/MapApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/restaurants.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/restaurants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
