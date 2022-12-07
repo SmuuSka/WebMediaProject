@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="classHtml" lang="en">
 <!--Kaspar Tullus-->
 <head>
   <meta charset="UTF-8">
@@ -12,8 +12,7 @@
   <script  type="module" src="../js/culture.js"></script>
   <title>Culture</title>
 </head>
-<body>
-<header><br><br><br></header>
+<body class = "CultureBody">
 <!-- Top navigation -->
 <nav class="topnav">
 
@@ -38,12 +37,19 @@
     <button id="hakunappi">Hae</button><br>
   <br>
   <br>
+  <div id = "MAINDATA">
+    <!--Tänne tulee tulostukset-->
+
+  </div>
+
+
   <article class="popup" id="popup">
     <h2 id="popupHeader">Tapahtuma</h2>
     <p id="popupDesc"></p>
     <div class="map" id="map" style="width: 600px; height: 300px;"></div>
     <button type="button" id="closePopup">Sulje</button>
   </article>
+
 </main>
 <footer class="bottomnav">Kaspar and the boys proudly presents.</footer>
 </body>
