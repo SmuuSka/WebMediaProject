@@ -63,7 +63,7 @@ li{
     background-color: rgba(55, 113, 142, 0.5);
     overflow: hidden;
     width: 100%;
-    height: 400%;
+    height: 100%;
     margin: auto;
 
 
@@ -116,11 +116,11 @@ h1{
     font-size: 400%;
     color: white;
     text-align: center;
-    margin-left: 50px;
+    margin-left: auto;
     margin-right: auto;
     -webkit-text-stroke-color: #000000;
     -webkit-text-stroke-width: 1px;
-    background-color: rgba(55, 113, 142, 0.5);
+    /*background-color: rgba(55, 113, 142, 0.5);*/
 }
 h3{
     font-size: 100%;
@@ -148,7 +148,7 @@ h4{
 }
 .resultbox{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 0;
     margin-right: auto;
     /*background-color: rgba(218, 248, 242, 0.6);*/
     background-color: rgba(55, 113, 142, 0.5);
@@ -216,7 +216,7 @@ h4{
 }
 
 /* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
     .topnav a, .topnav-right {
         float: none;
         display: block;
@@ -227,5 +227,29 @@ h4{
         top: 0;
         left: 0;
         transform: none;
+    }
+}
+@media screen and (max-width: 1400px){
+    .resultbox{
+        width: 50%;
+    }
+    .resultboxIndex{
+        width: 50%;
+    }
+    h1{
+        font-size: 50px;
+    }
+}
+@media  screen and (max-width: 700px) {
+    .resultbox{
+        width: 40%;
+    }
+    .resultboxIndex{
+        width: 40%;
+    }
+    h1{
+        font-size: 50px;
+        text-align: left;
+        margin-left: 100px;
     }
 }
