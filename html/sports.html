@@ -5,6 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
     <link href="../css/styles.css" rel="stylesheet" type="text/css">
     <link href="../css/sportsStyle.css" rel="stylesheet" type="text/css">
     <script type="module" src="../js/sports.js"></script>
@@ -14,6 +16,7 @@
 <body class="sportBody">
 <div class="layout-wrapper">
     <div class="layout-sport">
+
         <nav>
             <ul class="navContainer">
                 <li class="item-0"><a href="../index.html">HOME</a></li>
@@ -23,6 +26,13 @@
                 <li class="item-4"><a href="restaurants.html">RESTAURANTS</a></li>
             </ul>
         </nav>
+
+        <article class="popup" id="popup">
+            <h2 id="popupHeader">Event</h2>
+            <p id="popupDesc"></p>
+            <div class="map" id="map" style="width: 600px; height: 300px;"></div>
+            <button type="button" id="closePopup">CLOSE</button>
+        </article>
 
         <header class="topHeader" id="topHeader">
             <h1 class="sportH1">Sport Events</h1>
@@ -40,5 +50,8 @@
         Kaspar and the boys proudly presents.
     </footer>
 </div>
+
+
 </body>
+
 </html>
