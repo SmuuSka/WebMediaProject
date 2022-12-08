@@ -2,11 +2,19 @@
 import SearchData from '../api/myHelsinkiApiNew.js';
 import MapData from "../js/MapApi.js";
 
+//Lisätkää tämä
+import {parseData} from '../api/bypassApi.js';
+
 const mainElem = document.querySelector("main");
 const headerElem = document.getElementById('topHeader');
 const searchBox = document.getElementById('searchBox');
 const searchBtn = document.getElementById('searchBtn');
 const divElem = document.getElementById('result');
+
+//Lisätkää omaan scriptiin
+const page = "sport";
+//const page = "culture";
+//const page = "restaurant";
 
 //popup
 const popup = document.getElementById('popup');
@@ -40,11 +48,27 @@ let article;
 
 window.addEventListener("load", () => {
     console.log("This function is executed once the page is fully loaded");
-    findSportDataDefault();
+    //findSportDataDefault();
+
+    //Vastaa nyt samaa kuin CurrentSearch.doQuery:stä tuleva resultJson
+    //Ilman virheenhallintaa
+    bypassingApi();
 });
 
 closePopupBtn.addEventListener('click', closePopup);
 
+function bypassingApi(){
+    let resultJson = parseData(page);
+    events = sortData(resultJson);
+    currentDay = new Date();
+    console.log("Current day: " + currentDay);
+    for (let i = 0; i < events.length; i++)
+    {
+        if(events[i].date >= currentDay){
+            defaultSetNew(i);
+        }
+    }
+}
 
 function findWithKeyword() {
     console.log("FIND: " + searchBox.value.toString());
@@ -53,7 +77,6 @@ function findWithKeyword() {
     if(searchTag.length > 1){
         for(let i = 0; i < events.length;i++){
             for(let j = 0; j < events[i].eventTags.length; j++){
-                //console.log(events[i].eventTags[j].name);
                 let tag = events[i].eventTags[j].name;
 
                 if(searchTag.match(tag)){
@@ -84,20 +107,14 @@ function findSportDataDefault() {
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab, keyword);
     waitUntillDataArrvived();
-    // setTimeout(function ()
-    // {sortData(currentSearch.resultJson);
-    //     for (let i = 0; i < 10; i++)
-    //     {
-    //             defaultEventSet(i);
-    //     }
-    //     }, 5000)
 }
-
-
 
 function waitUntillDataArrvived(){
     setTimeout(function() {
         waitTime = waitTime + 1;
+        if (waitTime >= 30){
+           location.reload();
+        }
         if (currentSearch.dataArrived !== true) {
             console.log('Waiting data ' + waitTime);
             waitUntillDataArrvived();
@@ -157,8 +174,6 @@ function openPopup(id){
             //Kartta
             currentMap = new MapData();
             naytamap(newDict[i].eventData.eventLocation);
-        } else {
-            //console.log("Ei löydy " + newDict[i].eventData.eventName);
         }
     }
 }
