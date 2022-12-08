@@ -2,39 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="../css/styles.css" rel="stylesheet" type="text/css">
-  <script src="../js/movies.js"></script>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/a0043d9bc2.js" crossorigin="anonymous"></script>
+  <link href="../css/moviesivu.css" rel="stylesheet" type="text/css">
+
+<!--  background image link : https://www.freepik.com/free-vector/open-clapper-board-with-film-strip-background-design_8998544.htm#query=movie%20background&p?osition=4&from_view=keyword-->
   <title>Movies</title>
 </head>
 <body>
-<header><br><br><br></header>
-<!-- Top navigation -->
-<nav class="topnav">
 
-  <!-- Centered link -->
-  <div class="topnav-centered">
-    <a href="../index.html">HOME</a>
+
+<div class="layout-wrapper">
+  <div class="layout-movie">
+    <nav>
+      <ul class="navContainer">
+        <li class="item-0"><a href="../index.html">HOME</a></li>
+        <li class="item-1"><a href="movies.html">MOVIES</a></li>
+        <li class="item-2"><a href="culture.html">CULTURE</a></li>
+        <li class="item-3"><a href="sports.html" class="active">SPORTS</a></li>
+        <li class="item-4"><a href="restaurants.html">RESTAURANTS</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<!----------------------------Carousel part start!!!------------------------------------->
+<h1 class="logo">Mood Factory.fi <br> Movie's</h1>
+
+<div class="container">
+  <button type="button" id="moveLeft" class="btn-nav">
+    ᐊ
+  </button>
+  <article class="container-indicators">
+    <div class="indicator active" data-index="0"></div>
+    <div class="indicator" data-index="1"></div>
+    <div class="indicator" data-index="2"></div>
+    <div class="indicator" data-index="3"></div>
+  </article>
+  <figure class="slider" id="mySlider" style="overflow:hidden;">
+    <figure class="movie" id="movie0">
+    </figure>
+  </figure>
+
+  <button type="button" id="moveRight" class="btn-nav">
+    ᐅ
+  </button>
+</div>
+<!--carousel part  end !!!!!!!!!!!!!!!!!!!-->
+
+<div class="container mx-auto ">
+  <div class="row ">
+    <div class="card card-body ">
+      <div class="row">
+        <div class="col">
+          <fieldset>
+            <p class="lead">Search Movies</p>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Movie Name + Enter" aria-label="text input with dropdown button" id="searchMovie">
+            </div>
+          </fieldset>
+        </div>
+        <div class="col">
+          <fieldset>
+            <p class="lead">Select Theater</p>
+            <div class="form-group ">
+              <select id="custom-select">
+
+                <!--                                Tässä elokuvan paikat tulee-->
+
+              </select>
+            </div>
+          </fieldset>
+        </div>
+        <button type="button" id="CINEMATABLE">Etsii näytökset</button>
+      </div>
+    </div>
   </div>
 
-  <!-- Left-aligned links (default) -->
-  <a href="movies.html" class="active">MOVIES</a>
-  <a href="culture.html">CULTURE</a>
+  <div class="table-responsive ">
 
-  <!-- Right-aligned links -->
-  <div class="topnav-right">
-    <a href="sports.html">SPORTS</a>
-    <a href="restaurants.html">RESTAURANTS</a>
+    <br><table class="table shadow rounded " id="output">
+
+  </table>
+
   </div>
-</nav>
-<main class="container">
-  <br>
-  <h1>MOVIES</h1>
+</div>
+
+
+<div class="table-movies">
   <br><br>
+  <table id="film-table">
+  </table>
+</div>
+
 </main>
-<footer class="bottomnav">Kaspar and the boys proudly presents.</footer>
-</body>
-</body>
+
+<footer class="footer">
+  Kaspar and the boys proudly presents. <br> © 2022 All rights reserved
+</footer>
+
+
+<script type="module" src="../js/slider-movie.js"></script>
+<script type="module" src="../js/finnKinoInfo.js"></script>
+  </body>
 </html>
