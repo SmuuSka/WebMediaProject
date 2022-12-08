@@ -69,7 +69,7 @@ function changeVal() {
     let index = document.getElementById('custom-select').selectedIndex;
     let Tchoose = movielist[index];
     let thechosenvalue = document.getElementById('custom-select').options[index].text
-    let inputtext = document.getElementById('searchMovie').value
+    // let inputtext = document.getElementById('searchMovie').value
 
 
     // alert("value =" + document.getElementById('custom-select').value); // show selected value
@@ -99,24 +99,24 @@ function changeVal() {
 
             document.getElementById("film-table").innerHTML += table;
         }
-        else if (inputtext.includes(movielist[i].name) && movielist[i].cinemaName === thechosenvalue){
-            console.log("MATCH")
-            table = '<tr>' +
-                '<td class="poster"><img src="' + movielist[i].srcS + '" alt="image"></td>' +
-                '<td class="film-title">' + movielist[i].name +
-                '</td>' + '<br>' +
-                '<td>' + movielist[i].movieGenre + '<br>' +
-                '<p>' + movieTimeConvert + '</p>' +
-                '<p>Rating:' + movielist[i].movieRating + '</p>' +
-                '</td>' +
-                '<td><a href=" ' + movielist[i].movieurl + ' "><button type="submit" class="btn-ticket"' +
-                ' style="width: 100px; height: 50px; background-color: crimson;' +
-                'color: white; border-radius: 10px; ">Osta liput</button></a></td>' +
-                '<td>' + movielist[i].cinemaName + '</td>' +
-                '</tr>';
-            document.getElementById("film-table").innerHTML += table;
-            break;
-        }
+        // else if (inputtext.includes(movielist[i].name) && movielist[i].cinemaName === thechosenvalue){
+        //     console.log("MATCH")
+        //     table = '<tr>' +
+        //         '<td class="poster"><img src="' + movielist[i].srcS + '" alt="image"></td>' +
+        //         '<td class="film-title">' + movielist[i].name +
+        //         '</td>' + '<br>' +
+        //         '<td>' + movielist[i].movieGenre + '<br>' +
+        //         '<p>' + movieTimeConvert + '</p>' +
+        //         '<p>Rating:' + movielist[i].movieRating + '</p>' +
+        //         '</td>' +
+        //         '<td><a href=" ' + movielist[i].movieurl + ' "><button type="submit" class="btn-ticket"' +
+        //         ' style="width: 100px; height: 50px; background-color: crimson;' +
+        //         'color: white; border-radius: 10px; ">Osta liput</button></a></td>' +
+        //         '<td>' + movielist[i].cinemaName + '</td>' +
+        //         '</tr>';
+        //     document.getElementById("film-table").innerHTML += table;
+        //     break;
+        // }
     }
 }
 
@@ -130,3 +130,25 @@ function resetInputs() {
     }
     defaultValues.innerHTML = '';
 }
+
+
+// search movie jos tarvitse
+
+// else if (inputtext.includes(movielist[i].name) && movielist[i].cinemaName === thechosenvalue){
+//     console.log("MATCH")
+//     table = '<tr>' +
+//         '<td class="poster"><img src="' + movielist[i].srcS + '" alt="image"></td>' +
+//         '<td class="film-title">' + movielist[i].name +
+//         '</td>' + '<br>' +
+//         '<td>' + movielist[i].movieGenre + '<br>' +
+//         '<p>' + movieTimeConvert + '</p>' +
+//         '<p>Rating:' + movielist[i].movieRating + '</p>' +
+//         '</td>' +
+//         '<td><a href=" ' + movielist[i].movieurl + ' "><button type="submit" class="btn-ticket"' +
+//         ' style="width: 100px; height: 50px; background-color: crimson;' +
+//         'color: white; border-radius: 10px; ">Osta liput</button></a></td>' +
+//         '<td>' + movielist[i].cinemaName + '</td>' +
+//         '</tr>';
+//     document.getElementById("film-table").innerHTML += table;
+//     break;
+// }
