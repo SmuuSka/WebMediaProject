@@ -116,7 +116,7 @@ h1{
     font-size: 400%;
     color: white;
     text-align: center;
-    margin-left: auto;
+    margin-left: 120px;
     margin-right: auto;
     -webkit-text-stroke-color: #000000;
     -webkit-text-stroke-width: 1px;
@@ -238,9 +238,16 @@ h4{
     }
     h1{
         font-size: 50px;
+        margin-left: 120px;
+    }
+    .topnav{
+        margin-left: 0;
+    }
+    .bottomnav{
+        margin-left: 0;
     }
 }
-@media  screen and (max-width: 700px) {
+@media  screen and (max-width: 800px) {
     .resultbox{
         width: 40%;
     }
@@ -248,8 +255,32 @@ h4{
         width: 40%;
     }
     h1{
-        font-size: 50px;
+        font-size: 30px;
         text-align: left;
-        margin-left: 100px;
+        margin-left: 170px;
+    }
+    .topnav{
+        max-width: 39%;
+        margin-left: 50px;
+    }
+    .bottomnav{
+        max-width: 39%;
+        margin-left: 50px;
+    }
+    .sportSearchBox1{
+        max-width: 50%;
+        font-size: 15px;
+    }
+    .sportSearchBtn1{
+        max-width: 50%;
+        font-size: 15px;
+        color: black;
+    }
+    .loader-icon{
+        max-width: 100px;
+        margin-left: 250px;
+    }
+    .sportHtml11{
+        max-width: 40%;
     }
 }
