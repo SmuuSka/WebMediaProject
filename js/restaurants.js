@@ -41,7 +41,7 @@ function findRestaurant(data){
         currentMAP = new MapData();
         currentSearch.doQuery(apiUrlSearchTab, data);
         article = document.getElementById('loaderBlock');
-        article.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/workingLoadingAnimation.gif" alt="loadingGif">`;
+        article.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/CultureLoad.gif" alt="loadingGif">`;
         isCreated = true;
     }
 
