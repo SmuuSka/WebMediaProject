@@ -1,17 +1,19 @@
 //Samu,Kaspar,Turo
 'use strict';
+
 export default class SearchData {
     constructor() {
         this.resultJson = "";
         //Kiinteä haku Url tapahtumien hakuun
         this.apiUrl = 'https://open-api.myhelsinki.fi/';
         //Kiinteä proxy Url tapahtumien hakuun
-        this.proxyUrl = 'https://api.allorigins.win/get?url=';
+        this.proxyUrl = 'https://users.metropolia.fi/~ilkkamtk/proxy.php?url=';
 
         this.dataArrived = false;
     }
 
     doQuery(tab, keyword) {
+
         //Kiinteään linkkiin lisätään välilehtikohtainen hakulinkki ja käyttäjän hakusana
         let apiQuery = this.apiUrl + tab + keyword;
         console.log(apiQuery);
@@ -21,27 +23,22 @@ export default class SearchData {
         console.log('Data call', this.dataArrived);
         fetch(proxyUrlQuery).then(function (response) {
             return response.json();
-        }).then(response => this.parseJsonData(response))
-            .then((result) => {
-                console.log('Success:', result);
-                this.dataArrived = true;
-                console.log('Data arrived', this.dataArrived);
-
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        //return;
+        }).then((data) =>  {
+            this.parseJsonData(data);
+            this.dataArrived = true;
+        }).catch((error) =>{
+            console.error('Error: ' + error);
+        });
     }
 
+
+
     parseJsonData(jsonData) {
-        let jSonData = JSON.parse(jsonData.contents);
-        let realData = jSonData.data;
-        //Välilehdellä käytettävä Json data löytyy Oma hakuolio.resultJson
-        //Hakuolio luodaan esim. haku = new SearchData();
-        //Muista lisätä import SearchData from '../api/myHelsinkiApiNew.js'; moduuli omaan scriptiisi
-        this.resultJson = realData;
-        //return;
+        // Välilehdellä käytettävä Json data löytyy Oma hakuolio.resultJson
+        // Hakuolio luodaan esim. haku = new SearchData();
+        // Muista lisätä import SearchData from '../api/myHelsinkiApiNew.js'; moduuli omaan scriptiisi
+        let parsedJson = JSON.stringify(jsonData);
+        this.resultJson = JSON.parse(parsedJson).data;
     }
 }
 
