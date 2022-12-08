@@ -2,7 +2,7 @@
 import SearchData from '../api/myHelsinkiApiNew.js';
 import MapData from "../js/MapApi.js";
 
-//Lisätkää tämä
+//Lisätkää tämä omaan scriptiin
 import {parseData} from '../api/bypassApi.js';
 
 const mainElem = document.querySelector("main");
@@ -48,16 +48,16 @@ let article;
 
 window.addEventListener("load", () => {
     console.log("This function is executed once the page is fully loaded");
-    //findSportDataDefault();
+    findSportDataDefault();
 
-    //Vastaa nyt samaa kuin CurrentSearch.doQuery:stä tuleva resultJson
-    //Ilman virheenhallintaa
-    bypassingApi();
+    //bypassingApi();
 });
 
 closePopupBtn.addEventListener('click', closePopup);
 
 function bypassingApi(){
+    //Vastaa nyt samaa kuin CurrentSearch.doQuery:stä tuleva resultJson
+    //Ilman virheenhallintaa
     let resultJson = parseData(page);
     events = sortData(resultJson);
     currentDay = new Date();
