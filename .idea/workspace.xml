@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="uncommit roskat">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/moviesivu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_16_10_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_16_10__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/movies.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,9 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/html/movies.html" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/index.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/js/finnKinoInfo.js" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -55,7 +61,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/samua/WebstormProjects/WebMediaF_Projekti/api&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/semenmorozov/Desktop/Metropolia /WebMediaProject/css&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -69,13 +75,15 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/css" />
       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js" />
+      <recent name="$PROJECT_DIR$/api" />
       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\img" />
       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\js" />
       <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti" />
-      <recent name="C:\Users\samua\WebstormProjects\WebMediaF_Projekti\api" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -99,6 +107,12 @@
       <workItem from="1669784544398" duration="13819000" />
       <workItem from="1669984097007" duration="285000" />
       <workItem from="1669984734221" duration="1353000" />
+      <workItem from="1670239915612" duration="7894000" />
+      <workItem from="1670348286015" duration="48000" />
+      <workItem from="1670348440831" duration="153000" />
+      <workItem from="1670359261060" duration="1831000" />
+      <workItem from="1670397042584" duration="1380000" />
+      <workItem from="1670398456606" duration="12140000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
@@ -138,19 +152,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="samu" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
