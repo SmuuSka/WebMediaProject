@@ -1,6 +1,11 @@
 'use strict';
 import SearchData from '../api/myHelsinkiApiNew.js';
 import MapData from "../js/MapApi.js";
+import sportData from '../jsonFiles/sport.json' assert { type: 'json' };
+
+const data = JSON.stringify(sportData);
+const sportJSON = JSON.parse(data);
+
 
 const mainElem = document.querySelector("main");
 const headerElem = document.getElementById('topHeader');
@@ -41,7 +46,29 @@ let article;
 window.addEventListener("load", () => {
     console.log("This function is executed once the page is fully loaded");
     //findSportDataDefault();
+    bypassJsonFunc(sportJSON);
 });
+
+function bypassJsonFunc(sportJSON){
+    //Luetaan käyttäjänsyöte
+    keyword = "";
+
+    //Luodaan hakuolio
+    currentSearch = new SearchData();
+
+    //Fiksataan json
+    currentSearch.resultJson = sportJSON;
+    events = sortData(currentSearch.resultJson);
+    currentDay = new Date();
+    console.log("Current day: " + currentDay);
+    for (let i = 0; i < events.length; i++)
+    {
+        if(events[i].date >= currentDay){
+            defaultSetNew(i);
+        }
+    }
+
+}
 
 closePopupBtn.addEventListener('click', closePopup);
 
