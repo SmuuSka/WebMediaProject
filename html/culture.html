@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
   <link href="../css/styles.css" rel="stylesheet" type="text/css">
@@ -33,11 +32,18 @@
 </nav>
 
 <main class="container" id ="cultureMain">
-    <input id="hakuteksti" style="text-transform: capitalize;" type="text" name="haku" placeholder="Syötä tähän ravintolan nimi">
-    <button id="hakunappi">Hae</button><br>
+  <div id = "BUTTONS">
+  <button  class="hakunappi" id="musiikkinappi" value = "0">Musiikki tapahtumat</button>
+    <button class="hakunappi" id="kirjastonappi"value = "1">Kirjasto tapahtumat</button>
+  <button class="hakunappi" id="konsertitnappi" value="2">Konsertit</button>
+    <button class="hakunappi" id="historianappi" value="3">Historia tapahtumat</button>
+    <button class="hakunappi" id="museonappi" value="4">Museot</button>
+    <button class="hakunappi" id="kaikkinappi" value="5">Kaikki</button>
+  </div>
   <br>
   <br>
   <div id = "MAINDATA">
+    <button onclick="topFunction()" id="myBtntop" title="Go to top">Top</button>
     <!--Tänne tulee tulostukset-->
 
   </div>
