@@ -3,8 +3,12 @@ import SearchData from '../api/myHelsinkiApiNew.js';
 import MapData from "../js/MapApi.js";
 
 const mainElem = document.getElementById("MAINDATA");
-const searchButton = document.getElementById('hakunappi');
-const searchInputField = document.getElementById('hakuteksti');
+const searchButtonMusic = document.getElementById('musiikkinappi');
+const searchButtonConcerts = document.getElementById('konsertitnappi');
+const searchButtonKirjasto = document.getElementById('kirjastonappi');
+const searchButtonHistory = document.getElementById('historianappi');
+const searchButtonMuseums = document.getElementById('museonappi');
+const searchButtonKaikki = document.getElementById('kaikkinappi');
 const apiUrlSearchTab = "v1/events/?tags_search=";
 
 let loader;
@@ -14,7 +18,7 @@ const closePopupBtn = document.getElementById('closePopup');
 let popupHeader = document.getElementById('popupHeader');
 let popupDescription = document.getElementById('popupDesc');
 
-
+let Searchprecise = 0;
 let datalocation;
 let datalatcation;
 let counter = 0;
@@ -29,29 +33,35 @@ let mapoptiondata =
 let currentSearch;
 let keyword;
 let tagi = 0;
-const datalist = [{}];
+let datalist = [{}];
 const tags = [{
     name: "Musiikki,"
 }, {
     name: "Libraries,"
 }, {
-    name: "Elokuvat,"
+    name: "concerts,"
+},{
+    name: "history"
+},{
+    name:"museums"
 }];
+let tagsearch;
 findCultureData()
-
 function findCultureData() {
     if (tagi === tags.length) {
-        console.log("DONE")
+        console.log("DONE");
         tagi = 0;
     }
     //Luetaan käyttäjänsyöte
-    keyword = searchInputField.value;
+    keyword = ""
     //Luodaan hakuolio
     currentSearch = new SearchData();
-
+    if (Searchprecise === 5 || Searchprecise === 0){
+        tagsearch = tags[tagi].name;
+    }
     currentMAP = new MapData();
     //Tehdään haku
-    currentSearch.doQuery(apiUrlSearchTab + tags[tagi].name, keyword);
+    currentSearch.doQuery(apiUrlSearchTab + tagsearch, keyword);
     mainElem.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/CultureLoad.gif" alt="loadingGif">`;
     setTimeout(function () {
         LaunchCultureData();
@@ -68,61 +78,68 @@ function LaunchCultureData() {
     let lat;
     let lon;
     let imaged;
-
+    let url;
     console.log("CULTUREDATA" + tagi)
     setTimeout(function () {
         for (let i = 0; i < currentSearch.resultJson.length; i++) {
             console.log(currentSearch.resultJson[i].name.fi);
             try {
-                named = currentSearch.resultJson[i].name.fi
+                named = currentSearch.resultJson[i].name.fi;
             } catch (err) {
                 console.log("ERRORNAME");
                 named = '';
             } finally {
                 try {
-                    desc = currentSearch.resultJson[i].description.intro
+                    desc = currentSearch.resultJson[i].description.intro;
                 } catch (err) {
                     console.log("ERRORDESC");
                     desc = ''
                 } finally {
                     try {
-                        idd = currentSearch.resultJson[i].id
+                        idd = currentSearch.resultJson[i].id;
                     } catch (err) {
                         console.log("ERRORID");
                         idd = ''
                     } finally {
                         try {
-                            bodyd = currentSearch.resultJson[i].description.body
+                            bodyd = currentSearch.resultJson[i].description.body;
                         } catch (err) {
                             console.log("ERRORBODY");
                             bodyd = '';
                         } finally {
                             try {
-                                lat = currentSearch.resultJson[i].location.lat
+                                lat = currentSearch.resultJson[i].location.lat;
                             } catch (err) {
                                 console.log("ERRORNLAT");
                                 lat = '1'
                             } finally {
                                 try {
-                                    lon = currentSearch.resultJson[i].location.lon
+                                    lon = currentSearch.resultJson[i].location.lon;
                                 } catch (err) {
                                     console.log("ERRORLON");
                                     lon = '1'
                                 } finally {
                                     try {
-                                        imaged = currentSearch.resultJson[i].description.images[0].url
+                                        imaged = currentSearch.resultJson[i].description.images[0].url;
                                     } catch (err) {
-                                        console.log("IMAGEERROR")
+                                        console.log("IMAGEERROR");
                                     } finally {
-                                        datalist.push({
-                                            name: named,
-                                            bodydes: bodyd,
-                                            id: idd,
-                                            description: desc,
-                                            locationlon: lon,
-                                            locationlat: lat,
-                                            image: imaged
-                                        });
+                                        try{
+                                            url = currentSearch.resultJson[i].info_url;
+                                        }catch (err){
+                                            console.log("ERROR NO URL INFO");
+                                        }finally {
+                                            datalist.push({
+                                                name: named,
+                                                bodydes: bodyd,
+                                                id: idd,
+                                                description: desc,
+                                                locationlon: lon,
+                                                locationlat: lat,
+                                                image: imaged,
+                                                url: url
+                                            });
+                                        }
                                     }
 
                                 }
@@ -133,28 +150,35 @@ function LaunchCultureData() {
             }
 
         }
+        if (Searchprecise === 1){
+            console.log("ONESEARCH");
+            mainElem.innerHTML = '';
+            SHOWDATA();
+        }else{
         tagi++
         if (tagi <= tags.length - 1) {
             setTimeout(function () {
                 findCultureData()
             }, 2000);
         } else {
+            Searchprecise = 0;
             console.log("DONE")
             mainElem.innerHTML = '';
             SHOWDATA()
         }
+        }
+
 
         console.log(datalist)
     }, 200);
-
 }
 
 function SHOWDATA() {
 
     for (let i = 1; i < datalist.length; i++) {
 
-        if (datalist[i].image === null && datalist[i].description === null || datalist[i].bodydes === null) {
-            console.log("no info,not adding")
+        if (datalist[i].image === null || datalist[i].description === null || datalist[i].bodydes === null) {
+            console.log("no info,not adding");
         } else {
 
             let articletwo = document.createElement("article");
@@ -186,31 +210,41 @@ function SHOWDATA() {
 
             let p = document.createElement("p");
             p.className = "DataPARAGRAPH";
-            p.innerHTML = datalist[i].bodydes
+            p.innerHTML = datalist[i].bodydes;
             let br = document.createElement("br");
 
             let button = document.createElement("button");
-            button.className = "Karttanappi" + i
+            button.className = "Karttanappi" + i;
             button.id = "Karttanappi";
 
+            let buttondiv = document.createElement("div")
+            buttondiv.id = "Buttonlist";
+
+            let aINFO = document.createElement("a");
+
+            let infobutton = document.createElement("button")
+            infobutton.innerText = "KOTISIVU";
+            infobutton.className = "InfoNappi";
+            infobutton.id="Karttanappi";
 
             let mapdiv = document.createElement("div");
             mapdiv.className = "map";
             mapdiv.id = "map";
             mapdiv.style = "width: 95%; height: 300px;";
 
-            mainElem.appendChild(br)
-            mainElem.appendChild(articletwo)
+            mainElem.appendChild(br);
+            mainElem.appendChild(articletwo);
             articletwo.appendChild(articleheader);
             articleheader.appendChild(img);
             articletwo.appendChild(article);
             article.appendChild(p);
+            article.appendChild(buttondiv)
 
             let buttonid = document.getElementById("Karttanappi" + i)
             try {
 
-                datalocation = datalist[i].locationlat
-                datalatcation = datalist[i].locationlon
+                datalocation = datalist[i].locationlat;
+                datalatcation = datalist[i].locationlon;
             } catch (err) {
                 console.log("ERRORLOCATION");
                 datalocation = 'Error';
@@ -224,7 +258,15 @@ function SHOWDATA() {
                 button.onclick = function () {
                     naytamap(i);
                 };
-                article.appendChild(button);
+                buttondiv.appendChild(button);
+                try{
+                    aINFO.href = datalist[i].url
+                    buttondiv.appendChild(aINFO)
+                    aINFO.appendChild(infobutton);
+                }catch (err){
+                    console.log("NOURL NOT ADDING HOME PAGE")
+                }
+
             }
 
         }
@@ -242,9 +284,9 @@ function naytamap(datalindex) {
     popupDescription.innerHTML = datalist[datalindex].description;
     if (counter === 1) {
         try {
-            currentMAP.mapleaf.remove()
+            currentMAP.mapleaf.remove();
         } catch (err) {
-            console.log("ERRORREMVOVE")
+            console.log("ERRORREMVOVE");
         }
 
     }
@@ -277,17 +319,17 @@ function naytamap(datalindex) {
                     try {
                         NAME = datalist[datalindex].name
                     } catch (err) {
-                        console.log("ERRORNAME")
+                        console.log("ERRORNAME");
                         NAME = "error";
                     } finally {
                         console.log(NAME)
                         try {
                             currentMAP.Lmarker = L.marker([currentMAP.posLat, currentMAP.posLong]).addTo(currentMAP.mapleaf).bindPopup(NAME);
                         } catch (err) {
-                            console.log("ERROR MARKER")
+                            console.log("ERROR MARKER");
                         } finally {
                             counter = 1;
-                            console.log("GOTLOCATION")
+                            console.log("GOTLOCATION");
                             currentMAP.showMap();
                         }
 
@@ -306,10 +348,28 @@ function closePopup() {
     currentMap.mapleaf.remove('map');
 }
 
+function EventType(num){
+    const button = num.target.value;
+    mainElem.innerHTML = '';
+    datalist = [{}];
+    if (button == 5){
+        Searchprecise = 5
+        findCultureData();
+    }else {
+        Searchprecise = 1;
+        console.log(num.target.value);
+        tagsearch = tags[button].name;
+        findCultureData();
+    }
+
+}
 
 closePopupBtn.addEventListener('click', closePopup);
-searchButton.addEventListener('click', findCultureData);
-
-
+searchButtonMusic.addEventListener('click', EventType);
+searchButtonKirjasto.addEventListener('click',EventType);
+searchButtonConcerts.addEventListener('click',EventType);
+searchButtonHistory.addEventListener('click',EventType);
+searchButtonMuseums.addEventListener('click',EventType);
+searchButtonKaikki.addEventListener('click',EventType);
 
 
