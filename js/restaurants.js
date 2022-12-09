@@ -53,13 +53,13 @@ function findRestaurant(data){
         }
         else {
 
-            for (let i = 0; i < events.length; i++) {
-                let hakusana = data;
-                console.log("Tässä palautuksen pituus: " + currentSearch.resultJson.length);
-                console.log(hakusana.length);
+            //for (let k = 0; k < currentSearch.length; k++) {
+              //  let hakusana = data;
+                //console.log("Tässä palautuksen pituus: " + currentSearch.resultJson.length);
+                //console.log(hakusana.length);
 
                 for (let i = 0; i < currentSearch.resultJson.length; i++) {
-
+                    let hakusana = data;
                     console.log('sisällä loopissa');
                     let stringname = currentSearch.resultJson[i].name.fi;
                     let hakusanakaks = hakusana.toUpperCase();
@@ -86,9 +86,10 @@ function findRestaurant(data){
 
                         ul.appendChild(list);
                         ul.appendChild(br);
+                        console.log('pitäisi tulostaa');
                     }
                 }
-            }
+           // }
             testi();
         }
 
