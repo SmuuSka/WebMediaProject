@@ -1,29 +1,25 @@
 'use strict';
+//By Samu
+
+//Api-script imports
 import SearchData from '../api/myHelsinkiApiNew.js';
 import MapData from "../js/MapApi.js";
 
-//Lisätkää tämä omaan scriptiin
-import {parseData} from '../api/bypassApi.js';
-
+//Main elements
 const mainElem = document.querySelector("main");
 const headerElem = document.getElementById('topHeader');
 const searchBox = document.getElementById('searchBox');
 const searchBtn = document.getElementById('searchBtn');
 const divElem = document.getElementById('result');
 
-//Lisätkää omaan scriptiin
-const page = "sport";
-//const page = "culture";
-//const page = "restaurant";
-
-//popup
+//popup elements
 const popup = document.getElementById('popup');
 const closePopupBtn = document.getElementById('closePopup');
-let popupHeader = document.getElementById('popupHeader');
-let popupDescription = document.getElementById('popupDesc');
+const popupHeader = document.getElementById('popupHeader');
+const popupDescription = document.getElementById('popupDesc');
 
-//newDict
-let newDict = [];
+//new dictionary for json data
+const newDict = [];
 
 //Map
 let currentMap;
@@ -34,7 +30,7 @@ let mapOptionData =
 
 const apiUrlSearchTab = "v1/events/?tags_filter=sports";
 
-const map = document.getElementById('map');
+let map = document.getElementById('map');
 
 let currentSearch;
 let keyword;
@@ -46,97 +42,89 @@ let currentDay;
 let article;
 
 
-window.addEventListener("load", () => {
-    console.log("This function is executed once the page is fully loaded");
-    findSportDataDefault();
 
-    //bypassingApi();
+window.addEventListener("load", () => {
+    //This function will execute after page load
+    findSportDataDefault();
+});
+
+
+//Search box-button will launch findWithKeyword-function,
+// which at first removing all default data from site, then it read
+// Search input field data, and trying to find
+// a matching tag from events-dictionary.
+// If not match any tag, it will load a default data
+function findWithKeyword() {
+    divElem.replaceChildren();
+    let searchTag = searchBox.value.toString();
+    let count = 0;
+    for(let i = 0; i < events.length;i++){
+        for(let j = 0; j < events[i].eventTags.length; j++) {
+            let tag = events[i].eventTags[j].name;
+            if (searchTag.match(tag)) {
+                count++;
+                if (events[i].date >= currentDay) {
+                    eventSet(i);
+                    //eventSetBySearch(i);
+                    console.log("Löyty: " + tag);
+                }
+            }
+        }
+    }
+    if (count < 1){
+        alert("Any of event couldn't found by tag");
+        findSportDataDefault();
+    }
+}
+
+searchBtn.addEventListener('click', () =>{
+    if(searchBox.value.length >= 3){
+        findWithKeyword();
+    }else{
+        alert("Too sort tag");
+        divElem.replaceChildren();
+        findSportDataDefault();
+    }
 });
 
 closePopupBtn.addEventListener('click', closePopup);
 
-function bypassingApi(){
-    //Vastaa nyt samaa kuin CurrentSearch.doQuery:stä tuleva resultJson
-    //Ilman virheenhallintaa
-    let resultJson = parseData(page);
-    events = sortData(resultJson);
-    currentDay = new Date();
-    console.log("Current day: " + currentDay);
-    for (let i = 0; i < events.length; i++)
-    {
-        if(events[i].date >= currentDay){
-            defaultSetNew(i);
-        }
-    }
-}
-
-function findWithKeyword() {
-    console.log("FIND: " + searchBox.value.toString());
-    let searchTag = searchBox.value.toString();
-    divElem.replaceChildren();
-    if(searchTag.length > 1){
-        for(let i = 0; i < events.length;i++){
-            for(let j = 0; j < events[i].eventTags.length; j++){
-                let tag = events[i].eventTags[j].name;
-
-                if(searchTag.match(tag)){
-                    if(events[i].date >= currentDay){
-                        console.log("Löytyi: " + tag + " Event: " + events[i].eventName);
-                        eventSetBySearch(i);
-                    }
-                }
-            }
-        }
-
-    }else {
-        console.log("Tyhjä arpa");
-    }
-}
-
-searchBtn.addEventListener('click',findWithKeyword);
-
-
+//Function will create a new searchObject,
+//execute query for api data and returning parsed
+//json data from api
 function findSportDataDefault() {
-    //Luetaan käyttäjänsyöte
-    keyword = "";
-
-    //Luodaan hakuolio
     currentSearch = new SearchData();
 
-
     //Tehdään haku
-    currentSearch.doQuery(apiUrlSearchTab, keyword);
-    waitUntillDataArrvived();
+    currentSearch.doQuery(apiUrlSearchTab, "");
+    waitUntilDataArrived();
 }
 
-function waitUntillDataArrvived(){
+function waitUntilDataArrived(){
     setTimeout(function() {
-        waitTime = waitTime + 1;
+        waitTime++;
         if (waitTime >= 30){
            location.reload();
         }
         if (currentSearch.dataArrived !== true) {
-            console.log('Waiting data ' + waitTime);
-            waitUntillDataArrvived();
+            waitUntilDataArrived();
         }
         else {
-             events = sortData(currentSearch.resultJson);
+             events = errorCheck(currentSearch.resultJson);
              currentDay = new Date();
-             console.log("Current day: " + currentDay);
             for (let i = 0; i < events.length; i++)
             {
                 if(events[i].date >= currentDay){
-                    defaultSetNew(i);
+                    eventSet(i);
                 }
             }
         }
     }, 1000)
 }
 
-function defaultSetNew(index){
+function eventSet(index){
     //Elementit
     let eventItem = document.createElement('article');
-    //let article = document.createElement('article');
     article = document.createElement('button');
     let eventNameItem = document.createElement('h2');
     let h2DataTime = document.createElement('h2');
@@ -173,18 +161,18 @@ function openPopup(id){
             popupDescription.innerHTML = newDict[i].eventData.eventDescription.intro;
             //Kartta
             currentMap = new MapData();
-            naytamap(newDict[i].eventData.eventLocation);
+            mapFunction(newDict[i].eventData.eventLocation);
         }
     }
 }
 function closePopup(){
     popup.classList.remove('open-popup');
-    currentMap.mapleaf.remove('map');
 }
 
 
 
 function eventSetBySearch(index){
+
     //Elementit
     let eventItem = document.createElement('article');
     let article = document.createElement('article');
@@ -206,7 +194,8 @@ function eventSetBySearch(index){
     divElem.appendChild(eventItem);
 }
 
-function sortData(data){
+//sortData function will iterate the data  and looks for errors
+function errorCheck(data){
     let jsonDate;
     let idOfDate;
     let eventName;
@@ -214,52 +203,52 @@ function sortData(data){
     let infoUrl;
     let tags;
     let description;
-    console.log("datan määrä: " + data.length);
+
     let eventDictionary = [];
     for (let i = 0; i < data.length; i++){
         try {
             jsonDate = data[i].event_dates.starting_day;
             jsonDate = jsonDate.split('T');
         }catch (err){
-            console.log("Jokin virhe päivämäärässä tapahtumassa " +  i + ". " + err.stack);
+            console.log("Error in date " +  i + ". " + err.stack);
             jsonDate = "Date missing!";
         }finally{
             try {
                 idOfDate = data[i].id;
             }catch (err){
-                console.log("Jokin virhe id:ssä " + err.stack);
+                console.log("Error in id " + err.stack);
                 idOfDate = "Missing id!";
             }finally {
                 try {
                     eventName = data[i].name.fi;
                 }catch (err){
-                    console.log("Jokin virhe nimessä " + err.stack);
+                    console.log("Error in name " + err.stack);
                     eventName = "Missing name!";
                 }finally {
                     try {
                         location = data[i].location;
                     }catch (err){
-                        console.log("Jokin virhe sijainnissa " + err.stack);
+                        console.log("Error in locations " + err.stack);
                         location = 'Location data missing!';
                     }
                     finally {
                         try {
                             infoUrl = data[i].info_url;
                         }catch (err){
-                            console.log("Jokin virhe infolinkissä " + err.stack);
+                            console.log("Error in info_url " + err.stack);
                             infoUrl = 'Infolink missing!';
                         }finally {
                             try {
                                 tags = data[i].tags;
                             }catch (err){
-                                console.log("Jokin virhe tägissä " + err.stack);
+                                console.log("Error in tags " + err.stack);
                                 tags = 'tags missing!';
                             }
                             finally {
                                 try {
                                     description = data[i].description;
                                 }catch (err){
-                                    console.log("Jokin virhe kuvailussa " + err.stack);
+                                    console.log("Error in description " + err.stack);
                                     description = 'description missing';
                                 }finally {
                                     let date = new Date(jsonDate);
@@ -288,6 +277,7 @@ function sortData(data){
     return  sortingDict(eventDictionary);
 }
 
+//Function sorting the data by date;
 function sortingDict(dict){
 
     dict.sort(function(a,b){
@@ -297,20 +287,16 @@ function sortingDict(dict){
     return dict;
 }
 
-let counter = 0;
-
-function naytamap(currentEvent){
+function mapFunction(currentEvent){
 
     currentMap.posLat = currentEvent.lat;
     currentMap.posLong = currentEvent.lon;
-    console.log("Lat " + currentEvent.lat + " Lon " + currentEvent.lon);
 
     currentMap.mapleaf = L.map('map').setView([currentMap.posLat, currentMap.posLong], 13);
     currentMap.options = mapOptionData;
 
-    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("TÄÄLLÄ");
+    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("Here");
 
-    console.log("GOTLOCATION")
     currentMap.showMap();
 }
 
