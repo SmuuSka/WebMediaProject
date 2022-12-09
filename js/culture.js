@@ -60,6 +60,7 @@ function findCultureData() {
         tagsearch = tags[tagi].name;
     }
     currentMAP = new MapData();
+    currentMAP.Mapincluded = 1;
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tagsearch, keyword);
     mainElem.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/CultureLoad.gif" alt="loadingGif">`;
@@ -196,7 +197,7 @@ function SHOWDATA() {
                 IMGSRC = datalist[i].image;
             } catch (err) {
                 console.log("NOPICTURE")
-                IMGSRC = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
+                IMGSRC = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg";
             } finally {
                 img.src = datalist[i].image;
             }
