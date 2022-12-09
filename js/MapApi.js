@@ -50,7 +50,7 @@ export default class MapData {
                     waypoints: [
                         L.latLng(crd.latitude, crd.longitude),
                         L.latLng(lati, longi)
-                    ],
+                    ]
                 }).addTo(map);
                     LtileLayer.addTo(map);
                     Lmarker.openPopup();
