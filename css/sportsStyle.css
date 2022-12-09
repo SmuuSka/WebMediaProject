@@ -20,21 +20,79 @@
     flex: 1;
 }
 
-.sportInput{
+.searchBoxContainer{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
+
+.sportSearchBox{
+    font-size: 30px;
+    text-align: center;
+    cursor: auto;
+    background-color: rgba(100,100,100,.6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    width: 600px;
+    height: 50px;
+    box-shadow: 2px 3px 3px rgba(26, 23, 23, 0.7);
+}
+.sportSearchBtn{
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    margin: auto;
+    transform: translate(280px, -56px);
+    scale: 90%;
+    border: none;
+}
+
+
+
 .eventItemContainer{
     display: flex;
-    border: 3px solid darkslateblue;
-    justify-content: space-between;
+    flex-direction: column;
+    border: 3px solid #f6f6f6;
     background-color: rgba(4,9,30,0.7);
     padding: 20px;
+    margin: auto;
+    color: #f6f6f6;
+    font-weight: bolder;
+    width: 80%;
 }
 
 .eventItem-date{
-    color: #f6f6f6;
+    width: 150px;
+    margin: 10px;
+    border: #8ee3ef;
     font-family: 'Panchang', sans-serif;
+    text-align: start;
+}
+.eventItem-button{
+    background: none;
+    font-family: 'Panchang', sans-serif;
+    margin: 5px;
+    padding: 20px;
+    text-align: right;
+    font-size: 25px;
+    color: #f6f6f6;;
+    border-color: #f6f6f6;
+    max-width: 500px;
+    flex-grow: 1;
+}
+
+.event-li-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Panchang', sans-serif;
+    list-style-type: none;
+    border: 3px solid seashell;
+    gap: 5px;
+
 }
 
 .eventItem-event{
@@ -45,14 +103,16 @@
     font-family: 'Panchang', sans-serif;
 
 }
-.eventItem-event:hover{
-    background-color: #4CAF50;
-    color: white;
+.eventItem-button:hover{
+    background-color: rgba(4, 9, 30, 0.77);
+    width: border-box;
 }
 
 .sportH1{
     color: white;
     text-align: center;
+    margin: auto;
+    padding: 50px 0 50px 0;
 }
 
 .sportMain{
@@ -71,32 +131,17 @@
     padding: 30px;
     background: none;
     /*background-color: rgba(64,224,208,0.1);*/
-    border: 3px solid darkseagreen;
 }
 
-.sportSearchBox{
-    font-size: 30px;
-    text-align: center;
-    cursor: auto;
-    background-color: rgba(100,100,100,.6);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 30px 30px 30px 30px;
-}
-.sportSearchBtn{
-    font-size: 30px;
-    padding: 30px 30px 30px 30px;
-    border-radius: 10px;
-}
+
 
  .bottomnav{
      text-align: center;
      padding-top: 20px;
      position: absolute;
-     bottom: 0;
      width: 100%;
      height: 50px;
+     flex: 0 0 auto;
 }
 
 .eventContainer{
