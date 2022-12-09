@@ -41,6 +41,8 @@ let currentDay;
 
 let article;
 
+//Testilista
+const eventList = document.createElement('ul');
 
 
 window.addEventListener("load", () => {
@@ -55,7 +57,8 @@ window.addEventListener("load", () => {
 // a matching tag from events-dictionary.
 // If not match any tag, it will load a default data
 function findWithKeyword() {
-    divElem.replaceChildren();
+    //divElem.replaceChildren();
+    eventList.replaceChildren();
     let searchTag = searchBox.value.toString();
     let count = 0;
     for(let i = 0; i < events.length;i++){
@@ -64,7 +67,8 @@ function findWithKeyword() {
             if (searchTag.match(tag)) {
                 count++;
                 if (events[i].date >= currentDay) {
-                    eventSet(i);
+                    //eventSet(i);
+                    eventSetBySearch(i);
                     //eventSetBySearch(i);
                     console.log("Löyty: " + tag);
                 }
@@ -115,7 +119,8 @@ function waitUntilDataArrived(){
             for (let i = 0; i < events.length; i++)
             {
                 if(events[i].date >= currentDay){
-                    eventSet(i);
+                    //eventSet(i);
+                    eventSetBySearch(i);
                 }
             }
         }
@@ -169,30 +174,39 @@ function closePopup(){
     popup.classList.remove('open-popup');
 }
 
-
-
 function eventSetBySearch(index){
 
-    //Elementit
-    let eventItem = document.createElement('article');
-    let article = document.createElement('article');
-    let eventNameItem = document.createElement('h2');
+    //Elements
+    let eventListElement = document.createElement('li');
+    let eventNameItem = document.createElement('button');
     let h2DataTime = document.createElement('h2');
 
-    //Luokat
-    eventItem.className = "eventItemContainer";
+    //Class
+    eventNameItem.className = "eventItem-button";
+    eventList.className = "eventItemContainer";
     h2DataTime.className = "eventItem-date";
-    article.className = "eventItem-event";
+    eventListElement.className = "event-li-item";
 
     eventNameItem.innerHTML = events[index].eventName;
     h2DataTime.innerHTML = events[index].date.toDateString();
+    eventNameItem.id = events[index].eventID;
+    eventNameItem.title = "Click for more information";
 
-    //Koostaminen
-    eventItem.appendChild(h2DataTime);
-    article.appendChild(eventNameItem);
-    eventItem.appendChild(article);
-    divElem.appendChild(eventItem);
+    //Pile up
+    eventListElement.appendChild(h2DataTime);
+    eventListElement.appendChild(eventNameItem);
+    eventList.appendChild(eventListElement);
+    divElem.appendChild(eventList);
+
+    eventNameItem.addEventListener('click', (event) => {
+        console.log("Event ID: " + event.target.getAttribute('id'));
+        let eventID = event.target.getAttribute('id');
+        openPopup(eventID);
+
+    });
 }
+
+
 
 //sortData function will iterate the data  and looks for errors
 function errorCheck(data){
