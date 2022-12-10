@@ -15,9 +15,8 @@ let loader;
 //popup
 const popup = document.getElementById('popup');
 const closePopupBtn = document.getElementById('closePopup');
-let popupHeader = document.getElementById('popupHeader');
-let popupDescription = document.getElementById('popupDesc');
 
+let popUpOpen = false;
 let Searchprecise = 0;
 let datalocation;
 let datalatcation;
@@ -177,7 +176,6 @@ function LaunchCultureData() {
 function SHOWDATA() {
 
     for (let i = 1; i < datalist.length; i++) {
-
         if (datalist[i].image === null || datalist[i].description === null || datalist[i].bodydes === null) {
             console.log("no info,not adding");
         } else {
@@ -276,13 +274,43 @@ function SHOWDATA() {
     }
 
 }
+function createPopup(eventDatai){
+    //Elements
+    let popupHeader = document.createElement('h2');
+    let popupDescription= document.createElement('p');
+    let popupMap = document.createElement('div');
+    let popupCloseButton = document.createElement('button');
 
+
+    //class
+    popupMap.className = "map";
+
+    //ID
+    popupHeader.id = "popupHeader";
+    popupDescription.id = "popupDesc";
+    popupMap.id = "map";
+    popupCloseButton.id = "closePopup";
+
+    //Content
+    popupHeader.innerHTML = datalist[eventDatai].name;
+    popupDescription.innerHTML = datalist[eventDatai].description;
+    popupCloseButton.type = "button";
+    popupCloseButton.innerHTML = "Close";
+    popupCloseButton.addEventListener('click', closePopup);
+    popupMap.style = "width: 1100px; height: 500px;"
+
+    //Pile up
+    popup.appendChild(popupHeader);
+    popup.appendChild(popupDescription);
+    popup.appendChild(popupMap);
+    popup.appendChild(popupCloseButton);
+
+}
 //NÄYTETÄÄN KARTTA (DATALINDEX) = napissa oleva index arvo mikä tehtiin forloopissa ylhäällä.
 function naytamap(datalindex) {
+    createPopup(datalindex);
     popup.classList.add('open-popup');
     console.log("Löyty " + datalist[datalindex].id + " === " + datalindex);
-    popupHeader.innerHTML = datalist[datalindex].name;
-    popupDescription.innerHTML = datalist[datalindex].description;
     if (counter === 1) {
         try {
             currentMAP.mapleaf.remove();
@@ -346,7 +374,8 @@ function naytamap(datalindex) {
 
 function closePopup() {
     popup.classList.remove('open-popup');
-    currentMap.mapleaf.remove('map');
+    popup.replaceChildren();
+    popUpOpen = false;
 }
 
 function EventType(num){
