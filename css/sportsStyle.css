@@ -11,6 +11,7 @@
     flex: 1;
     background: none;
     min-height: 100vh;
+    position: relative;
 }
 .layout-wrapper{
     display: flex;
@@ -63,12 +64,15 @@
     width: 80%;
 }
 
+
 .eventItem-date{
-    width: 150px;
+    width: 200px;
     margin: 10px;
     border: #8ee3ef;
     font-family: 'Panchang', sans-serif;
     text-align: start;
+    -webkit-text-stroke-width: 0;
+    font-size: 25px;
 }
 .eventItem-button{
     background: none;
@@ -99,7 +103,6 @@
     color: #f6f6f6;
     background: none;
     border: none;
-    font-size: 20px;
     font-family: 'Panchang', sans-serif;
 
 }
@@ -128,7 +131,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 0 0 100px 0;
     background: none;
     /*background-color: rgba(64,224,208,0.1);*/
 }
@@ -141,7 +144,9 @@
      position: absolute;
      width: 100%;
      height: 50px;
-     flex: 0 0 auto;
+     //flex: 0 0 auto;
+     bottom: 0;
+     margin: auto;
 }
 
 .eventContainer{
