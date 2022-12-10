@@ -5,51 +5,44 @@
 import SearchData from '../api/myHelsinkiApiNew.js';
 import MapData from "../js/MapApi.js";
 
+//Static url
+const apiUrlSearchTab = "v1/events/?tags_filter=sports";
+
 //Main elements
-const mainElem = document.querySelector("main");
-const headerElem = document.getElementById('topHeader');
 const searchBox = document.getElementById('searchBox');
 const searchBtn = document.getElementById('searchBtn');
 const divElem = document.getElementById('result');
+const eventList = document.createElement('ul');
 
 //popup elements
 const popup = document.getElementById('popup');
-const closePopupBtn = document.getElementById('closePopup');
-const popupHeader = document.getElementById('popupHeader');
-const popupDescription = document.getElementById('popupDesc');
+let popupArticle = document.createElement('article');
+// const closePopupBtn = document.getElementById('closePopup');
+// const popupHeader = document.getElementById('popupHeader');
+// const popupDescription = document.getElementById('popupDesc');
 
 //new dictionary for json data
 const newDict = [];
 
-//Map
+//Map elements
+let map;
 let currentMap;
 let mapOptionData =
     {enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0};
 
-const apiUrlSearchTab = "v1/events/?tags_filter=sports";
-
-let map = document.getElementById('map');
 
 let currentSearch;
-let keyword;
-let dateTime = {};
 let waitTime = 0;
 let events;
 let currentDay;
-
-let article;
-
-//Testilista
-const eventList = document.createElement('ul');
-
+let popUpOpen = false;
 
 window.addEventListener("load", () => {
     //This function will execute after page load
     findSportDataDefault();
 });
-
 
 //Search box-button will launch findWithKeyword-function,
 // which at first removing all default data from site, then it read
@@ -67,9 +60,7 @@ function findWithKeyword() {
             if (searchTag.match(tag)) {
                 count++;
                 if (events[i].date >= currentDay) {
-                    //eventSet(i);
                     eventSetBySearch(i);
-                    //eventSetBySearch(i);
                     console.log("Löyty: " + tag);
                 }
             }
@@ -81,17 +72,19 @@ function findWithKeyword() {
     }
 }
 
+//Buttons
 searchBtn.addEventListener('click', () =>{
-    if(searchBox.value.length >= 3){
-        findWithKeyword();
-    }else{
-        alert("Too sort tag");
-        divElem.replaceChildren();
-        findSportDataDefault();
+
+    if(popUpOpen !== true){
+        if(searchBox.value.length >= 3){
+            findWithKeyword();
+        }else{
+            alert("Too sort tag");
+            divElem.replaceChildren();
+            findSportDataDefault();
+        }
     }
 });
-
-closePopupBtn.addEventListener('click', closePopup);
 
 //Function will create a new searchObject,
 //execute query for api data and returning parsed
@@ -127,51 +120,93 @@ function waitUntilDataArrived(){
     }, 1000)
 }
 
-function eventSet(index){
-    //Elementit
-    let eventItem = document.createElement('article');
-    article = document.createElement('button');
-    let eventNameItem = document.createElement('h2');
-    let h2DataTime = document.createElement('h2');
-
-    //Luokat
-    eventItem.className = "eventItemContainer";
-    h2DataTime.className = "eventItem-date";
-    article.className = "eventItem-event";
-    article.id = events[index].eventID;
-
-    eventNameItem.innerHTML = events[index].eventName;
-    eventNameItem.id = events[index].eventID;
-    h2DataTime.innerHTML = events[index].date.toDateString();
-
-    //Koostaminen
-    eventItem.appendChild(h2DataTime);
-    article.appendChild(eventNameItem);
-    article.addEventListener('click', (event) => {
-        console.log("Event ID: " + event.target.getAttribute('id'));
-        let eventID = event.target.getAttribute('id');
-        openPopup(eventID);
-
-    });
-    eventItem.appendChild(article);
-    divElem.appendChild(eventItem);
-}
+// function eventSet(index){
+//     //Elementit
+//     let eventItem = document.createElement('article');
+//     article = document.createElement('button');
+//     let eventNameItem = document.createElement('h2');
+//     let h2DataTime = document.createElement('h2');
+//
+//     //Luokat
+//     eventItem.className = "eventItemContainer";
+//     h2DataTime.className = "eventItem-date";
+//     article.className = "eventItem-event";
+//     article.id = events[index].eventID;
+//
+//     eventNameItem.innerHTML = events[index].eventName;
+//     eventNameItem.id = events[index].eventID;
+//     h2DataTime.innerHTML = events[index].date.toDateString();
+//
+//     //Koostaminen
+//     eventItem.appendChild(h2DataTime);
+//     article.appendChild(eventNameItem);
+//     article.addEventListener('click', (event) => {
+//         console.log("Event ID: " + event.target.getAttribute('id'));
+//         let eventID = event.target.getAttribute('id');
+//         openPopup(eventID);
+//
+//     });
+//     eventItem.appendChild(article);
+//     divElem.appendChild(eventItem);
+// }
 
 function openPopup(id){
     popup.classList.add('open-popup');
     for (let i = 0; i < newDict.length; i++) {
         if (newDict[i].eventID.match(id)) {
             console.log("Löyty " + newDict[i].eventID + " === " + id);
-            popupHeader.innerHTML = newDict[i].eventData.eventName;
-            popupDescription.innerHTML = newDict[i].eventData.eventDescription.intro;
-            //Kartta
+            // popupHeader.innerHTML = newDict[i].eventData.eventName;
+            // popupDescription.innerHTML = newDict[i].eventData.eventDescription.intro;
+
+            //Map
             currentMap = new MapData();
+            createPopup(newDict[i].eventData);
             mapFunction(newDict[i].eventData.eventLocation);
         }
     }
 }
+
+function createPopup(eventData){
+    //Elements
+    let popupHeader = document.createElement('h2');
+    let popupDescription= document.createElement('p');
+    let popupMap = document.createElement('div');
+    let popupCloseButton = document.createElement('button');
+
+
+    //class
+    popupMap.className = "map";
+
+    //ID
+    popupArticle.id = "popupContent";
+    popupHeader.id = "popupHeader";
+    popupDescription.id = "popupDesc";
+    popupMap.id = "map";
+    popupCloseButton.id = "closePopup";
+
+    //Content
+    popupHeader.innerHTML = eventData.eventName;
+    popupDescription.innerHTML = eventData.eventDescription.intro;
+    popupCloseButton.type = "button";
+    popupCloseButton.innerHTML = "Close";
+    popupCloseButton.addEventListener('click', closePopup);
+    popupMap.style.width = "600px";
+    popupMap.style.height = "300px";
+
+    //Pile up
+    popupArticle.appendChild(popupHeader);
+    popupArticle.appendChild(popupDescription);
+    popupArticle.appendChild(popupMap);
+    popupArticle.appendChild(popupCloseButton);
+    popup.appendChild(popupArticle);
+}
+
+//closePopupBtn.addEventListener('click', closePopup);
 function closePopup(){
     popup.classList.remove('open-popup');
+    popup.replaceChildren();
+    popupArticle.replaceChildren();
+    popUpOpen = false;
 }
 
 function eventSetBySearch(index){
@@ -201,12 +236,12 @@ function eventSetBySearch(index){
     eventNameItem.addEventListener('click', (event) => {
         console.log("Event ID: " + event.target.getAttribute('id'));
         let eventID = event.target.getAttribute('id');
-        openPopup(eventID);
-
+        if (popUpOpen === false){
+            popUpOpen = true;
+            openPopup(eventID);
+        }
     });
 }
-
-
 
 //sortData function will iterate the data  and looks for errors
 function errorCheck(data){
