@@ -9,33 +9,39 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=alpino@300&f[]=panchang@400&f[]=general-sans@300&display=swap" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet" type="text/css">
   <link href="../css/moviesivu.css" rel="stylesheet" type="text/css">
 
+<!--  background image link https://unsplash.com/photos/6QDvwq2Fjsc-->
 <!--  background image link : https://www.freepik.com/free-vector/open-clapper-board-with-film-strip-background-design_8998544.htm#query=movie%20background&p?osition=4&from_view=keyword-->
   <title>Movies</title>
 </head>
 <body>
 
+<nav class="topnav">
 
-<div class="layout-wrapper">
-  <div class="layout-movie">
-    <nav>
-      <ul class="navContainer">
-        <li class="item-0"><a href="../index.html">HOME</a></li>
-        <li class="item-1"><a href="movies.html">MOVIES</a></li>
-        <li class="item-2"><a href="culture.html">CULTURE</a></li>
-        <li class="item-3"><a href="sports.html" class="active">SPORTS</a></li>
-        <li class="item-4"><a href="restaurants.html">RESTAURANTS</a></li>
-      </ul>
-    </nav>
+  <!-- Centered link -->
+  <div class="topnav-centered">
+    <a href="../index.html">HOME</a>
   </div>
-</div>
+
+  <!-- Left-aligned links (default) -->
+  <a href="movies.html">MOVIES</a>
+  <a href="culture.html">CULTURE</a>
+
+  <!-- Right-aligned links -->
+  <div class="topnav-right">
+    <a href="sports.html">SPORTS</a>
+    <a href="restaurants.html" class="active">RESTAURANTS</a>
+  </div>
+</nav>
+
+<h1 class="logo">Movie's</h1>
 
 <main>
 
 <!----------------------------Carousel part start!!!------------------------------------->
-<h1 class="logo">Mood Factory.fi <br> Movie's</h1>
 
 <div class="container">
   <button type="button" id="moveLeft" class="btn-nav">
@@ -47,10 +53,10 @@
     <div class="indicator" data-index="2"></div>
     <div class="indicator" data-index="3"></div>
   </article>
-  <figure class="slider" id="mySlider" style="overflow:hidden;">
+  <div class="slider" id="mySlider" style="overflow:hidden;">
     <figure class="movie" id="movie0">
     </figure>
-  </figure>
+  </div>
 
   <button type="button" id="moveRight" class="btn-nav">
     ᐅ
@@ -67,7 +73,7 @@
                 <!--                                Tässä elokuvan paikat tulee-->
 
               </select>
-              <button type="button" id="CINEMATABLE">Etsii näytökset</button>
+              <button type="button" id="CINEMATABLE-btn">Etsii näytökset</button>
             </div>
           </fieldset>
     </div>
@@ -91,8 +97,8 @@
 
 </main>
 
-<footer class="footer">
-  Kaspar and the boys proudly presents. <br> © 2022 All rights reserved
+<footer class="bottomnav">
+  Kaspar and the boys proudly presents.
 </footer>
 
 

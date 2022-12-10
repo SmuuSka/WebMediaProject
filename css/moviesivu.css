@@ -1,37 +1,27 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #254E70;
-    font-family: "Heebo", sans-serif;
-    background-image: url("/img/cinema.jpg");
-    background-size: contain;
+    min-height: 100vh;
+    min-width: 100vh;
+    font-family: 'Panchang', sans-serif;
+    background-image: linear-gradient(rgba(4,9,30,0.3),rgba(4,9,30,0.7)),url("../img/hollywood2.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
 }
 
 main{
+
     display: block;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-h1{
-    font-size: 400%;
-    color: white;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    -webkit-text-stroke-color: #000000;
-    -webkit-text-stroke-width: 1px;
-    /*background-color: rgba(55, 113, 142, 0.5);*/
-}
 
-.layout-wrapper{
-    display: flex;
-    flex-direction: column;
-}
-.layout-movie{
-    flex: 1;
-}
+/*navigation part */
+
 .navContainer{
     display: flex;
     align-items: center;
@@ -63,12 +53,6 @@ h1{
 }
 
 
-
-
-
-
-
-
 /*-----------------Carousel part start ---------------------------------!!!!!!*/
 
 :root {
@@ -86,14 +70,14 @@ h1{
 
 .container {
     position: relative;
-
-
+    width: 100%;
 }
 
 .logo {
-    margin-top: 100px;
-    color: #C33C54;
-    font-size: 4rem;
+    margin: 100px;
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
     text-align: center;
 
 }
@@ -104,13 +88,15 @@ h1{
 *
 *********************************/
 .slider {
-    width: 90%;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: visible;
     white-space: nowrap;
     position: relative;
     padding-top: var(--slider-py);
     padding-bottom: var(--slider-py);
+
+
 }
 
 /*
@@ -149,6 +135,7 @@ h1{
     padding: 0 2px;
     font-size: 0.8rem;
     transition: all 0.8s ease-in-out;
+
 }
 
 .movie:nth-of-type(1) {
@@ -258,17 +245,61 @@ h1{
 }
 
 #moveLeft {
-    left: 0;
+    left: 10px;
+
 }
 
 #moveRight {
-    right: 0;
+    right: 10px;
 }
 
 @media only screen and (max-width: 900px) {
     .btn-nav {
-        display: none;
+        /*display: none;*/
+        visibility: visible;
     }
+    .slider{
+        width: 100%;
+    }
+
+    .logo{
+        text-align: center;
+        font-size: 50px;
+    }
+
+    .form-group{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #custom-select{
+        width: auto;
+    }
+    .table, tbody, .table-responsive, .table tr, table td {
+        display: block;
+        width: auto;
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+
+
+
+
 }
 
 @media only screen and (min-width: 901px) {
@@ -276,8 +307,11 @@ h1{
     .container:hover .container-indicators {
         visibility: visible;
     }
-}
 
+
+
+
+}
 
 
 
@@ -285,6 +319,55 @@ h1{
 
 
 /*------------------------------FinnkinoSearch and result table start----------------------------------------------------------*/
+
+
+@media( max-width: 901px){
+
+}
+
+/*@media( min-width: 501px){*/
+/*    .logo{*/
+/*        text-align: center;*/
+/*        font-size: 50px;*/
+/*    }*/
+
+/*    .slider{*/
+/*        width: 90%;*/
+/*    }*/
+
+/*    .form-group{*/
+/*        display: flex;*/
+/*        flex-wrap: wrap;*/
+/*    }*/
+
+/*    #custom-select{*/
+/*        width: auto;*/
+/*    }*/
+/*    .table, tbody, .table-responsive, .table tr, table td {*/
+/*        display: block;*/
+/*        width: auto;*/
+/*    }*/
+
+/*    .table td {*/
+/*        text-align: right;*/
+/*        padding-left: 50%;*/
+/*        position: relative;*/
+/*    }*/
+
+/*    .table td::before{*/
+/*        content: attr(data-label);*/
+/*        position: absolute;*/
+/*        left: 0;*/
+/*        width: 50%;*/
+/*        padding-left: 15px;*/
+/*        font-size: 15px;*/
+/*        font-weight: bold;*/
+/*    }*/
+
+/*}*/
+
+
+
 
 .form-group{
     margin-right: 20px;
@@ -295,56 +378,60 @@ h1{
 }
 
 #custom-select {
+    font-family: 'Panchang', sans-serif;
+    font-weight: bold;
     float: left;
     margin-top: 30px;
-    margin-right: 20px;
+    margin-right: 40px;
     display: block;
-    width:20%;
+    width:auto;
     height: 50px;
     padding: 10px 20px;
     font-size: 18px;
 }
 
-#CINEMATABLE {
+#CINEMATABLE-btn{
+    font-family: 'Panchang', sans-serif;
     display: inline-block;
-    width: 200px;
+    width: 300px;
     height: 50px;
     margin: 30px;
-
-    font-weight: normal;
+    font-size: large;
+    font-weight: bold;
     text-align: center;
     vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
     border: 1px solid transparent;
-    background-color: #C33C54;
+    background-color: darkred;
     color: white;
     border-radius: 10px;
     transition-duration: 0.4s;
 }
 
-#CINEMATABLE:hover {
-    background-color: darkred;
-    color: white;
+#CINEMATABLE-btn:hover {
+    background-color: snow;
+    color: black;
 }
 
 fieldset{
-    display: inline-block;
-    justify-content: space-between;
-    width: 90%;
-    position: center;
-    padding-left: 100px;
-
+    display: flex;
+    border: none;
+    justify-content: center;
 }
 
+
 .table-movies{
+    font-weight: bold;
     margin: 50px;
     padding: 0% 10% 0%;
 }
 
 .film-title{
     font-style: italic;
+    font-weight: bold;
     font-size: 25px;
+
 
 }
 
@@ -355,22 +442,44 @@ fieldset{
     border-top: 1px solid white;
 }
 
+
 .btn-ticket {
-    color: #C33C54;
-    width: 10px;
-    height: 10px;
+    font-family: 'Panchang', sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-color: darkred;
+    color: white;
+    border-radius: 10px;
+    transition-duration: 0.4s;
 }
 
 .btn-ticket:hover {
-    background-color: darkred;
-    color: white;
+    background-color: snow;
+    color: black;
 }
 
 
-.footer{
-    background-color: #8ee3ef;
-    height: 60px;
-    flex: 0 0 auto;
+#film-table{
+    background: rgba(37,78,112,.4)
+
+
+}
+
+.bottomnav{
     text-align: center;
-    padding: 10px;
+    padding-top: 20px;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    flex: 0 0 auto;
+    bottom: 0;
+    margin: auto;
 }
+
