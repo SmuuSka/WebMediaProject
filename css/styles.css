@@ -260,7 +260,7 @@ h4{
         margin-left: 0;
     }
 }
-@media  screen and (max-width: 400px) {
+@media  screen and (max-width: 800px) {
     .resultbox{
         width: 40%;
     }
