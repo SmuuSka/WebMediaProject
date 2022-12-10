@@ -15,9 +15,8 @@ let loader;
 //popup
 const popup = document.getElementById('popup');
 const closePopupBtn = document.getElementById('closePopup');
-let popupHeader = document.getElementById('popupHeader');
-let popupDescription = document.getElementById('popupDesc');
 
+let popUpOpen = false;
 let Searchprecise = 0;
 let datalocation;
 let datalatcation;
@@ -59,8 +58,6 @@ function findCultureData() {
     if (Searchprecise === 5 || Searchprecise === 0){
         tagsearch = tags[tagi].name;
     }
-    currentMAP = new MapData();
-    currentMAP.Mapincluded = 1;
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tagsearch, keyword);
     mainElem.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/CultureLoad.gif" alt="loadingGif">`;
@@ -177,7 +174,6 @@ function LaunchCultureData() {
 function SHOWDATA() {
 
     for (let i = 1; i < datalist.length; i++) {
-
         if (datalist[i].image === null || datalist[i].description === null || datalist[i].bodydes === null) {
             console.log("no info,not adding");
         } else {
@@ -276,13 +272,45 @@ function SHOWDATA() {
     }
 
 }
+function createPopup(eventDatai){
+    //Elements
+    let popupHeader = document.createElement('h2');
+    let popupDescription= document.createElement('p');
+    let popupMap = document.createElement('div');
+    let popupCloseButton = document.createElement('button');
 
+
+    //class
+    popupMap.className = "map";
+
+    //ID
+    popupHeader.id = "popupHeader";
+    popupDescription.id = "popupDesc";
+    popupMap.id = "map";
+    popupCloseButton.id = "closePopup";
+
+    //Content
+    popupHeader.innerHTML = datalist[eventDatai].name;
+    popupDescription.innerHTML = datalist[eventDatai].description;
+    popupCloseButton.type = "button";
+    popupCloseButton.innerHTML = "Close";
+    popupCloseButton.addEventListener('click', closePopup);
+    popupMap.style = "width: 1100px; height: 500px;"
+
+    //Pile up
+    popup.appendChild(popupHeader);
+    popup.appendChild(popupDescription);
+    popup.appendChild(popupMap);
+    popup.appendChild(popupCloseButton);
+
+}
 //NÄYTETÄÄN KARTTA (DATALINDEX) = napissa oleva index arvo mikä tehtiin forloopissa ylhäällä.
 function naytamap(datalindex) {
     popup.classList.add('open-popup');
+    currentMAP = new MapData();
+    currentMAP.Mapincluded = 1;
+    createPopup(datalindex);
     console.log("Löyty " + datalist[datalindex].id + " === " + datalindex);
-    popupHeader.innerHTML = datalist[datalindex].name;
-    popupDescription.innerHTML = datalist[datalindex].description;
     if (counter === 1) {
         try {
             currentMAP.mapleaf.remove();
@@ -346,7 +374,8 @@ function naytamap(datalindex) {
 
 function closePopup() {
     popup.classList.remove('open-popup');
-    currentMap.mapleaf.remove('map');
+    popup.replaceChildren();
+    popUpOpen = false;
 }
 
 function EventType(num){
@@ -365,7 +394,6 @@ function EventType(num){
 
 }
 
-closePopupBtn.addEventListener('click', closePopup);
 searchButtonMusic.addEventListener('click', EventType);
 searchButtonKirjasto.addEventListener('click',EventType);
 searchButtonConcerts.addEventListener('click',EventType);
