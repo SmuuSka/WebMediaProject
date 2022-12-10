@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="uncommit roskat">
-      <change afterPath="$PROJECT_DIR$/css/moviesivu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_16_10_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_16_10__Changes_.xml" beforeDir="false" />
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Page updated, table responsive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/movies.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +30,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="master" />
-      </list>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="beee2adb-1e5e-4a02-a444-a4859cf6b2d1" />
+        <option name="url" value="https://github.com/SmuuSka/WebMediaProject" />
+      </UrlAndAccount>
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -113,6 +115,11 @@
       <workItem from="1670359261060" duration="1831000" />
       <workItem from="1670397042584" duration="1380000" />
       <workItem from="1670398456606" duration="12140000" />
+      <workItem from="1670513475706" duration="2000" />
+      <workItem from="1670516106985" duration="4000" />
+      <workItem from="1670585508197" duration="3043000" />
+      <workItem from="1670686693811" duration="219000" />
+      <workItem from="1670689867470" duration="15007000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
@@ -141,7 +148,35 @@
       <option name="project" value="LOCAL" />
       <updated>1670237886642</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="movie sivu korjattu">
+      <created>1670494495092</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670494495092</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Page updated, table responsive">
+      <created>1670707528830</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707528830</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Page updated, table responsive">
+      <created>1670707688245</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707688245</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Page updated, table responsive">
+      <created>1670707707595</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707707595</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +187,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Semen" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -165,6 +212,8 @@
     <MESSAGE value="MapApi on tehty helppo käyttöiseksi." />
     <MESSAGE value="culture kartta refreshaa kun painaa uuta tietoa." />
     <MESSAGE value="uncommit roskat" />
-    <option name="LAST_COMMIT_MESSAGE" value="uncommit roskat" />
+    <MESSAGE value="movie sivu korjattu" />
+    <MESSAGE value="Page updated, table responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page updated, table responsive" />
   </component>
 </project>

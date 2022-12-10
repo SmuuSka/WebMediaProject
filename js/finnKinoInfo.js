@@ -2,7 +2,7 @@ import SearchDataFINNKINO from '../api/FinnkinoData.js';
 
 let movielist = [{}];
 let currentdata = new SearchDataFINNKINO();
-let button = document.getElementById("CINEMATABLE");
+let button = document.getElementById("CINEMATABLE-btn");
 let dropdown = document.getElementById("custom-select");
 let counter;
 const defaultValues = document.getElementById('film-table');
@@ -13,6 +13,8 @@ setTimeout(dropdowndata,1000)
 
 
 function dropdowndata(){
+
+    setTimeout(function (){
     for (let i = 1; i < currentdata.Filmkuvalista.length; i++) {
         movielist = currentdata.Filmkuvalista;
     }
@@ -33,6 +35,7 @@ function dropdowndata(){
 
     }
 
+},500);
 
 }
 
@@ -78,7 +81,7 @@ function changeVal() {
     for (let i = 0; i < movielist.length; i++) {
         let hours = Math.floor(movielist[i].movieduration / 60);
         let minutes = movielist[i].movieduration % 60;
-        let movieTimeConvert = hours + 't ' + minutes + ' min';
+        let movieTimeConvert = hours + ' t ' + minutes + ' min';
         let table;
         if (movielist[i].cinemaName === thechosenvalue) {
             console.log("YES")
@@ -88,35 +91,16 @@ function changeVal() {
                 '</td>' + '<br>' +
                 '<td>' + movielist[i].movieGenre + '<br>' +
                 '<p>' + movieTimeConvert + '</p>' +
-                '<p>Rating:' + movielist[i].movieRating + '</p>' +
+                '<p>Rating: ' + movielist[i].movieRating + '</p>' +
                 '</td>' +
-                '<td><a href=" ' + movielist[i].movieurl + ' "><button type="submit" class="btn-ticket"' +
-                ' style="width: 100px; height: 50px; background-color: crimson;' +
-                'color: white; border-radius: 10px; ">Osta liput</button></a></td>' +
+                '<td><a href=" ' + movielist[i].movieurl + ' "><button type="submit" class="btn-ticket">Osta liput</button></a></td>' +
                 '<td>' + movielist[i].cinemaName + '</td>' +
                 '</tr>';
 
 
             document.getElementById("film-table").innerHTML += table;
         }
-        // else if (inputtext.includes(movielist[i].name) && movielist[i].cinemaName === thechosenvalue){
-        //     console.log("MATCH")
-        //     table = '<tr>' +
-        //         '<td class="poster"><img src="' + movielist[i].srcS + '" alt="image"></td>' +
-        //         '<td class="film-title">' + movielist[i].name +
-        //         '</td>' + '<br>' +
-        //         '<td>' + movielist[i].movieGenre + '<br>' +
-        //         '<p>' + movieTimeConvert + '</p>' +
-        //         '<p>Rating:' + movielist[i].movieRating + '</p>' +
-        //         '</td>' +
-        //         '<td><a href=" ' + movielist[i].movieurl + ' "><button type="submit" class="btn-ticket"' +
-        //         ' style="width: 100px; height: 50px; background-color: crimson;' +
-        //         'color: white; border-radius: 10px; ">Osta liput</button></a></td>' +
-        //         '<td>' + movielist[i].cinemaName + '</td>' +
-        //         '</tr>';
-        //     document.getElementById("film-table").innerHTML += table;
-        //     break;
-        // }
+
     }
 }
 
