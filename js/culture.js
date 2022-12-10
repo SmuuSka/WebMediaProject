@@ -58,8 +58,6 @@ function findCultureData() {
     if (Searchprecise === 5 || Searchprecise === 0){
         tagsearch = tags[tagi].name;
     }
-    currentMAP = new MapData();
-    currentMAP.Mapincluded = 1;
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tagsearch, keyword);
     mainElem.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/CultureLoad.gif" alt="loadingGif">`;
@@ -308,8 +306,10 @@ function createPopup(eventDatai){
 }
 //NÄYTETÄÄN KARTTA (DATALINDEX) = napissa oleva index arvo mikä tehtiin forloopissa ylhäällä.
 function naytamap(datalindex) {
-    createPopup(datalindex);
     popup.classList.add('open-popup');
+    currentMAP = new MapData();
+    currentMAP.Mapincluded = 1;
+    createPopup(datalindex);
     console.log("Löyty " + datalist[datalindex].id + " === " + datalindex);
     if (counter === 1) {
         try {
