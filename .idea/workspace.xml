@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="movie sivu korjattu">
+    <list default="true" id="daddfbc4-8e84-471e-83c0-28104e1646a9" name="Changes" comment="Page updated, table responsive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/moviesivu.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/moviesivu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/movies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/finnKinoInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/finnKinoInfo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +119,7 @@
       <workItem from="1670516106985" duration="4000" />
       <workItem from="1670585508197" duration="3043000" />
       <workItem from="1670686693811" duration="219000" />
-      <workItem from="1670689867470" duration="14387000" />
+      <workItem from="1670689867470" duration="15007000" />
     </task>
     <task id="LOCAL−00001" summary="Samun testApi">
       <created>1669553479070</created>
@@ -158,7 +155,28 @@
       <option name="project" value="LOCAL" />
       <updated>1670494495092</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Page updated, table responsive">
+      <created>1670707528830</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707528830</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Page updated, table responsive">
+      <created>1670707688245</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707688245</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Page updated, table responsive">
+      <created>1670707707595</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707707595</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +213,7 @@
     <MESSAGE value="culture kartta refreshaa kun painaa uuta tietoa." />
     <MESSAGE value="uncommit roskat" />
     <MESSAGE value="movie sivu korjattu" />
-    <option name="LAST_COMMIT_MESSAGE" value="movie sivu korjattu" />
+    <MESSAGE value="Page updated, table responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page updated, table responsive" />
   </component>
 </project>
