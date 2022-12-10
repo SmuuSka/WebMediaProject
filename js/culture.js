@@ -394,7 +394,6 @@ function EventType(num){
 
 }
 
-closePopupBtn.addEventListener('click', closePopup);
 searchButtonMusic.addEventListener('click', EventType);
 searchButtonKirjasto.addEventListener('click',EventType);
 searchButtonConcerts.addEventListener('click',EventType);
