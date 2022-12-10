@@ -16,22 +16,18 @@ const eventList = document.createElement('ul');
 
 //popup elements
 const popup = document.getElementById('popup');
-let popupArticle = document.createElement('article');
-// const closePopupBtn = document.getElementById('closePopup');
-// const popupHeader = document.getElementById('popupHeader');
-// const popupDescription = document.getElementById('popupDesc');
 
 //new dictionary for json data
 const newDict = [];
 
 //Map elements
-let map;
 let currentMap;
+let map;
+
 let mapOptionData =
     {enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0};
-
 
 let currentSearch;
 let waitTime = 0;
@@ -68,7 +64,8 @@ function findWithKeyword() {
     }
     if (count < 1){
         alert("Any of event couldn't found by tag");
-        findSportDataDefault();
+        //findSportDataDefault();
+        location.reload();
     }
 }
 
@@ -82,6 +79,7 @@ searchBtn.addEventListener('click', () =>{
             alert("Too sort tag");
             divElem.replaceChildren();
             findSportDataDefault();
+            location.reload();
         }
     }
 });
@@ -112,7 +110,6 @@ function waitUntilDataArrived(){
             for (let i = 0; i < events.length; i++)
             {
                 if(events[i].date >= currentDay){
-                    //eventSet(i);
                     eventSetBySearch(i);
                 }
             }
@@ -120,45 +117,13 @@ function waitUntilDataArrived(){
     }, 1000)
 }
 
-// function eventSet(index){
-//     //Elementit
-//     let eventItem = document.createElement('article');
-//     article = document.createElement('button');
-//     let eventNameItem = document.createElement('h2');
-//     let h2DataTime = document.createElement('h2');
-//
-//     //Luokat
-//     eventItem.className = "eventItemContainer";
-//     h2DataTime.className = "eventItem-date";
-//     article.className = "eventItem-event";
-//     article.id = events[index].eventID;
-//
-//     eventNameItem.innerHTML = events[index].eventName;
-//     eventNameItem.id = events[index].eventID;
-//     h2DataTime.innerHTML = events[index].date.toDateString();
-//
-//     //Koostaminen
-//     eventItem.appendChild(h2DataTime);
-//     article.appendChild(eventNameItem);
-//     article.addEventListener('click', (event) => {
-//         console.log("Event ID: " + event.target.getAttribute('id'));
-//         let eventID = event.target.getAttribute('id');
-//         openPopup(eventID);
-//
-//     });
-//     eventItem.appendChild(article);
-//     divElem.appendChild(eventItem);
-// }
-
 function openPopup(id){
     popup.classList.add('open-popup');
     for (let i = 0; i < newDict.length; i++) {
         if (newDict[i].eventID.match(id)) {
-            console.log("Löyty " + newDict[i].eventID + " === " + id);
-            // popupHeader.innerHTML = newDict[i].eventData.eventName;
-            // popupDescription.innerHTML = newDict[i].eventData.eventDescription.intro;
-
-            //Map
+            if(currentMap != null){
+                currentMap = {}
+            }
             currentMap = new MapData();
             createPopup(newDict[i].eventData);
             mapFunction(newDict[i].eventData.eventLocation);
@@ -178,7 +143,6 @@ function createPopup(eventData){
     popupMap.className = "map";
 
     //ID
-    popupArticle.id = "popupContent";
     popupHeader.id = "popupHeader";
     popupDescription.id = "popupDesc";
     popupMap.id = "map";
@@ -194,18 +158,16 @@ function createPopup(eventData){
     popupMap.style.height = "300px";
 
     //Pile up
-    popupArticle.appendChild(popupHeader);
-    popupArticle.appendChild(popupDescription);
-    popupArticle.appendChild(popupMap);
-    popupArticle.appendChild(popupCloseButton);
-    popup.appendChild(popupArticle);
+    popup.appendChild(popupHeader);
+    popup.appendChild(popupDescription);
+    popup.appendChild(popupMap);
+    popup.appendChild(popupCloseButton);
+
 }
 
-//closePopupBtn.addEventListener('click', closePopup);
 function closePopup(){
     popup.classList.remove('open-popup');
     popup.replaceChildren();
-    popupArticle.replaceChildren();
     popUpOpen = false;
 }
 
@@ -234,7 +196,6 @@ function eventSetBySearch(index){
     divElem.appendChild(eventList);
 
     eventNameItem.addEventListener('click', (event) => {
-        console.log("Event ID: " + event.target.getAttribute('id'));
         let eventID = event.target.getAttribute('id');
         if (popUpOpen === false){
             popUpOpen = true;
