@@ -8,9 +8,12 @@
     background-attachment: fixed;
 }
 .sportBody{
+    font-family: 'Panchang', sans-serif;
+    color: white;
     flex: 1;
     background: none;
     min-height: 100vh;
+    position: relative;
 }
 .layout-wrapper{
     display: flex;
@@ -20,41 +23,113 @@
     flex: 1;
 }
 
-.sportInput{
+.searchBoxContainer{
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
-.eventItemContainer{
-    display: flex;
-    border: 3px solid darkslateblue;
-    justify-content: space-between;
-    background-color: rgba(4,9,30,0.7);
-    padding: 20px;
+
+.sportSearchBox{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    cursor: auto;
+    background-color: rgba(37,78,112,.9);
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    width: 600px;
+    height: 50px;
+    box-shadow: 2px 3px 3px rgba(26, 23, 23, 0.7);
+}
+.sportSearchBox::placeholder{
+    font-family: 'Panchang', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: .3;
+    color: white;
+}
+.sportSearchBtn{
+    font-family: 'Panchang', sans-serif;
+    border-radius: 10px;
+    background-color: #377e8e;
+    color: white;
+    width: 100px;
+    height: 50px;
+    margin: auto;
+    transform: translate(280px, -56px);
+    scale: 90%;
+    border: none;
 }
 
+.eventItemContainer{
+    min-width: 470px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    border: 3px solid #f6f6f6;
+    background-color: rgba(4,9,30,0.7);
+    padding: 20px;
+    margin: auto;
+    font-weight: bolder;
+    width: 80%;
+}
+
+
 .eventItem-date{
-    color: #f6f6f6;
+    flex-grow: 0;
+    font-family: 'Panchang', sans-serif;
+    margin: 10px;
+    border: #8ee3ef;
+    text-align: start;
+    -webkit-text-stroke-width: 0;
+    font-size: 20px;
+    max-width: 100px;
+}
+.eventItem-button{
+    flex-grow: 1;
+    font-family: 'Panchang', sans-serif;
+    flex-shrink: 1;
+    color: white;
+    background: none;
+    margin: 5px;
+    padding: 20px;
+    font-size: 20px;
+    text-align: right;
+    border-color: #f6f6f6;
+    max-width: 500px;
+    min-width: 290px;
+    flex-grow: 1;
+}
+
+.event-li-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    border: 3px solid seashell;
+    gap: 5px;
+
 }
 
 .eventItem-event{
-    color: #f6f6f6;
     background: none;
     border: none;
-    font-size: 20px;
-
 }
-.eventItem-event:hover{
-    background-color: #4CAF50;
-    color: white;
+.eventItem-button:hover{
+    background-color: rgba(4, 9, 30, 0.77);
+    width: border-box;
 }
 
 .sportH1{
-    color: white;
     text-align: center;
+    margin: auto;
+    padding: 50px 0 50px 0;
 }
 
 .sportMain{
-
     background: none;
 }
 
@@ -66,35 +141,19 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 0 0 100px 0;
     background: none;
-    /*background-color: rgba(64,224,208,0.1);*/
-    border: 3px solid darkseagreen;
-}
-
-.sportSearchBox{
-    font-size: 30px;
-    text-align: center;
-    cursor: auto;
-    background-color: rgba(100,100,100,.6);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 30px 30px 30px 30px;
-}
-.sportSearchBtn{
-    font-size: 30px;
-    padding: 30px 30px 30px 30px;
-    border-radius: 10px;
 }
 
  .bottomnav{
      text-align: center;
      padding-top: 20px;
      position: absolute;
-     bottom: 0;
      width: 100%;
      height: 50px;
+     //flex: 0 0 auto;
+     bottom: 0;
+     margin: auto;
 }
 
 .eventContainer{
@@ -119,6 +178,9 @@
 }
 
 .popup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 700px;
     height: 600px;
     position: fixed;
@@ -126,9 +188,9 @@
     left: 50%;
     margin-top: -300px;
     margin-left: -350px;
-    background: slateblue;
+    background-color: rgba(4, 9, 30,1);
+    border: 3px solid seashell;
     text-align: center;
-    color: black;
     visibility: hidden;
 }
 
@@ -137,12 +199,17 @@
     font-weight: 500;
     margin: 30px 0 10px;
 }
+.popup p{
+    color: #8ee3ef;
+    letter-spacing: 2px;
+    width: 100%;
+}
 .popup button{
+    background-color: rgba(37,78,112,.9);
+    color: white;
     width: 60%;
-    margin-top: 50px;
+    margin: auto;
     padding: 10px 0;
-    background: navy;
-    color: #fff;
     border: 0;
     outline: none;
     font-size: 16px;
@@ -153,5 +220,5 @@
 
 .open-popup{
     visibility: visible;
-    z-index: auto;
+    z-index: 2;
 }
