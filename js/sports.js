@@ -46,7 +46,6 @@ window.addEventListener("load", () => {
 // a matching tag from events-dictionary.
 // If not match any tag, it will load a default data
 function findWithKeyword() {
-    //divElem.replaceChildren();
     eventList.replaceChildren();
     let searchTag = searchBox.value.toString();
     let count = 0;
@@ -56,29 +55,25 @@ function findWithKeyword() {
             if (searchTag.match(tag)) {
                 count++;
                 if (events[i].date >= currentDay) {
-                    eventSetBySearch(i);
-                    console.log("Löyty: " + tag);
+                    eventSet(i);
                 }
             }
         }
     }
     if (count < 1){
-        alert("Any of event couldn't found by tag");
-        //findSportDataDefault();
+        alert("No results found");
         location.reload();
     }
 }
 
 //Buttons
 searchBtn.addEventListener('click', () =>{
-
     if(popUpOpen !== true){
         if(searchBox.value.length >= 3){
             findWithKeyword();
         }else{
             alert("Too sort tag");
             divElem.replaceChildren();
-            findSportDataDefault();
             location.reload();
         }
     }
@@ -90,7 +85,7 @@ searchBtn.addEventListener('click', () =>{
 function findSportDataDefault() {
     currentSearch = new SearchData();
 
-    //Tehdään haku
+    //Makes a query to the api
     currentSearch.doQuery(apiUrlSearchTab, "");
     waitUntilDataArrived();
 }
@@ -110,7 +105,7 @@ function waitUntilDataArrived(){
             for (let i = 0; i < events.length; i++)
             {
                 if(events[i].date >= currentDay){
-                    eventSetBySearch(i);
+                    eventSet(i);
                 }
             }
         }
@@ -148,7 +143,7 @@ function createPopup(eventData){
     popupMap.id = "map";
     popupCloseButton.id = "closePopup";
 
-    //Content
+    //Inner content
     popupHeader.innerHTML = eventData.eventName;
     popupDescription.innerHTML = eventData.eventDescription.intro;
     popupCloseButton.type = "button";
@@ -171,7 +166,7 @@ function closePopup(){
     popUpOpen = false;
 }
 
-function eventSetBySearch(index){
+function eventSet(index){
 
     //Elements
     let eventListElement = document.createElement('li');
@@ -184,6 +179,7 @@ function eventSetBySearch(index){
     h2DataTime.className = "eventItem-date";
     eventListElement.className = "event-li-item";
 
+    // Inner content
     eventNameItem.innerHTML = events[index].eventName;
     h2DataTime.innerHTML = events[index].date.toDateString();
     eventNameItem.id = events[index].eventID;

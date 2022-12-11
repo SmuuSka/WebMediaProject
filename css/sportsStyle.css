@@ -187,11 +187,12 @@
     top: 50%;
     left: 50%;
     margin-top: -300px;
-    margin-left: -350px;
+    margin-left: -373px;
     background-color: rgba(4, 9, 30,1);
     border: 3px solid seashell;
     text-align: center;
     visibility: hidden;
+    padding: 20px;
 }
 
 .popup h2{
@@ -202,21 +203,26 @@
 .popup p{
     color: #8ee3ef;
     letter-spacing: 2px;
-    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
 }
 .popup button{
     background-color: rgba(37,78,112,.9);
     color: white;
     width: 60%;
     margin: auto;
-    padding: 10px 0;
+    padding: 20px;
+    max-width: 200px;
     border: 0;
     outline: none;
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    transform: translate(0,10px);
 }
+
 
 .open-popup{
     visibility: visible;
