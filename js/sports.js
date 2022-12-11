@@ -13,6 +13,7 @@ const searchBox = document.getElementById('searchBox');
 const searchBtn = document.getElementById('searchBtn');
 const divElem = document.getElementById('result');
 const eventList = document.createElement('ul');
+const loaderIcon = document.getElementById('loadIcon');
 
 //popup elements
 const popup = document.getElementById('popup');
@@ -98,8 +99,10 @@ function waitUntilDataArrived(){
         }
         if (currentSearch.dataArrived !== true) {
             waitUntilDataArrived();
+            loaderIcon.classList.add('loader-icon-enable');
         }
         else {
+            loaderIcon.classList.add('loader-icon-disable');
              events = errorCheck(currentSearch.resultJson);
              currentDay = new Date();
             for (let i = 0; i < events.length; i++)

@@ -64,7 +64,7 @@
 }
 
 .eventItemContainer{
-    min-width: 470px;
+    min-width: 430px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -157,7 +157,6 @@
 }
 
 .eventContainer{
-    background: salmon;
     max-width: 40px;
     max-height: 40px;
     display: flex;
@@ -223,8 +222,36 @@
     transform: translate(0,10px);
 }
 
-
 .open-popup{
     visibility: visible;
     z-index: 2;
+}
+
+.loader-icon-enable{
+    visibility: visible;
+}
+.loader-icon-disable{
+    visibility: hidden;
+    display: none;
+}
+
+@media  screen and (max-width: 800px) {
+
+    .topnav{
+        margin: 0;
+        max-width: 100%;
+    }
+    .bottomnav {
+        margin: 0;
+        max-width: 100%;
+
+    }
+
+    .sportBody{
+        margin: 0;
+    }
+    .resultDiv{
+        margin: auto;
+    }
+
 }
