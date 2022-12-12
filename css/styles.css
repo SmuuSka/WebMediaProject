@@ -160,8 +160,6 @@ h4{
 }
 .resultbox{
     display: inline-block;
-    margin-left: 0;
-    margin-right: auto;
     /*background-color: rgba(218, 248, 242, 0.6);*/
     background-color: rgba(55, 113, 142, 0.5);
     height: 400px;
@@ -171,8 +169,6 @@ h4{
 }
 .resultboxIndex{
     display: inline-block;
-    margin-left: 50px;
-    margin-right: auto;
     /*background-color: rgba(218, 248, 242, 0.6);*/
     background-color: rgba(55, 113, 142, 0.5);
     height: 800px;
@@ -183,7 +179,6 @@ h4{
 
 .map{
     display: inline-block;
-    display: flex;
     margin-right: auto;
     margin-left: 50px;
     padding-bottom: 10px;
@@ -199,7 +194,6 @@ h4{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 14px;
 }
 
 /* Change the color of links on hover */

@@ -1,61 +1,61 @@
 <!DOCTYPE html>
-<html class="classHtml" lang="en">
+
 <!--Kaspar Tullus-->
+<html class="classHtml" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=alpino@300&f[]=panchang@400&f[]=general-sans@300&display=swap" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet" type="text/css">
-  <link href="../css/cultureStyle.css" rel="stylesheet" type="text/css">
-  <script  type="module" src="../js/culture.js"></script>
-  <title>Culture</title>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
+    <link href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=alpino@300&f[]=panchang@400&f[]=general-sans@300&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet" type="text/css">
+    <link href="../css/cultureStyle.css" rel="stylesheet" type="text/css">
+    <script src="../js/culture.js" type="module"></script>
+    <title>Culture</title>
 </head>
-<body class = "CultureBody">
+<body class="CultureBody">
 <!-- Top navigation -->
 <nav class="topnav">
 
-  <!-- Centered link -->
-  <div class="topnav-centered">
-    <a href="../index.html">HOME</a>
-  </div>
+    <!-- Centered link -->
+    <div class="topnav-centered">
+        <a href="../index.html">HOME</a>
+    </div>
 
-  <!-- Left-aligned links (default) -->
-  <a href="movies.html">MOVIES</a>
-  <a href="culture.html" class="active">CULTURE</a>
+    <!-- Left-aligned links (default) -->
+    <a href="movies.html">MOVIES</a>
+    <a class="active" href="culture.html">CULTURE</a>
 
-  <!-- Right-aligned links -->
-  <div class="topnav-right">
-    <a href="sports.html">SPORTS</a>
-    <a href="restaurants.html">RESTAURANTS</a>
-  </div>
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+        <a href="sports.html">SPORTS</a>
+        <a href="restaurants.html">RESTAURANTS</a>
+    </div>
 </nav>
-
-<main class="container" id ="cultureMain">
-  <div id = "BUTTONS">
-  <button  class="hakunappi" id="musiikkinappi" value = "0">Musiikki tapahtumat</button>
-    <button class="hakunappi" id="kirjastonappi"value = "1">Kirjasto tapahtumat</button>
-  <button class="hakunappi" id="konsertitnappi" value="2">Konsertit</button>
-    <button class="hakunappi" id="historianappi" value="3">Historia tapahtumat</button>
-    <button class="hakunappi" id="museonappi" value="4">Museot</button>
-    <button class="hakunappi" id="kaikkinappi" value="5">Kaikki</button>
-  </div>
-  <br>
-  <br>
-  <div id = "MAINDATA">
-    <button onclick="topFunction()" id="myBtntop" title="Go to top">Top</button>
-    <!--Tänne tulee tulostukset-->
-
-  </div>
+<main class="container" id="cultureMain">
+    <h1 class="logo">Culture</h1>
+    <div id="BUTTONS">
+        <button class="hakunappi" id="musiikkinappi" value="0">Musiikki tapahtumat</button>
+        <button class="hakunappi" id="kirjastonappi" value="1">Kirjasto tapahtumat</button>
+        <button class="hakunappi" id="konsertitnappi" value="2">Konsertit</button>
+        <button class="hakunappi" id="historianappi" value="3">Historia tapahtumat</button>
+        <button class="hakunappi" id="museonappi" value="4">Museot</button>
+        <button class="hakunappi" id="kaikkinappi" value="5">Kaikki</button>
+    </div>
+    <br>
+    <br>
+    <div id="MAINDATA">
+        <!--Tänne tulee tulostukset-->
+    </div>
 
 
-  <article class="popup" id="popup">
-  </article>
+    <article class="popup" id="popup">
+        <!--Tänne tulostuu Headeri ja divi elementit-->
+    </article>
 
 </main>
 <footer class="bottomnav">Kaspar and the boys proudly presents.</footer>
