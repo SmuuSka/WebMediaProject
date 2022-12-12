@@ -136,11 +136,14 @@ function createPopup(eventData){
     let popupHeader = document.createElement('h2');
     let popupDescription= document.createElement('p');
     let popupMap = document.createElement('div');
+    let popupMapContainer = document.createElement('div');
     let popupCloseButton = document.createElement('button');
 
 
     //class
     popupMap.className = "map";
+    popupHeader.className = "popupHeader";
+    popupDescription.className = "popupDescription";
 
     //ID
     popupHeader.id = "popupHeader";
@@ -305,7 +308,7 @@ function mapFunction(currentEvent){
     currentMap.mapleaf = L.map('map').setView([currentMap.posLat, currentMap.posLong], 13);
     currentMap.options = mapOptionData;
 
-    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("Here");
+    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("Event");
 
     currentMap.showMap();
 }

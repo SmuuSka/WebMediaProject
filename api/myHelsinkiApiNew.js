@@ -8,7 +8,6 @@ export default class SearchData {
         this.apiUrl = 'https://open-api.myhelsinki.fi/';
         //Kiinteä proxy Url tapahtumien hakuun
         this.proxyUrl = 'https://users.metropolia.fi/~ilkkamtk/proxy.php?url=';
-
         this.dataArrived = false;
     }
 
@@ -19,8 +18,6 @@ export default class SearchData {
         console.log(apiQuery);
         let proxyUrlQuery = this.proxyUrl + encodeURIComponent(apiQuery);
 
-        console.log("Haku url: " + proxyUrlQuery);
-        console.log('Data call', this.dataArrived);
         fetch(proxyUrlQuery).then(function (response) {
             return response.json();
         }).then((data) =>  {
