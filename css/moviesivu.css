@@ -9,7 +9,6 @@ body{
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-
 }
 
 main{
@@ -53,7 +52,46 @@ main{
 }
 
 
-/*-----------------Carousel part start ---------------------------------!!!!!!*/
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    font-family: 'Panchang', sans-serif;
+    color: #ffffff;
+    font-size: 120%;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #4999ea;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #377e8e;
+    color: white;
+}
+
+/* Centered section inside the top navigation */
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+}
+
+
+
+/*Carousel part start */
 
 :root {
     --movie-width: 10.5vw;
@@ -95,8 +133,6 @@ main{
     position: relative;
     padding-top: var(--slider-py);
     padding-bottom: var(--slider-py);
-
-
 }
 
 /*
@@ -135,7 +171,6 @@ main{
     padding: 0 2px;
     font-size: 0.8rem;
     transition: all 0.8s ease-in-out;
-
 }
 
 .movie:nth-of-type(1) {
@@ -154,7 +189,7 @@ main{
     display: none;
     z-index: 9999;
     background-color: #272727;
-    width: var(--movie-width);
+    width: fit-content;
     margin-top: -10px;
     padding: 1px 0;
     border-bottom-left-radius: 10px;
@@ -175,54 +210,56 @@ main{
         border-bottom-right-radius: 0;
     }
 }
+
+
+.description{
+    margin: auto;
+    min-height: 50%;
+    max-height: 60%;
+
+}
+
+.description a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 10px;
+    color: white;
+    justify-content: center;
+}
+
+.description__text-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: inherit;
+    width: 150px;
+
+}
+
 .genrespan{
     display: flex;
     flex-direction: column;
-}
-.description__buttons-container {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-}
-
-.description__text-container {
-    padding: 10px;
+    font-size: 10px;
 }
 
 .description__match {
-    padding: 6%;
     color: green;
+    font-size: 10px;
 }
 
 .description__rating {
-    outline: 1px solid white;
     padding: 0 1px;
-    margin: 0 5px;
+    font-size: 10px;
 }
 
-.description__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border: 2px solid white;
-    text-align: center;
-    font-size: 8px;
-    margin-right: 5px;
-    border-radius: 100%;
+
+.description__length{
+    margin: 5px;
 }
 
-.description__button:hover {
-    border-color: grey;
-    color: grey;
-    cursor: pointer;
-}
 
-.description__button:nth-of-type(5) {
-    margin-left: auto;
-    margin-right: 0;
-}
 
 /*
 *
@@ -252,6 +289,9 @@ main{
 #moveRight {
     right: 10px;
 }
+
+
+/*responsive table and page */
 
 @media only screen and (max-width: 900px) {
     .btn-nav {
@@ -296,10 +336,6 @@ main{
         font-weight: bold;
     }
 
-
-
-
-
 }
 
 @media only screen and (min-width: 901px) {
@@ -308,66 +344,11 @@ main{
         visibility: visible;
     }
 
-
-
-
 }
+/*slider (carousel) part end*/
 
 
-
-/*-----------------------------carousel part end !!!!!!!!!!-------------------------------------------------*/
-
-
-/*------------------------------FinnkinoSearch and result table start----------------------------------------------------------*/
-
-
-@media( max-width: 901px){
-
-}
-
-/*@media( min-width: 501px){*/
-/*    .logo{*/
-/*        text-align: center;*/
-/*        font-size: 50px;*/
-/*    }*/
-
-/*    .slider{*/
-/*        width: 90%;*/
-/*    }*/
-
-/*    .form-group{*/
-/*        display: flex;*/
-/*        flex-wrap: wrap;*/
-/*    }*/
-
-/*    #custom-select{*/
-/*        width: auto;*/
-/*    }*/
-/*    .table, tbody, .table-responsive, .table tr, table td {*/
-/*        display: block;*/
-/*        width: auto;*/
-/*    }*/
-
-/*    .table td {*/
-/*        text-align: right;*/
-/*        padding-left: 50%;*/
-/*        position: relative;*/
-/*    }*/
-
-/*    .table td::before{*/
-/*        content: attr(data-label);*/
-/*        position: absolute;*/
-/*        left: 0;*/
-/*        width: 50%;*/
-/*        padding-left: 15px;*/
-/*        font-size: 15px;*/
-/*        font-weight: bold;*/
-/*    }*/
-
-/*}*/
-
-
-
+/*FinnkinoSearch and result table start*/
 
 .form-group{
     margin-right: 20px;
