@@ -30,12 +30,14 @@ function populateSlider() {
     setTimeout(function () {
         for (let i = 0; i < 30 + Math.floor(Math.random()*60); i++) {
             console.log(movies.length);
-            if (movies[i].srcL === null) {
+            if (movies[i].srcL === undefined){
+                console.log("UNDEFINED");
+            }else if (movies[i].srcL === null) {
                 movies[i].srcL === movies[i+1].srcL
                 console.log("NULL");
-            }else if (movies[i] === null){
+            } else if (movies[i] === null){
 
-            }else {
+            } else {
 
                 //1 ELEMENTTI
                 const newmoviefig = document.createElement("figure");
@@ -45,7 +47,7 @@ function populateSlider() {
 
                 //2 ELEMENTTI, 1 ELEMENTIN SISÄLLÄ
                 const newMovie = document.createElement('img');
-                newMovie.src = movies[i+1].srcL;
+                newMovie.src = movies[i].srcL;
                 newMovie.alt = ""
                 newMovie.srcset = ""
                 newmoviefig.appendChild(newMovie);
@@ -54,17 +56,9 @@ function populateSlider() {
                 const descfig = document.createElement('figure');
                 descfig.className = "description"
                 const a = document.createElement("a")
-                a.href =movies[i].movieurl
+                a.href = movies[i].movieurl
                 a.innerText = "Leffan Kotisivu"
                 descfig.appendChild(a)
-
-                //4 ELEMENTTI, 3 ELEMENTIN SISÄLLÄ
-                const descbuttonfig = document.createElement('figure');
-                descbuttonfig.className = "description__buttons-container"
-
-                //5 ELEMENTTI, 3 ELEMENTIN SISÄLLÄ
-                const figcapbuttonfaplay = document.createElement('figcaption');
-                figcapbuttonfaplay.className = "description__button"
 
                 //6 ELEMENTTI, 3 ELEMENTIN SISÄLLÄ
                 const figcapbuttonfaplus = document.createElement('figcaption')
@@ -109,35 +103,18 @@ function populateSlider() {
                 divspanmatch.innerText = movies[i].movieyear
                 const divspanrating = document.createElement('span')
                 divspanrating.className ="description__rating"
-                divspanrating.innerText = movies[i].movieRating
+                divspanrating.innerText = 'Rating: ' + movies[i].movieRating
 
                 const divspanlenght = document.createElement('span')
                 divspanlenght.className ="description__length"
                 const hours = Math.floor(movies[i].movieduration / 60);
                 const minutes = movies[i].movieduration % 60;
-                divspanlenght.innerText = hours+"h "+minutes+"m ";
+                divspanlenght.innerText = hours + " h " + minutes+" m ";
 
                 const divspangenre = document.createElement('span')
                 divspangenre.className = "genrespan"
-                divspangenre.innerText = movies[i].movieGenre
+                divspangenre.innerText = movies[i].movieGenre;
                 const br = document.createElement('br')
-
-                descfig.appendChild(descbuttonfig);
-                descbuttonfig.appendChild(figcapbuttonfaplay)
-                figcapbuttonfaplay.appendChild(iplay)
-
-                descbuttonfig.appendChild(figcapbuttonfaplus)
-                figcapbuttonfaplus.appendChild(iplus)
-
-                descbuttonfig.appendChild(figcapbuttonthumup)
-                figcapbuttonthumup.appendChild(ithumup)
-
-                descbuttonfig.appendChild(figcapbuttonthumdown)
-                figcapbuttonthumdown.appendChild(ithumdown)
-
-                descbuttonfig.appendChild(figcapbuttonchevrondown)
-                figcapbuttonchevrondown.appendChild(ichevro)
-
 
                 newmoviefig.appendChild(descfig);
                 descfig.appendChild(divtexcont)

@@ -32,7 +32,7 @@ export default class SearchDataFINNKINO {
                         srcL: filmImagelarge,
                         srcS: filmImagesmall,
                         name: title,
-                        movieGenre: genres,
+                        movieGenre: genres.replace(/,/g, '\n'),
                         movieRating: rating,
                         movieduration: movietime,
                         movieyear: year,

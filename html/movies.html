@@ -3,12 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=alpino@300&f[]=panchang@400&f[]=general-sans@300&display=swap" rel="stylesheet">
   <link href="../css/styles.css" rel="stylesheet" type="text/css">
   <link href="../css/moviesivu.css" rel="stylesheet" type="text/css">
@@ -17,10 +12,6 @@
 <!--  background image link : https://www.freepik.com/free-vector/open-clapper-board-with-film-strip-background-design_8998544.htm#query=movie%20background&p?osition=4&from_view=keyword-->
   <title>Movies</title>
 </head>
-
-
-
-
 <body>
 
 <nav class="topnav">
@@ -31,13 +22,13 @@
   </div>
 
   <!-- Left-aligned links (default) -->
-  <a href="movies.html">MOVIES</a>
+  <a href="movies.html" class="active">MOVIES</a>
   <a href="culture.html">CULTURE</a>
 
   <!-- Right-aligned links -->
   <div class="topnav-right">
     <a href="sports.html">SPORTS</a>
-    <a href="restaurants.html" class="active">RESTAURANTS</a>
+    <a href="restaurants.html" >RESTAURANTS</a>
   </div>
 </nav>
 
@@ -45,28 +36,28 @@
 
 <main>
 
-<!----------------------------Carousel part start!!!------------------------------------->
+<!--Slider part start-->
 
 <div class="container">
   <button type="button" id="moveLeft" class="btn-nav">
     ᐊ
   </button>
-  <article class="container-indicators">
+  <div class="container-indicators">
     <div class="indicator active" data-index="0"></div>
     <div class="indicator" data-index="1"></div>
     <div class="indicator" data-index="2"></div>
     <div class="indicator" data-index="3"></div>
-  </article>
+  </div>
   <div class="slider" id="mySlider" style="overflow:hidden;">
-    <figure class="movie" id="movie0">
-    </figure>
+    <div class="movie" id="movie0">
+    </div>
   </div>
 
   <button type="button" id="moveRight" class="btn-nav">
     ᐅ
   </button>
 </div>
-<!--carousel part  end !!!!!!!!!!!!!!!!!!!-->
+<!--slider part end-->
 
 <div class="container mx-auto ">
   <div class="row ">
