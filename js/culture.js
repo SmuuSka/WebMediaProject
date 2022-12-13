@@ -11,53 +11,70 @@ const searchButtonMuseums = document.getElementById('museonappi');
 const searchButtonKaikki = document.getElementById('kaikkinappi');
 const apiUrlSearchTab = "v1/events/?tags_search=";
 
-let loader;
+
 //popup
 const popup = document.getElementById('popup');
-const closePopupBtn = document.getElementById('closePopup');
-
 let popUpOpen = false;
+
+//Jos etsitään tiettyä juttua napeista
 let Searchprecise = 0;
+//Data long location mapeille
 let datalocation;
+//Data latidute location mapeille
 let datalatcation;
+//Jos counter on 1 tarkoitaa edellinen kartta poistetaan ja uus laitetaan tilalle.
 let counter = 0;
+//Kartta data
 let currentMAP;
+//Kartta asetukset.
 let mapoptiondata =
     {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0
     };
-
+//Myhelsinki Data
 let currentSearch;
+
+//Tänne tulee tagslistalta Sanat joita etsitään (nappia painamalla)
 let keyword;
+//tags listan length
 let tagi = 0;
+//Lista mihin tulee tarvittava data apista (voi käsitellä helpommin)
 let datalist = [{}];
+//Search tagi lista.
 const tags = [{
     name: "Musiikki,"
 }, {
     name: "Libraries,"
 }, {
     name: "concerts,"
-},{
+}, {
     name: "history"
-},{
-    name:"museums"
+}, {
+    name: "museums"
 }];
+//Tagi jota etsitään tags listalta
 let tagsearch;
+
 findCultureData()
+
+//Etsitään dataa myhelsinki apista.
 function findCultureData() {
     if (tagi === tags.length) {
         console.log("DONE");
         tagi = 0;
     }
-    //Luetaan käyttäjänsyöte
+
+    //Luetaan käyttäjänsyöte jos sellainen on jos ei niin  = ""
     keyword = ""
+
     //Luodaan hakuolio
     currentSearch = new SearchData();
-    if (Searchprecise === 5 || Searchprecise === 0){
+    if (Searchprecise === 5 || Searchprecise === 0) {
         tagsearch = tags[tagi].name;
     }
+
     //Tehdään haku
     currentSearch.doQuery(apiUrlSearchTab + tagsearch, keyword);
     mainElem.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/CultureLoad.gif" alt="loadingGif">`;
@@ -68,6 +85,7 @@ function findCultureData() {
 
 }
 
+//Tulostetaan dataa let datalistaan ja sitten valmistellaan elementtejä.
 function LaunchCultureData() {
     let named;
     let desc;
@@ -78,9 +96,9 @@ function LaunchCultureData() {
     let imaged;
     let url;
     console.log("CULTUREDATA" + tagi)
+
     setTimeout(function () {
         for (let i = 0; i < currentSearch.resultJson.length; i++) {
-            console.log(currentSearch.resultJson[i].name.fi);
             try {
                 named = currentSearch.resultJson[i].name.fi;
             } catch (err) {
@@ -122,11 +140,11 @@ function LaunchCultureData() {
                                     } catch (err) {
                                         console.log("IMAGEERROR");
                                     } finally {
-                                        try{
+                                        try {
                                             url = currentSearch.resultJson[i].info_url;
-                                        }catch (err){
+                                        } catch (err) {
                                             console.log("ERROR NO URL INFO");
-                                        }finally {
+                                        } finally {
                                             datalist.push({
                                                 name: named,
                                                 bodydes: bodyd,
@@ -148,43 +166,49 @@ function LaunchCultureData() {
             }
 
         }
-        if (Searchprecise === 1){
+        if (Searchprecise === 1) {
             console.log("ONESEARCH");
             mainElem.innerHTML = '';
             SHOWDATA();
-        }else{
-        tagi++
-        if (tagi <= tags.length - 1) {
-            setTimeout(function () {
-                findCultureData()
-            }, 2000);
         } else {
-            Searchprecise = 0;
-            console.log("DONE")
-            mainElem.innerHTML = '';
-            SHOWDATA()
-        }
+            tagi++
+            if (tagi <= tags.length - 1) {
+                setTimeout(function () {
+                    findCultureData()
+                }, 2000);
+            } else {
+                Searchprecise = 0;
+                console.log("DONE")
+                mainElem.innerHTML = '';
+                SHOWDATA()
+            }
         }
 
 
-        console.log(datalist)
     }, 200);
 }
 
+//Valmistellaan elementtejä ja tulostetaan appendchildilla tiedot.
 function SHOWDATA() {
 
     for (let i = 1; i < datalist.length; i++) {
+
+        //Jos infoa,kuvaa tai bodyparagraphia ei löydy, ei tulosteta/lisätä mitään.
         if (datalist[i].image === null || datalist[i].description === null || datalist[i].bodydes === null) {
-            console.log("no info,not adding");
+
         } else {
 
+            //Main article,missä on kaikki data sisällä
             let articletwo = document.createElement("article");
             articletwo.className = "CULTDATARTCLASStwo";
             articletwo.classList.add('CULTDATARTCLASStwo', 'new-CULTDATARTCLASS');
+
+            //Main articlen sisällä oleva Texti/kartta nappi article.
             let article = document.createElement("div");
             article.className = "CULTDATARTCLASS";
             article.id = "DataARTICLE" + i;
 
+            //Articlen/Tapahtuman kuva
             let img = document.createElement("img");
             img.className = "CultIMG";
 
@@ -198,6 +222,7 @@ function SHOWDATA() {
                 img.src = datalist[i].image;
             }
 
+            //kuvan päälä oleva Otsikko
             let articleheader = document.createElement("div");
             articleheader.innerText = datalist[i].name;
             articleheader.className = "DataARTICLE";
@@ -205,30 +230,38 @@ function SHOWDATA() {
                 "padding: 0;" +
                 "width: 100%;";
 
+            //Paragraph let articlen sisällä.
             let p = document.createElement("p");
             p.className = "DataPARAGRAPH";
             p.innerHTML = datalist[i].bodydes;
+
             let br = document.createElement("br");
 
+            //Kartta nappi
             let button = document.createElement("button");
             button.className = "Karttanappi" + i;
             button.id = "Karttanappi";
 
+            //Lista missä on napit.
             let buttondiv = document.createElement("div")
             buttondiv.id = "Buttonlist";
 
+            //Sivu "Kotisivu" napille
             let aINFO = document.createElement("a");
 
+            //Tapahtuman kotisivu.
             let infobutton = document.createElement("button")
             infobutton.innerText = "KOTISIVU";
             infobutton.className = "InfoNappi";
-            infobutton.id="Karttanappi";
+            infobutton.id = "Karttanappi";
 
+            //Kartta divi.
             let mapdiv = document.createElement("div");
             mapdiv.className = "map";
             mapdiv.id = "map";
             mapdiv.style = "width: 95%; height: 300px;";
 
+            //Täälä lisätään elementtejä elementtien sisälle ja näytetään ne.
             mainElem.appendChild(br);
             mainElem.appendChild(articletwo);
             articletwo.appendChild(articleheader);
@@ -237,6 +270,8 @@ function SHOWDATA() {
             article.appendChild(p);
             article.appendChild(buttondiv)
 
+
+            //Kartta Nappi id.
             let buttonid = document.getElementById("Karttanappi" + i)
             try {
 
@@ -256,15 +291,16 @@ function SHOWDATA() {
                     naytamap(i);
                 };
                 buttondiv.appendChild(button);
-                try{
+                try {
                     aINFO.href = datalist[i].url
                     buttondiv.appendChild(aINFO)
                     aINFO.appendChild(infobutton);
-                }catch (err){
+                } catch (err) {
                     console.log("NOURL NOT ADDING HOME PAGE")
                 }
 
             }
+            /////////////////
 
         }
 
@@ -272,10 +308,12 @@ function SHOWDATA() {
     }
 
 }
-function createPopup(eventDatai){
+
+//Luotaan popup
+function createPopup(eventDatai) {
     //Elements
     let popupHeader = document.createElement('h2');
-    let popupDescription= document.createElement('p');
+    let popupDescription = document.createElement('p');
     let popupMap = document.createElement('div');
     let popupCloseButton = document.createElement('button');
 
@@ -304,13 +342,13 @@ function createPopup(eventDatai){
     popup.appendChild(popupCloseButton);
 
 }
+
 //NÄYTETÄÄN KARTTA (DATALINDEX) = napissa oleva index arvo mikä tehtiin forloopissa ylhäällä.
 function naytamap(datalindex) {
     popup.classList.add('open-popup');
     currentMAP = new MapData();
     currentMAP.Mapincluded = 1;
     createPopup(datalindex);
-    console.log("Löyty " + datalist[datalindex].id + " === " + datalindex);
     if (counter === 1) {
         try {
             currentMAP.mapleaf.remove();
@@ -320,7 +358,7 @@ function naytamap(datalindex) {
 
     }
     let NAME;
-    console.log(datalindex);
+    //Kokeillan try lauseilla kaikkea,että errorit ei tuhoisi mitään toimintaa jos sellainen tulee.
     try {
         currentMAP.posLat = datalist[datalindex].locationlat;
     } catch (err) {
@@ -372,20 +410,22 @@ function naytamap(datalindex) {
 
 }
 
+//Sulje Popup
 function closePopup() {
     popup.classList.remove('open-popup');
     popup.replaceChildren();
     popUpOpen = false;
 }
 
-function EventType(num){
+//Haku napit + mitä ne hakee jne.
+function EventType(num) {
     const button = num.target.value;
     mainElem.innerHTML = '';
     datalist = [{}];
-    if (button == 5){
+    if (button === 5) {
         Searchprecise = 5
         findCultureData();
-    }else {
+    } else {
         Searchprecise = 1;
         console.log(num.target.value);
         tagsearch = tags[button].name;
@@ -394,11 +434,12 @@ function EventType(num){
 
 }
 
+///Event listeners search napeille.
 searchButtonMusic.addEventListener('click', EventType);
-searchButtonKirjasto.addEventListener('click',EventType);
-searchButtonConcerts.addEventListener('click',EventType);
-searchButtonHistory.addEventListener('click',EventType);
-searchButtonMuseums.addEventListener('click',EventType);
-searchButtonKaikki.addEventListener('click',EventType);
+searchButtonKirjasto.addEventListener('click', EventType);
+searchButtonConcerts.addEventListener('click', EventType);
+searchButtonHistory.addEventListener('click', EventType);
+searchButtonMuseums.addEventListener('click', EventType);
+searchButtonKaikki.addEventListener('click', EventType);
 
 
