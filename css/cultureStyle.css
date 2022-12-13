@@ -9,6 +9,9 @@
     background-position: center;
     background-attachment: fixed;
 }
+.body{
+    font-family: 'Panchang', sans-serif;
+}
 .loader-icon{
     margin-top: 25%;
     margin-bottom: 30%;
