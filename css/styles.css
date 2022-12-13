@@ -254,7 +254,7 @@ h4{
         margin-left: 0;
     }
 }
-@media  screen and (max-width: 800px) {
+@media  screen and (max-width: 200px) {
     .resultbox{
         width: 40%;
     }
@@ -262,17 +262,23 @@ h4{
         width: 40%;
     }
     h1{
-        font-size: 30px;
-        text-align: left;
+        max-width: 100%;
+        min-width:70%;
+        max-font-size: 50px;
+        min-font-size: 5px;
+        text-align: justify-all;
         margin-left: 120px;
     }
     .topnav{
-        max-width: 39%;
-        margin-left: 50px;
+        max-width: 80%;
+        min-width: 40%;
+        margin-left: 0%;
+        margin-right: 0%;
     }
     .bottomnav{
-        max-width: 39%;
-        margin-left: 50px;
+        max-width: 100%;
+        margin-left: 0%;
+        margin-right: 0%;
     }
     .sportSearchBox1{
         max-width: 50%;

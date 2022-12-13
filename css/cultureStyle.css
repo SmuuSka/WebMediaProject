@@ -1,14 +1,17 @@
 
 /* Culture.html Styles */
 .classHtml{
-    min-height: 100vh;
-    min-width: 100vh;
+    max-height: 1000vh;
+    max-width: 1000vh;
+    min-height: 10vh;
+    min-width: 25vh;
     background-image: url("../img/Culturebg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
+
 .body{
     font-family: 'Panchang', sans-serif;
 }
@@ -30,7 +33,8 @@
 .logo{
     margin-right: auto;
     margin-left: auto;
-    font-size: 100px;
+    max-font-size: 100px;
+    min-font-size: 30px;
     background-color: rgba(241, 77, 83, 0.58); ;
     border-radius: 80%;
 }
