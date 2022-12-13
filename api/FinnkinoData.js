@@ -5,7 +5,6 @@ export default class SearchDataFINNKINO {
     }
 
     loadDoc() {
-        let dropdown = document.getElementById("custom-select");
         let filmsList = this.Filmkuvalista;
         fetch('https://www.finnkino.fi/xml/Schedule/')
             .then((res) => res.text())
@@ -32,7 +31,7 @@ export default class SearchDataFINNKINO {
                         srcL: filmImagelarge,
                         srcS: filmImagesmall,
                         name: title,
-                        movieGenre: genres,
+                        movieGenre: genres.replace(/,/g, '\n'),
                         movieRating: rating,
                         movieduration: movietime,
                         movieyear: year,

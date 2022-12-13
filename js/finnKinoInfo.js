@@ -66,7 +66,7 @@ function finnKinoSheudule() {
 }
 
 
-// this function change values dropdown
+// tämä funktio vaihtaa dropdown value
 function changeVal() {
 
     let index = document.getElementById('custom-select').selectedIndex;
