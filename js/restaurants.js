@@ -97,68 +97,6 @@ function findRestaurant(data){
 
 }
 
-
-/*
-function findRestaurant(data){
-
-    currentSearch = new SearchData();
-    currentMAP = new MapData();
-
-    currentSearch.doQuery(apiUrlSearchTab, data);
-    console.log(data);
-
-    article = document.getElementById('loaderBlock');
-    article.innerHTML = `<img class="loader-icon" id="loadIcon" src="../LoadingGifs/workingLoadingAnimation.gif" alt="loadingGif">`;
-
-
-
-    setTimeout(function (){
-
-        let hakusana = data;
-        console.log("Tässä palautuksen pituus: " + currentSearch.resultJson.length);
-        console.log(hakusana.length);
-
-        for (let i = 0; i < currentSearch.resultJson.length; i++) {
-
-            console.log('sisällä loopissa');
-            let stringname = currentSearch.resultJson[i].name.fi;
-            let hakusanakaks = hakusana.toUpperCase();
-            let strincarz = stringname.charAt(0);
-            let hakuzero = hakusanakaks.charAt(0);
-
-
-            // jos etsitty tasaisella nimellä
-            if (stringname.toLowerCase() === data.toLowerCase()){
-                //Add here functionality for search with fullName (if needed)
-            }
-
-            else if (strincarz === hakuzero && hakusana.length === 1) {
-
-                //Add here functionality for search with one letter. (if needed)
-
-            }else if (hakusanakaks === '' && currentSearch.resultJson[i].tags[0].name === 'restaurants'){
-                ul = document.getElementById('Mainlistele')
-                list = document.createElement('li')
-                let listosoite = document.createElement('li');
-                let br = document.createElement("br");
-
-                listosoite.innerText += currentSearch.resultJson[i].location.lat;
-                listosoite.innerText += currentSearch.resultJson[i].location.lon;
-                list.innerText = currentSearch.resultJson[i].name.fi;
-
-                ul.appendChild(list);
-                ul.appendChild(br);
-
-            }
-
-        }
-        testi();
-    }, 50000)
-
-
-}
-*/
-
 function testi(){
     let loader = document.getElementById('loadIcon');
     loader.remove();
@@ -189,6 +127,7 @@ function realRestaurantSearch(name){
             console.log("Sisällä kokosanassa");
             let ull = document.getElementById('secondList')
             list = document.createElement('li')
+            const br = document.createElement('br');
             let address = document.createElement('li');
             let email = document.createElement('a');
             email.href = currentSearch.resultJson[j].info_url;
@@ -201,6 +140,7 @@ function realRestaurantSearch(name){
             desc.innerText = currentSearch.resultJson[j].description.intro;
             console.log("ravintolan nimi(solo): " + currentSearch.resultJson[j].name.fi);
             ull.appendChild(list);
+            ull.appendChild(br);
             ull.appendChild(address);
             ull.appendChild(email);
             ull.appendChild(desc);
@@ -236,17 +176,21 @@ function realRestaurantSearch(name){
         let ull = document.getElementById('secondList')
         list = document.createElement('li')
         let error = document.createElement('li');
+        const br = document.createElement('br');
+        const br1 = document.createElement('br');
         let fix = document.createElement('li');
         let desc = document.createElement('li');
 
         list.innerText = 'TAPAHTUI VIRHE!!!';
         error.innerText = 'Taisi tapahtua näppäily virhe.';
-        fix.innerText = 'Hake ravintolaa viereisestä listasta löytyvällä kokonimellä.'
+        fix.innerText = 'Hae ravintolaa viereisestä listasta löytyvällä kokonimellä.'
         desc.innerText = 'YRITÄ UUDELLEEN!'
 
         ull.appendChild(list);
+        ull.appendChild(br);
         ull.appendChild(error);
         ull.appendChild(fix);
+        ull.appendChild(br1);
         ull.appendChild(desc);
     }
 }
