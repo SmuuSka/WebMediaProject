@@ -259,7 +259,6 @@ function SHOWDATA() {
             let mapdiv = document.createElement("div");
             mapdiv.className = "map";
             mapdiv.id = "map";
-            mapdiv.style = "width: 95%; height: 300px;";
 
             //Täälä lisätään elementtejä elementtien sisälle ja näytetään ne.
             mainElem.appendChild(br);
@@ -333,7 +332,6 @@ function createPopup(eventDatai) {
     popupCloseButton.type = "button";
     popupCloseButton.innerHTML = "Close";
     popupCloseButton.addEventListener('click', closePopup);
-    popupMap.style = "width: 1100px; height: 500px;"
 
     //Pile up
     popup.appendChild(popupHeader);

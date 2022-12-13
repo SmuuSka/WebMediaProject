@@ -1,6 +1,5 @@
-
 /* Culture.html Styles */
-.classHtml{
+.classHtml {
     max-height: 1000vh;
     max-width: 1000vh;
     min-height: 10vh;
@@ -12,33 +11,42 @@
     background-attachment: fixed;
 }
 
-.body{
+.body {
     font-family: 'Panchang', sans-serif;
 }
-.loader-icon{
+
+.loader-icon {
     margin-top: 25%;
     margin-bottom: 30%;
     scale: 150%;
 }
-.bottomnav{
-    position: absolute;
-    bottom: -100%;
+
+.bottomnav {
+    text-align: center;
+    padding-top: 20px;
+    position: relative;
     width: 100%;
-    height: 60px;
+    height: 70px;
+    flex: 0 0 auto;
+    bottom: 0;
+    margin: auto;
 }
+
 #MAINDATA::-webkit-scrollbar {
     border-radius: 2%;
     width: 20px;
 }
-.logo{
+
+.logo {
     margin-right: auto;
     margin-left: auto;
     max-font-size: 100px;
     min-font-size: 30px;
-    background-color: rgba(241, 77, 83, 0.58); ;
+    background-color: rgba(241, 77, 83, 0.58);;
     border-radius: 80%;
 }
-#MAINDATA{
+
+#MAINDATA {
     max-width: 75%;
     overflow-scrolling: auto;
     overflow-y: scroll;
@@ -56,7 +64,7 @@
 
 }
 
-.DataARTICLE{
+.DataARTICLE {
     font-family: "As Cute As... Bold", serif;
     font-size: 25px;
     font-style: oblique;
@@ -68,7 +76,8 @@
     border-radius: 1%;
     border-style: double double none;
 }
-.CultIMG{
+
+.CultIMG {
     max-width: 90%;
     min-width: 50%;
     max-height: 90%;
@@ -77,7 +86,8 @@
     margin-right: 4%;
     border-radius: 10px;
 }
-.DataPARAGRAPH{
+
+.DataPARAGRAPH {
     color: white;
     background-color: #254d70;
     border-radius: 10px;
@@ -88,7 +98,8 @@
     overflow-x: hidden;
     opacity: 96%;
 }
-.CULTDATARTCLASS{
+
+.CULTDATARTCLASS {
     max-height: 400px;
     overflow: hidden;
     height: 100%;
@@ -99,7 +110,8 @@
     display: flex;
 
 }
-.CULTDATARTCLASStwo{
+
+.CULTDATARTCLASStwo {
     margin: 2%;
     padding: 0% 5% 0%;
     display: flex;
@@ -116,12 +128,13 @@
     }
 }
 
-.new-CULTDATARTCLASS{
+.new-CULTDATARTCLASS {
     transform-origin: 50% 0;
     animation: append-animate 2s ease-in;
 }
-/*Nappi joilla tehdään haku*/
-#BUTTONS{
+
+
+#BUTTONS {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,7 +147,8 @@
     width: auto;
     height: auto;
 }
-.hakunappi{
+/*Nappi joilla tehdään haku*/
+.hakunappi {
     cursor: pointer;
     font-size: 25px;
     color: white;
@@ -151,18 +165,21 @@
     transition: transform 3s ease-in-out;
     box-shadow: 0 5px 5px rgb(3, 2, 2);
 }
-.hakunappi:hover{
+
+.hakunappi:hover {
     transform: rotate(360deg);
     background-color: #1c4c64;
 }
+
 /*Pääinfo aka (aukioloajat ja intro descriptions*/
-#cultureInfo{
+#cultureInfo {
     position: absolute;
     margin-left: 10%;
     margin-right: 10%;
 }
+
 /*Main element Kultuuri*/
-#cultureMain{
+#cultureMain {
     justify-content: center;
     margin: 1%;
     display: block;
@@ -178,8 +195,7 @@
     opacity: 0;
 }
 
-.DataPARAGRAPH::-webkit-scrollbar-thumb
-{
+.DataPARAGRAPH::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-image: -webkit-gradient(linear,
     left bottom,
@@ -188,17 +204,19 @@
     color-stop(0.72, rgb(189, 73, 73)),
     color-stop(0.86, rgb(148, 28, 42)));
 }
-#Mainlistele{
+
+#Mainlistele {
     overflow-x: hidden;
     overflow-y: scroll;
     height: 250px;
 }
+
 /*Kaikki kultuuri LI elementit jotka JS tulostaa.*/
-#liculture{
-    display:inline-block;
+#liculture {
+    display: inline-block;
 }
 
-#Buttonlist{
+#Buttonlist {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -208,10 +226,9 @@
     left: inherit;
     margin-left: 1%;
     margin-right: auto;
-    width: auto;
-    height: auto;
 }
-#Karttanappi{
+
+#Karttanappi {
     cursor: pointer;
     font-size: 25px;
     color: white;
@@ -228,33 +245,38 @@
     transition: transform 3s ease-in-out;
     box-shadow: 0 5px 5px rgb(3, 2, 2);
 }
-.popup{
-    justify-self: center;
+
+.popup {
+
     width: 1200px;
     height: 800px;
     position: fixed;
+
     top: 40%;
-    left: 35%;
     margin-top: -300px;
-    margin-left: -350px;
+    margin-left: 15%;
+    margin-right: auto;
+
     background: #567aa6;
     text-align: center;
     color: black;
     visibility: hidden;
+
     border-radius: 20%;
     border-width: 10px;
     border-color: #c13c54;
-    border-style:double double none ;
+    border-style: double double none;
     box-shadow: 10px 20px 40px rgb(3, 2, 2);
 }
 
-.popup h2{
+.popup h2 {
     font-size: 38px;
     font-weight: 500;
     margin: 30px 0 10px;
     padding: 0% 10% 0%;
 }
-.popup button{
+
+.popup button {
     width: 60%;
     margin-top: 50px;
     padding: 10px 0;
@@ -268,9 +290,98 @@
     box-shadow: 0 5px 5px rgb(3, 2, 2);
 }
 
-.open-popup{
+.open-popup {
     visibility: visible;
     z-index: auto;
+}
+
+#map {
+    width: 1100px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 900px) {
+
+    .popup {
+        top: 35%;
+        margin-top: -300px;
+        margin-left: 7%;
+        margin-right: auto;
+
+        width: 600px;
+        height: 750px;
+        align-content: center;
+        border-radius: 20%;
+        border-width: 10px;
+        border-color: #c13c54;
+        border-style: double double none;
+        box-shadow: 10px 20px 40px rgb(3, 2, 2);
+    }
+
+    #map {
+        border-radius: 5%;
+        bottom: 5%;
+        width: 500px;
+        height: 430px;
+    }
+
+    .leaflet-routing-container {
+        width: 120px;
+        height: 140px;
+    }
+
+    .leaflet-routing-container, .leaflet-routing-error {
+        background-color: white;
+        transition: all 0.2s ease;
+        block-size: fit-content;
+    }
+
+    .popup button {
+        width: 40%;
+        margin-top: 1%;
+        padding: 10px 0;
+        background: #c13c54;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 16px;
+        border-radius: 20%;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgb(3 2 2);
+    }
+
+    /*Nappi joilla tehdään haku*/
+    #BUTTONS {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        height: auto;
+        text-align: center;
+    }
+
+    .CULTDATARTCLASS {
+        flex-direction: column;
+
+    }
+
+    .DataPARAGRAPH {
+        width: auto;
+
+    }
+
+    .CULTDATARTCLASStwo {
+        flex-direction: column;
+    }
+
+    #Buttonlist {
+        margin-right: 5%;
+        margin-bottom: 5%;
+    }
+
+
 }
 
 /*---------------------*/
