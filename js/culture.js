@@ -430,7 +430,7 @@ function EventType(num) {
             tagsearch = tags[button].name;
         }catch (err){
             console.log("ERRORname")
-            tagsearch = tags[tagi].name;
+            tagsearch = tags[0].name;
         }
         findCultureData();
     }
