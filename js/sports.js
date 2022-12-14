@@ -14,6 +14,9 @@ const searchBtn = document.getElementById('searchBtn');
 const divElem = document.getElementById('result');
 const eventList = document.createElement('ul');
 
+//Loader icon
+const loaderIcon = document.getElementById('loadIcon');
+
 //popup elements
 const popup = document.getElementById('popup');
 
@@ -57,14 +60,12 @@ function findWithKeyword() {
                 count++;
                 if (events[i].date >= currentDay) {
                     eventSetBySearch(i);
-                    console.log("Löyty: " + tag);
                 }
             }
         }
     }
     if (count < 1){
-        alert("Any of event couldn't found by tag");
-        //findSportDataDefault();
+        alert("Nothing found");
         location.reload();
     }
 }
@@ -102,9 +103,11 @@ function waitUntilDataArrived(){
            location.reload();
         }
         if (currentSearch.dataArrived !== true) {
+            loaderIcon.classList.add('loader-icon-enable');
             waitUntilDataArrived();
         }
         else {
+            loaderIcon.classList.add('loader-icon-disable');
              events = errorCheck(currentSearch.resultJson);
              currentDay = new Date();
             for (let i = 0; i < events.length; i++)
@@ -305,7 +308,7 @@ function mapFunction(currentEvent){
     currentMap.mapleaf = L.map('map').setView([currentMap.posLat, currentMap.posLong], 13);
     currentMap.options = mapOptionData;
 
-    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("Here");
+    currentMap.Lmarker = L.marker([currentMap.posLat, currentMap.posLong]).addTo(currentMap.mapleaf).bindPopup("Event");
 
     currentMap.showMap();
 }

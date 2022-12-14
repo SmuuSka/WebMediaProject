@@ -15,14 +15,6 @@
     min-height: 100vh;
     position: relative;
 }
-.layout-wrapper{
-    display: flex;
-    flex-direction: column;
-}
-.layout-sport{
-    flex: 1;
-}
-
 .searchBoxContainer{
 
     display: flex;
@@ -122,12 +114,6 @@
     width: border-box;
 }
 
-.sportH1{
-    text-align: center;
-    margin: auto;
-    padding: 50px 0 50px 0;
-}
-
 .sportMain{
     background: none;
 }
@@ -144,16 +130,6 @@
     background: none;
 }
 
- .bottomnav{
-     text-align: center;
-     padding-top: 20px;
-     position: absolute;
-     width: 100%;
-     height: 50px;
-     //flex: 0 0 auto;
-     bottom: 0;
-     margin: auto;
-}
 
 .eventContainer{
     background: salmon;
@@ -220,4 +196,98 @@
 .open-popup{
     visibility: visible;
     z-index: 2;
+}
+
+.map{
+    max-height: 300px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.loader-icon-enable{
+    visibility: visible;
+}
+.loader-icon-disable{
+    visibility: hidden;
+    display: none;
+}
+
+@media  screen and (max-width: 800px) {
+    .sportBody{
+        display: flex;
+        max-width: 97vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+    .resultDiv{
+        display: flex;
+        max-width: 100vw;
+        margin: 0;
+    }
+    .eventItemContainer{
+        max-width: 95vw;
+        min-width: 0;
+    }
+    .event-li-item{
+        max-width: 87vw;
+    }
+
+    .eventItem-button{
+        max-width: 200px;
+        min-width: 0;
+        font-size: 15px;
+        text-align: start;
+        overflow-wrap: break-word;
+    }
+
+    .searchBoxContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .sportSearchBtn{
+        transform: translate(169px, -55px);
+    }
+
+    .sportSearchBox{
+        margin: auto;
+        max-width: 400px;
+    }
+
+    .sportSearchBox::placeholder{
+        font-size: 15px;
+    }
+    .popup{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 380px;
+        height: 430px;
+        position: fixed;
+        margin-top: -210px;
+        margin-left: -190px;
+    }
+    .map{
+        max-height: 160px;
+        max-width: 315px;
+        margin: auto;
+    }
+    .popup h2{
+        font-size: 20px;
+    }
+    .popupDescription{
+        font-size: 10px;
+        color: #8ee3ef;
+        letter-spacing: 1px;
+        padding: 3px;
+    }
+    .loader-icon{
+        margin: 0;
+    }
+    h1{
+        margin: 0;
+        padding:25px;
+    }
 }
