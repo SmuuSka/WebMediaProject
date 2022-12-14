@@ -1,6 +1,9 @@
+
 body{
-    min-height: 100vh;
-    min-width: 100vh;
+    max-height: 1000vh;
+    max-width: 1000vh;
+    min-height: 10vh;
+    min-width: 25vh;
     font-family: 'Panchang', sans-serif;
     background-image: linear-gradient(rgba(4,9,30,0.3),rgba(4,9,30,0.7)),url("../img/hollywood2.jpg");
     background-repeat: no-repeat;
@@ -27,6 +30,21 @@ main{
 @media only screen and (max-width: 1000px) {
     :root {
         --movie-width: 25vw;
+    }
+    #film-table{
+        display: flex;
+        flex-direction: column;
+        margin-right: 25%;
+        margin-left: auto;
+    }
+    .slider{
+        width: 100%;
+    }
+    .tableimage{
+        margin-left: 35%;
+    }
+    .btn-ticket{
+        margin-left: 35%;
     }
 }
 
@@ -218,16 +236,15 @@ main{
 
 /*responsive table and page */
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 999px) {
+
     #film-table{
         display: flex;
         flex-direction: column;
         margin-right: auto;
         margin-left: auto;
-        width: 50%;
-
+        justify-content: center;
     }
-
     .btn-nav {
         visibility: visible;
     }
@@ -235,21 +252,8 @@ main{
         width: 100%;
     }
 
-
-    .form-group{
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    #custom-select{
-        display: flex;
-        margin-left: 40px;
-        width: auto;
-
-    }
-    .table, tbody, .table-responsive, .table tr, table td {
+    .table, .table-responsive, .table tr, table td {
         display: block;
-        width: auto;
     }
 
     .table td {
@@ -266,6 +270,19 @@ main{
         padding-left: 15px;
         font-size: 15px;
         font-weight: bold;
+    }
+    .tableimage{
+        margin-left: 40%;
+        margin-right: 40%;
+    }
+    .btn-ticket{
+        margin-left: 40%;
+        margin-right: 40%;
+    }
+    tbody {
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 
 }
@@ -288,14 +305,47 @@ main{
 
 
 
-@media only screen and (max-width:701px){
+@media only screen and (max-width:502px){
 
     #film-table{
         display: flex;
         flex-direction: column;
         margin-right: auto;
         margin-left: auto;
-       box-sizing: content-box;
+        block-size: fit-content;
+        align-items: center;
+
+    }
+    .table-movies td{
+        width: 100%;
+
+    }
+    .tbody{
+        width: auto;
+    }
+    .container{
+       margin: auto;
+    }
+    .form-group{
+        flex-direction: column;
+        float: left;
+    }
+
+    .tableimage{
+        margin-left: 6%;
+        margin-right: auto;
+    }
+
+    #CINEMATABLE-btn{
+        align-content: center;
+    }
+    .btn-ticket{
+        margin-left: 6%;
+    }
+
+    tbody {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 
 }
@@ -365,8 +415,8 @@ fieldset{
     font-weight: bold;
     font-size: 25px;
 
-
 }
+
 
 .table-movies th,
 .table-movies td {
@@ -375,6 +425,9 @@ fieldset{
     border-top: 1px solid white;
 }
 
+.table-movies td{
+    width: border-box;
+}
 
 .btn-ticket {
     font-family: 'Panchang', sans-serif;

@@ -86,7 +86,7 @@ function changeVal() {
         if (movielist[i].cinemaName === thechosenvalue) {
             console.log("YES")
             table = '<tr>' +
-                '<td class="poster"><img src="' + movielist[i].srcS + '" alt="image"></td>' +
+                '<td class="poster"><img  class = "tableimage" src="' + movielist[i].srcS + '" alt="image"></td>' +
                 '<td class="film-title">' + movielist[i].name +
                 '</td>' + '<br>' +
                 '<td>' + movielist[i].movieGenre + '<br>' +
