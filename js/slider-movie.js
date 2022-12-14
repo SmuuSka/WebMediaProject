@@ -37,6 +37,8 @@ function populateSlider() {
                 console.log("NULL");
             } else if (movies[i] === null){
 
+            }else if (movies[i].srcL===movies[i-1].srcL || movies[i].srcS===movies[i-1].srcS) {
+                console.log("Not Printing Duplicate image")
             } else {
 
                 //1 ELEMENTTI
