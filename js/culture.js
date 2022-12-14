@@ -426,7 +426,12 @@ function EventType(num) {
     } else {
         Searchprecise = 1;
         console.log(num.target.value);
-        tagsearch = tags[button].name;
+        try {
+            tagsearch = tags[button].name;
+        }catch (err){
+            console.log("ERRORname")
+            tagsearch = tags[0].name;
+        }
         findCultureData();
     }
 
