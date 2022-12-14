@@ -21,7 +21,6 @@ export default class MapData {
     }
 
     showMap() {
-        console.log('sisällä karttafunctiossa');
         let lati = this.posLat;
         let longi = this.posLong;
 
@@ -37,12 +36,15 @@ export default class MapData {
         // Funktio, joka ajetaan, kun paikkatiedot on haettu
         function success(pos) {
             const crd = pos.coords;
+            /*Samun lisäämä muutos alkaa*/
 
             // Tulostetaan paikkatiedot konsoliin
-            console.log('Your current position is:');
-            console.log(`Latitude : ${crd.latitude}`);
-            console.log(`Longitude: ${crd.longitude}`);
-            console.log(`More or less ${crd.accuracy} meters.`);
+            // console.log('Your current position is:');
+            // console.log(`Latitude : ${crd.latitude}`);
+            // console.log(`Longitude: ${crd.longitude}`);
+            // console.log(`More or less ${crd.accuracy} meters.`);
+
+            /*Samun lisäämä muutos päättyy*/
 
             // Käytetään leaflet.js -kirjastoa näyttämään sijainti kartalla (https://leafletjs.com/)
                 if (mapROUTEON === 1){

@@ -42,7 +42,7 @@
     margin-left: auto;
     max-font-size: 100px;
     min-font-size: 30px;
-    background-color: rgba(241, 77, 83, 0.58);;
+    /*background-color: rgba(241, 77, 83, 0.58);;*/
     border-radius: 80%;
 }
 
@@ -73,6 +73,10 @@
     display: block;
     text-decoration-color: white;
     background-color: #c33c54;
+    /*Samun lisäämä muutos alkaa*/
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    /*Samun lisäämä muutos päättyy*/
     border-radius: 1%;
     border-style: double double none;
 }
@@ -381,7 +385,11 @@
         margin-bottom: 5%;
     }
 
-
+    /*Samun lisäämä muutos alkaa*/
+    .loader-icon{
+        margin: auto;
+    }
+    /*Samun lisäämä muutos päättyy*/
 }
 
 /*---------------------*/
